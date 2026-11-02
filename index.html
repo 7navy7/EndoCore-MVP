@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EndoCore — AI-Driven Localized Immunomodulation & Biohybrid Islet Shield</title>
+  <title>EndoCore — AI-Driven Localized Immunomodulation for T1D</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Three.js r128 & OrbitControls -->
@@ -187,11 +186,11 @@
             EndoCore
           </h1>
           <span class="hidden sm:inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-200 border border-purple-400/30">
-            AI-Driven Localized Immunomodulation &amp; Biohybrid Islet Shield
+            AI-Driven Localized Immunomodulation for T1D
           </span>
         </div>
         <p class="text-[11px] text-slate-400 hidden md:block">
-          Interactive 360° Subcutaneous Islet Digital Twin • Real-Time Cytokine Sensing, Exosomal IL-10 / TGF-β Delivery &amp; iCasp9 Safety
+          Subcutaneous Biohybrid Implant • 360° Islets of Langerhans • Localized IL-10 &amp; TGF-β Exosome Shield
         </p>
       </div>
     </div>
@@ -202,13 +201,13 @@
         <i data-lucide="compass" class="w-3.5 h-3.5"></i> Full Scene
       </button>
       <button onclick="setCameraView('islets')" id="cam-islets" class="cam-btn px-2.5 py-1 rounded-lg text-xs font-semibold text-slate-300 hover:bg-slate-800 transition flex items-center gap-1.5">
-        <i data-lucide="heart-pulse" class="w-3.5 h-3.5"></i> Islets of Langerhans
+        <i data-lucide="heart-pulse" class="w-3.5 h-3.5"></i> 360° Islets of Langerhans
+      </button>
+      <button onclick="setCameraView('underneath')" id="cam-underneath" class="cam-btn px-2.5 py-1 rounded-lg text-xs font-semibold text-slate-300 hover:bg-slate-800 transition flex items-center gap-1.5">
+        <i data-lucide="orbit" class="w-3.5 h-3.5"></i> Bottom 360° View
       </button>
       <button onclick="setCameraView('chip')" id="cam-chip" class="cam-btn px-2.5 py-1 rounded-lg text-xs font-semibold text-slate-300 hover:bg-slate-800 transition flex items-center gap-1.5">
-        <i data-lucide="layers" class="w-3.5 h-3.5"></i> EndoCore Nanochip
-      </button>
-      <button onclick="setCameraView('antibodies')" id="cam-antibodies" class="cam-btn px-2.5 py-1 rounded-lg text-xs font-semibold text-slate-300 hover:bg-slate-800 transition flex items-center gap-1.5">
-        <i data-lucide="git-fork" class="w-3.5 h-3.5"></i> Early AAb (Stage 1–2)
+        <i data-lucide="layers" class="w-3.5 h-3.5"></i> 5-Layer Nanochip
       </button>
     </div>
 
@@ -243,7 +242,6 @@
     <!-- =================================================================== -->
     <!-- ALWAYS-ACCESSIBLE SIDEBAR COLLAPSE / EXPAND HANDLE BUTTONS          -->
     <!-- =================================================================== -->
-    <!-- Left Sidebar Toggle Tab -->
     <button onclick="toggleLeftSidebar()" id="left-sidebar-tab"
       class="absolute top-4 left-4 z-40 px-3 py-2 rounded-xl bg-slate-900/95 hover:bg-purple-950/90 text-xs font-bold text-purple-200 border border-purple-500/50 shadow-xl backdrop-blur-md flex items-center gap-1.5 transition-all duration-300"
       style="left: 24.5rem;">
@@ -251,7 +249,6 @@
       <span id="left-tab-text">◀ Hide Controls</span>
     </button>
 
-    <!-- Right Sidebar Toggle Tab -->
     <button onclick="toggleRightSidebar()" id="right-sidebar-tab"
       class="absolute top-4 right-4 z-40 px-3 py-2 rounded-xl bg-slate-900/95 hover:bg-purple-950/90 text-xs font-bold text-cyan-200 border border-cyan-500/50 shadow-xl backdrop-blur-md flex items-center gap-1.5 transition-all duration-300"
       style="right: 24.5rem;">
@@ -260,62 +257,69 @@
     </button>
 
     <!-- =================================================================== -->
-    <!-- LEFT COLLAPSIBLE SIDEBAR: CONTROLS, SLIDERS, CHIP & FAIL-SAFE       -->
+    <!-- LEFT COLLAPSIBLE SIDEBAR: VALIDATION MODES, SLIDERS & 5-LAYER CHIP  -->
     <!-- =================================================================== -->
     <aside id="left-sidebar" class="sidebar-panel absolute top-0 left-0 bottom-0 w-96 max-w-[92vw] bg-slate-950/92 border-r border-purple-500/25 backdrop-blur-xl flex flex-col overflow-y-auto z-30 p-3.5 gap-3 shadow-2xl">
 
-      <!-- 1. Environment Mode Switcher (EndoCore Protected vs Unprotected T1D) -->
-      <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800">
-        <div class="flex items-center justify-between mb-2">
+      <!-- 1. Validation Test Suite (Protected vs. Unprotected Control) -->
+      <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800 space-y-2">
+        <div class="flex items-center justify-between">
           <span class="text-[11px] font-bold uppercase tracking-wider text-purple-300 flex items-center gap-1.5">
-            <i data-lucide="shield" class="w-3.5 h-3.5 text-purple-400"></i> Simulation Mode
+            <i data-lucide="flask-conical" class="w-3.5 h-3.5 text-purple-400"></i> Simulation Mode &amp; Validation
           </span>
           <span id="mode-badge" class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
             ENDOCORE SHIELD ON
           </span>
         </div>
 
-        <div class="grid grid-cols-1 gap-2">
-          <button onclick="setProtectionMode(true)" id="mode-protected" class="w-full p-2.5 rounded-lg text-left border transition flex items-start gap-2.5 bg-emerald-950/50 border-emerald-500/60 text-white shadow-md">
+        <div class="grid grid-cols-1 gap-1.5">
+          <!-- Mode 1: EndoCore AI Bio-Shield (Our Solution) -->
+          <button onclick="runProtectedInterventionTest()" id="mode-protected" class="w-full p-2.5 rounded-lg text-left border transition flex items-start gap-2.5 bg-emerald-950/50 border-emerald-500/60 text-white shadow-md">
             <div class="w-4 h-4 rounded-full bg-emerald-500 flex items-center justify-center mt-0.5 shrink-0">
               <i data-lucide="check" class="w-3 h-3 text-slate-950 stroke-[3]"></i>
             </div>
             <div>
-              <div class="text-xs font-bold text-emerald-300">1. EndoCore AI Bio-Shield (Implanted)</div>
+              <div class="text-xs font-bold text-emerald-300">1. EndoCore AI Bio-Shield (Our Solution)</div>
               <div class="text-[10px] text-slate-300 leading-tight mt-0.5">
-                AirTag-sized nanochip active above islets. Releases Exosomes + IL-10 &amp; TGF-β peptides, converts T-cells to Tregs, and gradually restores homeostasis over ~13s.
+                Detects cytokine spike (&lt;50ms), releases IL-10 &amp; TGF-β exosomes, converts attacking CD8+ T-cells into peaceful Tregs over <strong>18s</strong>, and preserves <strong>100% Insulin</strong>.
               </div>
             </div>
           </button>
 
-          <button onclick="setProtectionMode(false)" id="mode-unprotected" class="w-full p-2.5 rounded-lg text-left border transition flex items-start gap-2.5 bg-slate-900/70 border-slate-800 text-slate-400 hover:bg-slate-800/60">
+          <!-- Mode 2: Unprotected T1D Attack (Control -> 0% Insulin & DKA) -->
+          <button onclick="runUnprotectedControlTest()" id="mode-unprotected" class="w-full p-2.5 rounded-lg text-left border transition flex items-start gap-2.5 bg-slate-900/70 border-slate-800 text-slate-400 hover:bg-slate-800/60">
             <div class="w-4 h-4 rounded-full border border-slate-600 flex items-center justify-center mt-0.5 shrink-0"></div>
             <div>
-              <div class="text-xs font-bold text-rose-300">2. Unprotected T1D Attack (No Chip)</div>
+              <div class="text-xs font-bold text-rose-300">2. Unprotected T1D Attack (0% Insulin &amp; DKA)</div>
               <div class="text-[10px] text-slate-400 leading-tight mt-0.5">
-                Nanochip disappears from 3D scene. Spiky green CD8+ T-cells attack purple/pink beta cells, shriveling them into dark charcoal necrotic cells.
+                Nanochip removed. Watch cytokines &amp; CD8+ T-cells escalate over <strong>18s</strong>, destroying beta cells until <strong>Insulin hits 0%</strong> and triggering <strong>Diabetic Ketoacidosis (DKA)</strong>.
               </div>
             </div>
           </button>
         </div>
+
+        <button onclick="resetToHealthyHomeostasis()" class="w-full py-1.5 px-3 rounded-lg font-semibold text-xs bg-slate-800 hover:bg-slate-700 text-emerald-300 border border-emerald-500/30 transition flex items-center justify-center gap-1.5">
+          <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+          <span>🔄 Reset Scene to Healthy Homeostasis</span>
+        </button>
       </div>
 
-      <!-- 2. Microenvironment Sliders (With 13-Second Biological Modulation) -->
+      <!-- 2. Microenvironment Sliders (With 18-Second Progression / Modulation) -->
       <div class="bg-slate-900/90 p-3.5 rounded-xl border border-slate-800 space-y-2.5">
         <div class="flex items-center justify-between">
           <span class="text-xs font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
             <i data-lucide="sliders" class="w-3.5 h-3.5 text-purple-400"></i> Microenvironment Sliders
           </span>
           <button onclick="triggerAcuteAttackSpike()" class="px-2.5 py-1 rounded-lg text-[10px] font-extrabold bg-gradient-to-r from-rose-600 to-amber-600 hover:from-rose-500 hover:to-amber-500 text-white shadow-md shadow-rose-600/20 transition flex items-center gap-1">
-            ⚡ Simulate Autoimmune Attack
+            ⚡ Trigger Attack
           </button>
         </div>
 
-        <!-- Biological Recovery Progress Indicator -->
+        <!-- Live 18-Second Biological Progress Indicator -->
         <div id="regulation-banner" class="p-2 rounded-lg text-[11px] font-semibold bg-emerald-950/50 border border-emerald-500/40 text-emerald-300 leading-snug transition-all">
           <div class="flex items-center justify-between">
-            <span id="reg-banner-text">✅ HOMEOSTASIS: Baseline Surveillance Active</span>
-            <span id="reg-timer-text" class="font-mono-code text-[10px] text-cyan-300 hidden">13.0s</span>
+            <span id="reg-banner-text">✅ HOMEOSTASIS: Zero CD8+ T-Cell Infiltration</span>
+            <span id="reg-timer-text" class="font-mono-code text-[10px] text-cyan-300 hidden">18.0s</span>
           </div>
           <div id="reg-progress-wrap" class="w-full bg-slate-800 h-1.5 rounded-full mt-1.5 overflow-hidden hidden">
             <div id="reg-progress-bar" class="bg-gradient-to-r from-cyan-400 to-emerald-400 h-full transition-all duration-150" style="width: 0%"></div>
@@ -330,9 +334,9 @@
           </div>
           <input id="slider-il6" type="range" min="0" max="100" value="4" step="0.5" oninput="onUserSliderInput()" onchange="onUserSliderRelease()" />
           <div class="flex justify-between text-[10px] text-slate-500">
-            <span>Normal: 4 pg/mL</span>
-            <span>Trigger: 35</span>
-            <span>100 pg/mL</span>
+            <span>Baseline: 4 pg/mL</span>
+            <span>Attack: &gt;40</span>
+            <span>Peak: 100 pg/mL</span>
           </div>
         </div>
 
@@ -344,9 +348,9 @@
           </div>
           <input id="slider-ifn" type="range" min="0" max="100" value="3" step="0.5" oninput="onUserSliderInput()" onchange="onUserSliderRelease()" />
           <div class="flex justify-between text-[10px] text-slate-500">
-            <span>Normal: 3 pg/mL</span>
-            <span>Trigger: 35</span>
-            <span>100 pg/mL</span>
+            <span>Baseline: 3 pg/mL</span>
+            <span>Attack: &gt;40</span>
+            <span>Peak: 100 pg/mL</span>
           </div>
         </div>
 
@@ -358,23 +362,23 @@
           </div>
           <input id="slider-ph" type="range" min="6.40" max="7.60" value="7.40" step="0.01" oninput="onUserSliderInput()" onchange="onUserSliderRelease()" />
           <div class="flex justify-between text-[10px] text-slate-500">
-            <span>6.40 (Acidotic)</span>
-            <span>7.00 (Trigger)</span>
+            <span>Severe DKA: 6.55</span>
+            <span>Trigger: &lt;6.95</span>
             <span>Normal: 7.40</span>
           </div>
         </div>
 
-        <!-- Slider 4: CD8+ T-Cell Infiltration Density -->
+        <!-- Slider 4: Spiky Green CD8+ T-Cell Swarm -->
         <div>
           <div class="flex justify-between text-xs mb-0.5">
-            <span class="font-semibold text-slate-200">4. CD8+ T-Cell Infiltration Density</span>
-            <span id="val-tcells" class="font-mono-code font-bold text-emerald-400">12 Cells</span>
+            <span class="font-semibold text-slate-200">4. Attacking CD8+ T-Cell Swarm</span>
+            <span id="val-tcells" class="font-mono-code font-bold text-emerald-400">0 Cells (Clear)</span>
           </div>
-          <input id="slider-tcells" type="range" min="5" max="60" value="12" step="0.5" oninput="onUserSliderInput()" onchange="onUserSliderRelease()" />
+          <input id="slider-tcells" type="range" min="0" max="60" value="0" step="0.5" oninput="onUserSliderInput()" onchange="onUserSliderRelease()" />
           <div class="flex justify-between text-[10px] text-slate-500">
-            <span>Normal: 12</span>
-            <span>Swarm: 28</span>
-            <span>Max: 60 Cells</span>
+            <span>Homeostasis: 0 Cells</span>
+            <span>Swarm: 48 Cells</span>
+            <span>Max: 60</span>
           </div>
         </div>
 
@@ -382,21 +386,25 @@
         <div class="pt-2 border-t border-slate-800 flex items-center justify-between">
           <label for="chk-aab" class="text-[11px] text-slate-200 font-medium cursor-pointer flex items-center gap-2">
             <input id="chk-aab" type="checkbox" checked onchange="toggleAutoantibodies(this.checked)" class="rounded accent-purple-500 w-3.5 h-3.5 cursor-pointer" />
-            <span>Show Early-Stage Autoantibodies (Stage 1–2 AAb)</span>
+            <span>Show Stage 1–2 Autoantibodies (IAA, GAD65, IA-2, ZnT8)</span>
           </label>
         </div>
       </div>
 
-      <!-- 3. AirTag-Sized EndoCore Nanochip (5 Explodable Clickable Layers) -->
-      <div id="chip-hardware-card" class="bg-gradient-to-br from-slate-900 via-sky-950/35 to-slate-900 p-3.5 rounded-xl border border-sky-500/35 space-y-2.5">
+      <!-- 3. AirTag-Sized EndoCore Nanochip (5 Explodable Clickable Layers with Brief Descriptions) -->
+      <div id="chip-hardware-card" class="bg-gradient-to-br from-slate-900 via-sky-950/35 to-slate-900 p-3.5 rounded-xl border border-sky-500/35 space-y-2">
         <div class="flex items-center justify-between">
           <span class="text-xs font-bold text-sky-300 flex items-center gap-1.5">
-            <i data-lucide="cpu" class="w-4 h-4 text-sky-400"></i> AirTag-Sized Nanochip (28mm)
+            <i data-lucide="cpu" class="w-4 h-4 text-sky-400"></i> EndoCore Nanochip (AirTag Size)
           </span>
           <span id="chip-state-pill" class="text-[10px] font-mono-code px-2 py-0.5 rounded bg-sky-500/20 text-sky-300">
             ASSEMBLED
           </span>
         </div>
+
+        <p class="text-[11px] text-slate-300 leading-snug">
+          Click below (or click the 3D chip) to separate the capsule into its <strong>5 layers</strong> and read a brief summary of what each part does:
+        </p>
 
         <button onclick="toggleExplodeChip()" id="btn-explode" class="w-full py-2 px-3 rounded-lg font-bold text-xs bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white shadow-lg shadow-sky-500/20 transition flex items-center justify-center gap-2">
           <i data-lucide="layers" class="w-4 h-4"></i>
@@ -406,49 +414,24 @@
         <!-- Direct Clickable 5 Layer Inspector Pills -->
         <div class="grid grid-cols-1 gap-1 pt-1">
           <button onclick="inspectChipLayer(1)" class="text-left px-2.5 py-1.5 rounded-lg bg-slate-950/75 hover:bg-sky-950/70 border border-slate-800 hover:border-sky-400/50 text-[11px] text-slate-200 flex items-center justify-between transition">
-            <span><strong>L1:</strong> Zwitterionic Hydrogel (&lt;30nm Pores)</span>
-            <span class="text-[10px] text-sky-400 font-mono-code">Anti-PFO/IBMIR</span>
+            <span><strong>Layer 1:</strong> Zwitterionic Hydrogel Coat</span>
+            <span class="text-[10px] text-sky-400 font-mono-code">Stops Scar Tissue</span>
           </button>
           <button onclick="inspectChipLayer(2)" class="text-left px-2.5 py-1.5 rounded-lg bg-slate-950/75 hover:bg-purple-950/70 border border-slate-800 hover:border-purple-400/50 text-[11px] text-slate-200 flex items-center justify-between transition">
-            <span><strong>L2:</strong> CRISPR Beta Cells &amp; ECM Matrix</span>
-            <span class="text-[10px] text-purple-300 font-mono-code">MHC-I/II Low</span>
+            <span><strong>Layer 2:</strong> Nanoporous Filter &amp; CRISPR β-Cells</span>
+            <span class="text-[10px] text-purple-300 font-mono-code">Makes Insulin</span>
           </button>
           <button onclick="inspectChipLayer(3)" class="text-left px-2.5 py-1.5 rounded-lg bg-slate-950/75 hover:bg-amber-950/70 border border-slate-800 hover:border-amber-400/50 text-[11px] text-slate-200 flex items-center justify-between transition">
-            <span><strong>L3:</strong> 16x Cytokine, pH &amp; Lactate Sensors</span>
-            <span class="text-[10px] text-amber-300 font-mono-code">Gold Array</span>
+            <span><strong>Layer 3:</strong> Electrochemical Nano-Sensors</span>
+            <span class="text-[10px] text-amber-300 font-mono-code">Senses IL-6/IFN-γ</span>
           </button>
           <button onclick="inspectChipLayer(4)" class="text-left px-2.5 py-1.5 rounded-lg bg-slate-950/75 hover:bg-emerald-950/70 border border-slate-800 hover:border-emerald-400/50 text-[11px] text-slate-200 flex items-center justify-between transition">
-            <span><strong>L4:</strong> Ultra-Low-Power TinyML AI Core</span>
-            <span class="text-[10px] text-emerald-300 font-mono-code">18 μW Logic</span>
+            <span><strong>Layer 4:</strong> TinyML Edge-AI Processor</span>
+            <span class="text-[10px] text-emerald-300 font-mono-code">Predicts Attack</span>
           </button>
           <button onclick="inspectChipLayer(5)" class="text-left px-2.5 py-1.5 rounded-lg bg-slate-950/75 hover:bg-teal-950/70 border border-slate-800 hover:border-teal-400/50 text-[11px] text-slate-200 flex items-center justify-between transition">
-            <span><strong>L5:</strong> Exosome Valves + BFC Power + iCasp9</span>
-            <span class="text-[10px] text-teal-300 font-mono-code">IL-10 / TGF-β</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- 4. Interactive Oncogenic Fail-Safe Testing Suite (Warburg Lactate + iCasp9) -->
-      <div id="failsafe-panel" class="bg-gradient-to-br from-rose-950/50 via-slate-900 to-slate-950 p-3.5 rounded-xl border border-rose-500/40 space-y-2">
-        <div class="flex items-center justify-between">
-          <span class="text-xs font-bold uppercase tracking-wider text-rose-300 flex items-center gap-1.5">
-            <i data-lucide="flame" class="w-4 h-4 text-rose-400"></i> Oncogenic Fail-Safe Suite
-          </span>
-          <span id="failsafe-badge" class="text-[10px] font-mono-code font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-            SAFE (1.2 mM)
-          </span>
-        </div>
-        <p class="text-[11px] text-slate-300 leading-relaxed">
-          If stem cells mutate into a tumor (Warburg lactate spike + MICA/MICB stress), EndoCore <strong>clamps IL-10/TGF-β valves shut</strong> (dropping the immune shield) and triggers the <strong>inducible Caspase-9 (iCasp9) suicide switch</strong>.
-        </p>
-        <div class="grid grid-cols-1 gap-1.5 pt-1">
-          <button onclick="triggerOncogenicFailSafe()" id="btn-trigger-failsafe" class="w-full py-2 px-3 rounded-lg font-bold text-xs bg-rose-600 hover:bg-rose-500 text-white shadow-lg shadow-rose-600/25 transition flex items-center justify-center gap-1.5">
-            <i data-lucide="OctagonAlert" class="w-4 h-4"></i>
-            <span>⚠️ Test Oncogenic Fail-Safe (Lactate Spike + iCasp9)</span>
-          </button>
-          <button onclick="resetToHealthyHomeostasis()" id="btn-reset-homeostasis" class="w-full py-1.5 px-3 rounded-lg font-semibold text-xs bg-slate-800 hover:bg-slate-700 text-emerald-300 border border-emerald-500/30 transition flex items-center justify-center gap-1.5">
-            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
-            <span>🔄 Reset Graft to Healthy Homeostasis</span>
+            <span><strong>Layer 5:</strong> IL-10 &amp; TGF-β Peptide Reservoirs</span>
+            <span class="text-[10px] text-teal-300 font-mono-code">Calms T-Cells</span>
           </button>
         </div>
       </div>
@@ -465,11 +448,11 @@
         Islets of Langerhans &amp; EndoCore Bio-Shield
       </div>
       <div id="banner-subtitle" class="text-[11px] md:text-xs font-semibold text-purple-950/80 mt-0.5">
-        Healthy purple &amp; pink beta cells secrete insulin while EndoCore monitors cytokines &amp; pH.
+        360° 3D Islet Organoid • CRISPR Stealth Beta Cells &amp; Real-Time AI Cytokine Shield
       </div>
     </div>
 
-    <!-- FLOATING CLICK INSPECTOR MODAL (BOTTOM-LEFT OF CENTER VIEWPORT) -->
+    <!-- FLOATING CLICK INSPECTOR MODAL (BRIEF & CLEAR COMPONENT DESCRIPTIONS) -->
     <div id="inspector-card" class="absolute bottom-20 left-1/2 -translate-x-1/2 sm:left-auto sm:translate-x-0 sm:right-[25.5rem] w-80 bg-slate-950/95 border border-purple-400/60 rounded-xl p-3.5 shadow-2xl backdrop-blur-xl z-30 transition-all duration-200">
       <div class="flex items-start justify-between gap-2 border-b border-slate-800 pb-2 mb-2">
         <div>
@@ -477,7 +460,7 @@
             3D COMPONENT INSPECTOR
           </span>
           <h4 id="insp-title" class="text-xs font-bold text-white mt-1">
-            EndoCore Subcutaneous Bio-Pod
+            EndoCore Biohybrid Nanochip
           </h4>
         </div>
         <button onclick="hideInspector()" class="text-slate-400 hover:text-white p-1">
@@ -485,16 +468,16 @@
         </button>
       </div>
       <p id="insp-desc" class="text-[11px] text-slate-300 leading-relaxed">
-        Click any <strong>Beta Cell</strong>, <strong>Spiky Green T-Cell</strong>, <strong>White Stellate APC</strong>, <strong>Y-Shaped Autoantibody</strong>, or <strong>Nanochip Layer</strong> in the 3D scene to inspect its engineering and biological specs.
+        An AirTag-sized implant placed under the skin. It houses living, CRISPR-edited beta cells that make natural insulin, while its AI sensors detect immune attacks and release IL-10 &amp; TGF-β peptides to protect the cells locally.
       </p>
       <div id="insp-specs" class="mt-2.5 pt-2 border-t border-slate-800/80 grid grid-cols-2 gap-1.5 text-[10px]">
         <div class="bg-slate-900/90 p-1.5 rounded border border-slate-800">
-          <span class="text-slate-400 block">Dimensions</span>
-          <span class="font-semibold text-sky-300">28mm × 3.5mm (AirTag)</span>
+          <span class="text-slate-400 block">Implant Site</span>
+          <span class="font-semibold text-sky-300">Subcutaneous Tissue</span>
         </div>
         <div class="bg-slate-900/90 p-1.5 rounded border border-slate-800">
-          <span class="text-slate-400 block">Power System</span>
-          <span class="font-semibold text-emerald-300">Inductive + Biofuel Cell</span>
+          <span class="text-slate-400 block">Core Function</span>
+          <span class="font-semibold text-emerald-300">Local Immune Shield</span>
         </div>
       </div>
     </div>
@@ -505,14 +488,14 @@
         STAGE: HOMEOSTASIS
       </span>
       <p id="video-caption-text" class="text-xs md:text-[13px] font-semibold text-white text-center sm:text-left leading-snug">
-        Healthy Islets of Langerhans: CRISPR-edited beta cells secrete physiological insulin (GSIS) while EndoCore nano-sensors monitor interstitial IL-6, IFN-γ, pH, and lactate.
+        Healthy Islets of Langerhans (0 Attacking T-Cells): CRISPR beta cells secrete 100% insulin, allowing normal glucose uptake into body cells and preventing ketogenesis.
       </p>
     </div>
 
     <!-- =================================================================== -->
-    <!-- RIGHT COLLAPSIBLE SIDEBAR: AI TELEMETRY, PEPTIDE METERS & TERMINAL  -->
+    <!-- RIGHT COLLAPSIBLE SIDEBAR: AI TELEMETRY, DKA NOTE & TERMINAL        -->
     <!-- =================================================================== -->
-    <aside id="right-sidebar" class="sidebar-panel absolute top-0 right-0 bottom-0 w-96 max-w-[92vw] bg-slate-950/92 border-l border-purple-500/25 backdrop-blur-xl flex flex-col shrink-0 z-30 p-3.5 gap-3 overflow-y-auto shadow-2xl">
+    <aside id="right-sidebar" class="sidebar-panel absolute top-0 right-0 bottom-0 w-96 max-w-[92vw] bg-slate-950/92 border-l border-purple-500/25 backdrop-blur-xl flex flex-col shrink-0 z-30 p-3.5 gap-2.5 overflow-y-auto shadow-2xl">
 
       <!-- 1. System State Card -->
       <div id="status-card" class="p-3 rounded-xl border bg-emerald-950/40 border-emerald-500/50 transition-all">
@@ -526,7 +509,7 @@
           Islets Healthy &amp; Protected (100%)
         </div>
         <div class="text-[11px] text-slate-300 mt-1" id="status-subtext">
-          Micro-valves sealed. Basal &amp; bolus glucose-stimulated insulin secretion (GSIS) operating at 100% capacity.
+          Zero attacking CD8+ T-cells present. Living beta cells naturally produce 100% insulin in response to blood sugar.
         </div>
       </div>
 
@@ -558,42 +541,52 @@
 
         <div class="bg-slate-900/90 p-2.5 rounded-xl border border-slate-800">
           <div class="text-[10px] text-slate-400 font-semibold">FoxP3+ Treg Conversion</div>
-          <div id="metric-treg" class="text-lg font-extrabold font-mono-code text-teal-300 mt-0.5">0 / 12</div>
+          <div id="metric-treg" class="text-lg font-extrabold font-mono-code text-teal-300 mt-0.5">Cleared</div>
           <div class="text-[10px] text-slate-400 mt-1" id="valve-status-text">Valves: SEALED</div>
         </div>
       </div>
 
-      <!-- 3. Deployed Bio-Shield Cargo Meters (Exosomes, IL-10, TGF-β, Lactate) -->
+      <!-- 3. Clinical Note Card: Insulin Physiology vs. 0% Insulin & Diabetic Ketoacidosis (DKA) -->
+      <div id="metabolic-dka-card" class="bg-slate-900/95 p-3 rounded-xl border border-sky-500/35 space-y-1.5 transition-all">
+        <div class="flex items-center justify-between">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-sky-300 flex items-center gap-1.5">
+            <i data-lucide="activity" class="w-3.5 h-3.5 text-sky-400"></i> Insulin Physiology &amp; DKA Note
+          </span>
+          <span id="dka-status-badge" class="text-[10px] font-mono-code font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+            NORMAL GLUCOSE (92 mg/dL)
+          </span>
+        </div>
+        <p id="dka-clinical-note" class="text-[11px] text-slate-300 leading-relaxed">
+          <strong>When Insulin is Made (100%):</strong> Insulin acts as the key that opens <strong>GLUT4 channels</strong> so glucose enters muscle and fat cells for energy, while stopping the liver from making acidic ketones.
+        </p>
+      </div>
+
+      <!-- 4. Color-Coded 3 Chip Outputs & Exosome Delivery Telemetry -->
       <div class="bg-slate-900/90 p-3 rounded-xl border border-teal-500/30 space-y-2">
         <div class="flex items-center justify-between">
           <span class="text-[11px] font-bold uppercase tracking-wider text-teal-300 flex items-center gap-1.5">
-            <i data-lucide="droplets" class="w-3.5 h-3.5 text-teal-400"></i> Exosome &amp; Peptide Telemetry
+            <i data-lucide="droplets" class="w-3.5 h-3.5 text-teal-400"></i> 3 Chip Outputs &amp; Exosome Delivery
           </span>
           <span id="cargo-state-badge" class="text-[10px] font-mono-code px-2 py-0.5 rounded bg-slate-800 text-slate-400">
             STANDBY
           </span>
         </div>
 
-        <!-- Exosome Nanovesicles -->
-        <div>
-          <div class="flex justify-between text-[11px] mb-0.5">
-            <span class="text-amber-300 font-semibold flex items-center gap-1.5">
-              <span class="w-2 h-2 rounded-full bg-amber-300 shadow-[0_0_8px_#fcd34d]"></span>
-              Exosome Carriers (Vesicle Flux)
-            </span>
-            <span id="meter-exosome-val" class="font-mono-code text-amber-200 font-bold">0.0 nL/min</span>
-          </div>
-          <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
-            <div id="meter-exosome-bar" class="bg-amber-400 h-full transition-all duration-150" style="width: 0%"></div>
-          </div>
+        <!-- Output 1: Insulin (White-Blue from Core) -->
+        <div class="flex items-center justify-between text-[11px] bg-slate-950/60 px-2 py-1 rounded border border-slate-800">
+          <span class="text-sky-200 font-semibold flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-sky-200 shadow-[0_0_8px_#bae6fd]"></span>
+            1. Insulin (Secreted by Core β-Cells)
+          </span>
+          <span id="legend-insulin-state" class="font-mono-code text-sky-300 font-bold">100% Active</span>
         </div>
 
-        <!-- IL-10 Peptide -->
+        <!-- Output 2: IL-10 Peptide (Cyan from Reservoir A) -->
         <div>
           <div class="flex justify-between text-[11px] mb-0.5">
             <span class="text-cyan-300 font-semibold flex items-center gap-1.5">
-              <span class="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_#22d3ee]"></span>
-              IL-10 Peptide (Suppresses IL-6/IFN-γ)
+              <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#22d3ee]"></span>
+              2. IL-10 Peptide (Stops IL-6 &amp; IFN-γ)
             </span>
             <span id="meter-il10-val" class="font-mono-code text-cyan-200 font-bold">0 pg/mL</span>
           </div>
@@ -602,12 +595,12 @@
           </div>
         </div>
 
-        <!-- TGF-beta Peptide -->
+        <!-- Output 3: TGF-beta Peptide (Emerald Green from Reservoir B) -->
         <div>
           <div class="flex justify-between text-[11px] mb-0.5">
             <span class="text-emerald-300 font-semibold flex items-center gap-1.5">
-              <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]"></span>
-              TGF-β Peptide (CD8+ → FoxP3+ Treg)
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]"></span>
+              3. TGF-β Peptide (Trains Peacekeeper Tregs)
             </span>
             <span id="meter-tgfb-val" class="font-mono-code text-emerald-200 font-bold">0 pg/mL</span>
           </div>
@@ -616,15 +609,23 @@
           </div>
         </div>
 
-        <!-- Warburg Lactate & iCasp9 Readout -->
-        <div class="pt-1.5 border-t border-slate-800 flex items-center justify-between text-[11px]">
-          <span class="text-slate-400">Extracellular Lactate / iCasp9:</span>
-          <span id="meter-lactate-val" class="font-mono-code font-bold text-emerald-300">1.2 mmol/L (iCasp9 OFF)</span>
+        <!-- Vehicle: Exosome Nanovesicles (Golden Carriers) -->
+        <div>
+          <div class="flex justify-between text-[11px] mb-0.5">
+            <span class="text-amber-300 font-semibold flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-300 shadow-[0_0_8px_#fcd34d]"></span>
+              Exosome Vesicles (Peptide Carriers)
+            </span>
+            <span id="meter-exosome-val" class="font-mono-code text-amber-200 font-bold">0.0 nL/min</span>
+          </div>
+          <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+            <div id="meter-exosome-bar" class="bg-amber-400 h-full transition-all duration-150" style="width: 0%"></div>
+          </div>
         </div>
       </div>
 
-      <!-- 4. Live AI Command Terminal -->
-      <div class="flex-1 flex flex-col bg-black/95 rounded-xl border border-slate-800 overflow-hidden min-h-[210px]">
+      <!-- 5. Live AI Command Terminal -->
+      <div class="flex-1 flex flex-col bg-black/95 rounded-xl border border-slate-800 overflow-hidden min-h-[165px]">
         <div class="bg-slate-900/90 px-3 py-2 border-b border-slate-800 flex items-center justify-between">
           <div class="flex items-center gap-1.5">
             <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
@@ -633,23 +634,12 @@
             <span class="text-[11px] font-mono-code font-bold text-slate-300 ml-1">endocore_tinyml_daemon.py</span>
           </div>
           <span class="text-[10px] font-mono-code text-emerald-400 bg-emerald-950/80 px-1.5 py-0.5 rounded border border-emerald-500/30">
-            60Hz SYNC
+            &lt;50ms SYNC
           </span>
         </div>
 
         <div id="terminal-log" class="flex-1 p-3 font-mono-code text-[11px] leading-relaxed overflow-y-auto space-y-1.5 text-emerald-400">
           <!-- Populated dynamically every frame -->
-        </div>
-      </div>
-
-      <!-- 5. Hardware Power & Anti-Fibrotic Architecture Summary -->
-      <div class="bg-slate-900/90 p-2.5 rounded-xl border border-slate-800 text-[10px] text-slate-300 space-y-1">
-        <div class="flex items-center justify-between font-bold text-sky-300">
-          <span>⚡ Hybrid Power: Inductive + Glucose BFC</span>
-          <span class="font-mono-code text-emerald-400">99.4% Charge</span>
-        </div>
-        <div class="text-slate-400 leading-tight">
-          <strong>Anti-Fibrotic Defense:</strong> Zwitterionic hydrogel coat prevents Pericapsular Fibrotic Overgrowth (PFO) &amp; IBMIR clotting.
         </div>
       </div>
 
@@ -665,24 +655,22 @@
 
     // -------------------------------------------------------------------------
     // 1. GLOBAL BIOLOGICAL & HARDWARE STATE
+    //    (Homeostasis has 0 attacking spiky green T-cells!)
     // -------------------------------------------------------------------------
     const NORMAL_BASELINE = {
       il6: 4.0,
       ifn: 3.0,
       ph: 7.40,
-      tcellCount: 12.0,
-      lactate: 1.2
+      tcellCount: 0.0 // Spiky green CD8+ T-cells only appear during an attack!
     };
 
     const state = {
       il6: 4.0,
       ifn: 3.0,
       ph: 7.40,
-      tcellCount: 12.0,
-      lactate: 1.2,
+      tcellCount: 0.0,
 
       protectionActive: true,     // true = EndoCore Bio-Shield Mode; false = Unprotected T1D Attack
-      failSafeTriggered: false,   // true = Oncogenic Lactate Spike + iCasp9 Suicide Switch Active
       chipExploded: false,
       chipExplodeProgress: 0,
 
@@ -699,179 +687,185 @@
       healthyBetaPercentage: 100,
       insulinOutput: 100,
 
-      // 12–15 Second Gradual Biological Modulation State Machine
+      // 18-Second Gradual Biological Modulation (EndoCore Protected Mode)
       userDraggingSlider: false,
       lastInteractionTimeMs: 0,
       isModulating: false,
-      modulationTotalDuration: 13.0, // 13 seconds realistic biological decay
+      modulationTotalDuration: 18.0,
       modulationElapsed: 0.0,
-      peakSnapshot: { il6: 4.0, ifn: 3.0, ph: 7.40, tcellCount: 12.0 },
+      peakSnapshot: { il6: 4.0, ifn: 3.0, ph: 7.40, tcellCount: 0.0 },
 
-      exosomeRate: 0.0,
+      // 18-Second Progressive Unprotected Escalation to 0% Insulin & DKA (Unprotected Control Mode)
+      isUnprotectedEscalating: false,
+      unprotectedElapsed: 0.0,
+      unprotectedDuration: 18.0,
+      unprotectedStartSnapshot: { il6: 25.0, ifn: 28.0, ph: 7.22, tcellCount: 18.0 },
+
+      exosomeRate: "0.0",
       il10Level: 0,
       tgfbLevel: 0
     };
 
-    // Detailed Inspector Dictionary for Clickable 3D Entities
+    // Concise, Clear Inspector Dictionary for All Clickable 3D Entities & 5 Chip Layers
     const INSPECT_DATA = {
       beta_healthy: {
-        category: "ISLETS OF LANGERHANS",
+        category: "360° ISLETS OF LANGERHANS",
         title: "Healthy CRISPR-Edited Beta Cell (β-Cell)",
-        desc: "Stem-cell-derived human pancreatic beta cells edited ex vivo via CRISPR/Cas9 to downregulate MHC Class I & II surface tags. They sense interstitial glucose and secrete physiological insulin granules (GSIS).",
-        spec1Label: "Genetic Cloaking",
-        spec1Val: "MHC-I / II Knockdown",
-        spec2Label: "Insulin GSIS",
-        spec2Val: "100% Physiological"
+        desc: "Living insulin-producing beta cells edited in the lab via CRISPR/Cas9 to lower their MHC Class I & II surface markers so they are harder for the immune system to spot. They sense blood sugar and naturally release 100% physiological insulin.",
+        spec1Label: "CRISPR Edit",
+        spec1Val: "MHC-I & II Reduced",
+        spec2Label: "Insulin Output",
+        spec2Val: "100% Natural GSIS"
       },
       beta_dead: {
-        category: "CELLULAR APOPTOSIS / NECROSIS",
-        title: "Depleted / Apoptotic Beta Cell",
-        desc: "In Unprotected T1D Mode (or when the iCasp9 suicide switch is triggered), beta cells shrivel and turn dark charcoal grey, halting insulin secretion and causing hyperglycemia.",
+        category: "UNPROTECTED T1D CELL LOSS",
+        title: "Destroyed Beta Cell (0% Insulin → DKA)",
+        desc: "Without the EndoCore nanochip, spiky green killer T-cells destroy the beta cells. When beta cells die and insulin hits 0%, glucose cannot enter body cells and the liver produces acidic ketones, causing Diabetic Ketoacidosis (DKA).",
         spec1Label: "Cellular Status",
-        spec1Val: "Shriveled / Non-Viable",
-        spec2Label: "Insulin Output",
-        spec2Val: "0% (Halted)"
+        spec1Val: "Destroyed by CD8+ T-Cells",
+        spec2Label: "Metabolic Result",
+        spec2Val: "0% Insulin → DKA"
       },
       tcell_attack: {
-        category: "AUTOREACTIVE EFFECTOR CELL",
-        title: "Spiky Green CD8+ Cytotoxic T-Lymphocyte",
-        desc: "Aggressive killer T-cells equipped with spiky TCR/CD3 surface receptors that recognize beta-cell autoantigens and release inflammatory cytokines (IL-6, IFN-γ, TNF-α).",
-        spec1Label: "Cytokines Released",
-        spec1Val: "IFN-γ, IL-6, Perforin",
-        spec2Label: "Target",
-        spec2Val: "Pancreatic Beta Cells"
+        category: "AUTOREACTIVE IMMUNE ATTACKER",
+        title: "Spiky Green CD8+ Killer T-Cell",
+        desc: "Aggressive cytotoxic T-cells that only swarm into the islet when an autoimmune attack begins. They release inflammatory cytokines (IFN-γ and IL-6) to destroy unprotected beta cells.",
+        spec1Label: "Attack Signals",
+        spec1Val: "IFN-γ & IL-6 Spike",
+        spec2Label: "When Present",
+        spec2Val: "Only During Attack"
       },
       tcell_treg: {
-        category: "IMMUNE TOLERANCE ACHIEVED",
-        title: "Converted FoxP3+ Regulatory T-Cell (Treg)",
-        desc: "Upon absorbing EndoCore's exosomal IL-10 and TGF-β peptides, aggressive CD8+ T-cells retract their spiky receptors and reprogram into peaceful FoxP3+ Tregs that actively protect the graft.",
-        spec1Label: "Induced By",
-        spec1Val: "Exosomal IL-10 & TGF-β",
-        spec2Label: "Systemic Toxicity",
+        category: "LOCALIZED IMMUNE TOLERANCE",
+        title: "Peacekeeper FoxP3+ Regulatory T-Cell (Treg)",
+        desc: "When EndoCore releases IL-10 and TGF-β exosomes, the attacking green T-cells calm down, retract their spikes, and convert into peaceful Regulatory T-cells (Tregs) that protect the beta cells and then disperse.",
+        spec1Label: "Trained By",
+        spec1Val: "IL-10 & TGF-β Exosomes",
+        spec2Label: "Whole-Body Side Effects",
         spec2Val: "Zero (Strictly Local)"
       },
       apc_cell: {
-        category: "ANTIGEN-PRESENTING CELL (APC)",
-        title: "White Stellate Dendritic Cell (tDC / APC)",
-        desc: "Stellate immune surveillance cells that sample local antigens. During homeostasis they drift very calmly; under IL-10 & TGF-β modulation they become Tolerogenic Dendritic Cells (tDCs).",
-        spec1Label: "Homeostasis Motion",
-        spec1Val: "Calm Brownian Drift",
-        spec2Label: "Immunological Role",
-        spec2Val: "Tolerogenic Antigen Presentation"
+        category: "IMMUNE SURVEILLANCE CELL",
+        title: "White Antigen-Presenting Cell (APC / tDC)",
+        desc: "Resident immune cells that patrol tissue. When EndoCore releases IL-10 and TGF-β, these cells act as Tolerogenic Dendritic Cells (tDCs) that help keep the local immune system peaceful.",
+        spec1Label: "Normal Behavior",
+        spec1Val: "Calm Surveillance",
+        spec2Label: "Role with EndoCore",
+        spec2Val: "Promotes Tolerance"
       },
       exosome_vesicle: {
-        category: "BIO-SHIELD NANOVESICLE CARGO",
-        title: "Exosome Carrier Loaded with IL-10 & TGF-β",
-        desc: "Extracellular nanovesicles dispensed from Layer 5 piezoelectric micro-valves. Exosomes shield fragile IL-10 and TGF-β peptides from enzymatic degradation and ferry them directly to T-cells.",
-        spec1Label: "IL-10 Action",
-        spec1Val: "Halts IL-6 & IFN-γ",
-        spec2Label: "TGF-β Action",
-        spec2Val: "Converts CD8+ to Tregs"
+        category: "TARGETED PEPTIDE DELIVERY",
+        title: "Exosome Vesicles Carrying IL-10 & TGF-β",
+        desc: "Tiny biological bubbles released from the nanochip. They carry IL-10 (which stops inflammation) and TGF-β (which turns killer T-cells into peaceful Tregs) directly to the attacking immune cells.",
+        spec1Label: "IL-10 Role",
+        spec1Val: "Calms Inflammation",
+        spec2Label: "TGF-β Role",
+        spec2Val: "Creates Peacekeeper Tregs"
       },
       capillary: {
-        category: "ISLET MICROVASCULATURE",
-        title: "Fenestrated Subcutaneous Capillary Network",
-        desc: "Rich microvascular blood vessels supplying oxygen and glucose to the encapsulated beta cells while absorbing secreted insulin directly into systemic circulation.",
+        category: "BLOOD SUPPLY NETWORK",
+        title: "Subcutaneous Micro-Capillaries",
+        desc: "Tiny blood vessels wrapping 360° around the islet cells. They bring fresh oxygen and glucose in, and carry the beta cells' secreted insulin out into the body.",
         spec1Label: "Implant Site",
-        spec1Val: "Subcutaneous / Rectus",
-        spec2Label: "Oxygen Exchange",
-        spec2Val: "Direct Diffusion"
+        spec1Val: "Under the Skin",
+        spec2Label: "Function",
+        spec2Val: "Oxygen & Insulin Flow"
       },
       aab_insulin: {
         category: "STAGE 1–2 EARLY AUTOANTIBODY",
-        title: "Insulin Autoantibody (IAA / Insulin AAb — Pink)",
-        desc: "Y-shaped immunoglobulin targeting endogenous insulin. Presence of ≥2 autoantibodies (IAA, GAD65, IA-2, ZnT8) is diagnostic of Stage 1–2 early T1D before dysglycemia occurs.",
+        title: "Insulin Autoantibody (IAA — Pink)",
+        desc: "Early Y-shaped antibody targeting insulin. Having 2 or more autoantibodies (IAA, GAD65, IA-2, ZnT8) detects Stage 1–2 T1D early; EndoCore's nanoporous membrane physically blocks them.",
         spec1Label: "Clinical Stage",
-        spec1Val: "Stage 1–2 Early T1D",
-        spec2Label: "EndoCore Barrier",
-        spec2Val: "Blocked by <30nm Pores"
+        spec1Val: "Early Stage 1–2 T1D",
+        spec2Label: "EndoCore Shield",
+        spec2Val: "Blocked by Membrane"
       },
       aab_ia2: {
         category: "STAGE 1–2 EARLY AUTOANTIBODY",
         title: "IA-2 Autoantibody (IA-2 AAb — Green)",
-        desc: "Targets insulinoma-associated antigen-2 on beta-cell secretory granules. High predictive biomarker for progression to clinical Type 1 Diabetes.",
-        spec1Label: "Target Antigen",
-        spec1Val: "IA-2 Phosphatase",
-        spec2Label: "Prevention Mode",
-        spec2Val: "Cell-Free Shield Ready"
+        desc: "Early diagnostic autoantibody targeting beta-cell insulin granules. Blocked from touching the transplanted beta cells by EndoCore's nanoporous filter.",
+        spec1Label: "Target",
+        spec1Val: "IA-2 Granule Protein",
+        spec2Label: "EndoCore Shield",
+        spec2Val: "Blocked by Membrane"
       },
       aab_znt8: {
         category: "STAGE 1–2 EARLY AUTOANTIBODY",
         title: "ZnT8 Autoantibody (ZnT8 AAb — Purple)",
-        desc: "Targets Zinc Transporter 8 inside beta-cell insulin granules. Physically excluded from the EndoCore graft by the zwitterionic nanoporous hydrogel membrane.",
-        spec1Label: "Target Antigen",
-        spec1Val: "Zinc Transporter 8",
-        spec2Label: "Membrane Cutoff",
-        spec2Val: "< 30 nm Exclusion"
+        desc: "Early autoantibody targeting the zinc transporter inside beta cells. Physically blocked by EndoCore's <30nm membrane pores.",
+        spec1Label: "Target",
+        spec1Val: "ZnT8 Transporter",
+        spec2Label: "EndoCore Shield",
+        spec2Val: "Blocked by Membrane"
       },
       aab_gad65: {
         category: "STAGE 1–2 EARLY AUTOANTIBODY",
         title: "GAD65 Autoantibody (GAD65 AAb — Yellow)",
-        desc: "Targets Glutamic Acid Decarboxylase 65. Often the earliest autoimmune biomarker appearing years before beta-cell mass is lost.",
-        spec1Label: "Target Antigen",
+        desc: "One of the earliest warning signs of Type 1 Diabetes in blood tests. EndoCore's membrane prevents antibodies from entering the beta-cell chamber.",
+        spec1Label: "Target",
         spec1Val: "GAD65 Enzyme",
-        spec2Label: "Screening Utility",
-        spec2Val: "Early Interception"
+        spec2Label: "EndoCore Shield",
+        spec2Val: "Blocked by Membrane"
       },
       chip_layer1: {
-        category: "ENDOCORE LAYER 1 (OUTER SHIELD)",
-        title: "Zwitterionic Nanoporous Hydrogel (<30 nm Pores)",
-        desc: "Ultra-non-fouling zwitterionic polymer capsule that prevents Pericapsular Fibrotic Overgrowth (PFO / scar tissue) and Instant Blood-Mediated Inflammatory Reaction (IBMIR). Pores (<30nm) let insulin and glucose diffuse freely while physically blocking T-cells and antibodies.",
-        spec1Label: "Pore Size",
-        spec1Val: "< 30 Nanometers",
-        spec2Label: "Anti-Scar Tech",
-        spec2Val: "Zwitterionic Anti-PFO"
+        category: "ENDOCORE LAYER 1 (OUTER COATING)",
+        title: "Zwitterionic Hydrogel Coating",
+        desc: "What it does: Wraps the outside of the nanochip so the body does not form scar tissue (fibrosis) over it. This keeps the sensors clear and allows oxygen and nutrients to reach the cells.",
+        spec1Label: "Main Job",
+        spec1Val: "Prevents Scar Tissue",
+        spec2Label: "Benefit",
+        spec2Val: "Keeps Sensors Clear"
       },
       chip_layer2: {
-        category: "ENDOCORE LAYER 2 (BIO-CHAMBER)",
-        title: "CRISPR-Edited Beta Cells in Vascularized ECM",
-        desc: "Houses stem-cell-derived beta cells (CRISPR/Cas9 edited to reduce MHC Class I & II) suspended in a Collagen, Laminin, and Fibronectin extracellular matrix. Can also operate in Cell-Free Mode for Stage 1–2 pancreas preservation.",
-        spec1Label: "CRISPR Edit",
-        spec1Val: "Ex Vivo MHC-I/II Low",
-        spec2Label: "ECM Scaffold",
-        spec2Val: "Collagen & Laminin"
+        category: "ENDOCORE LAYER 2 (FILTER & CELLS)",
+        title: "Nanoporous Membrane & CRISPR Beta Cells",
+        desc: "What it does: Houses the living, CRISPR-edited beta cells in a supportive ECM gel. Microscopic pores (<30nm) let glucose in and insulin out, while physically blocking immune cells.",
+        spec1Label: "Main Job",
+        spec1Val: "Produces Natural Insulin",
+        spec2Label: "Filter Pores",
+        spec2Val: "<30nm (Blocks T-Cells)"
       },
       chip_layer3: {
-        category: "ENDOCORE LAYER 3 (BIOSENSOR RING)",
-        title: "16x Multiplexed Electrochemical & Optical Nano-Sensors",
-        desc: "Gold nano-electrode array continuously tracking local interstitial IL-6, IFN-γ, pH, glucose, and extracellular lactate (for Warburg tumor surveillance) with picogram sensitivity.",
-        spec1Label: "Tracked Markers",
-        spec1Val: "IL-6, IFN-γ, pH, Lactate",
-        spec2Label: "Sensor Coating",
-        spec2Val: "Anti-Fouling Gold Array"
+        category: "ENDOCORE LAYER 3 (THE EYES)",
+        title: "16x Electrochemical & Optical Nano-Sensors",
+        desc: "What it does: Continuously monitors the fluid around the implant for early warning signs of an immune attack—specifically spikes in IL-6 and IFN-γ cytokines and drops in local pH.",
+        spec1Label: "Main Job",
+        spec1Val: "Detects Immune Attacks",
+        spec2Label: "Monitors",
+        spec2Val: "IL-6, IFN-γ, and pH"
       },
       chip_layer4: {
-        category: "ENDOCORE LAYER 4 (AI PROCESSOR)",
-        title: "Ultra-Low-Power TinyML Edge-AI Microcontroller",
-        desc: "Quantized neural classifier operating on an 18 μW power budget. Distinguishes autoimmune cytokine spikes from oncogenic Warburg lactate surges in <50 milliseconds.",
-        spec1Label: "Power Draw",
-        spec1Val: "18 μW (Microwatts)",
-        spec2Label: "Safety Logic",
-        spec2Val: "Dual Cytokine/Oncogenic"
+        category: "ENDOCORE LAYER 4 (THE BRAIN)",
+        title: "TinyML Edge-AI Processor",
+        desc: "What it does: Reads the sensor signals in real time (<50 milliseconds) to predict an autoimmune attack before beta cells are harmed, and signals the micro-valves to open.",
+        spec1Label: "Main Job",
+        spec1Val: "Predicts Attack in <50ms",
+        spec2Label: "Power Use",
+        spec2Val: "Ultra-Low (18 μW)"
       },
       chip_layer5: {
-        category: "ENDOCORE LAYER 5 (RESERVOIRS & POWER)",
-        title: "Exosome Micro-Valves, Glucose Biofuel Cell & iCasp9",
-        desc: "Piezoelectric micro-valves dispense nanoliter doses of IL-10 & TGF-β exosomes. Powered by wireless magnetic induction + enzymatic Glucose Biofuel Cells (BFCs). Houses the iCasp9 suicide switch for tumor fail-safe.",
-        spec1Label: "Hybrid Power",
-        spec1Val: "Inductive + Glucose BFC",
-        spec2Label: "Fail-Safe Switch",
-        spec2Val: "Inducible Caspase-9"
+        category: "ENDOCORE LAYER 5 (THE SHIELD)",
+        title: "IL-10 & TGF-β Peptide Reservoirs + Micro-Valves",
+        desc: "What it does: Stores freeze-dried IL-10 and TGF-β peptides. When triggered by the AI, piezoelectric micro-valves release nanoliter doses via exosomes to calm T-cells into peaceful Tregs.",
+        spec1Label: "Main Job",
+        spec1Val: "Releases IL-10 & TGF-β",
+        spec2Label: "Power Source",
+        spec2Val: "Wireless + Glucose Biofuel"
       }
     };
 
     // -------------------------------------------------------------------------
-    // 2. INITIALIZE THREE.JS SCENE, CAMERA, RENDERER & ORBITCONTROLS
+    // 2. INITIALIZE THREE.JS SCENE, CAMERA, RENDERER & 360° ORBITCONTROLS
     // -------------------------------------------------------------------------
     const container = document.getElementById('webgl-container');
     const labelsContainer = document.getElementById('labels-container');
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xdcb0d2); // High-key BR1DGE glossy tissue pink-violet
-    scene.fog = new THREE.FogExp2(0xdcb0d2, 0.0115);
+    scene.background = new THREE.Color(0xdcb0d2);
+    scene.fog = new THREE.FogExp2(0xdcb0d2, 0.0085);
 
     const camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 0.1, 250);
-    camera.position.set(0, 13.5, 27.5);
+    camera.position.set(0, 11.5, 26.5);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -886,30 +880,33 @@
     controls.enableDamping = true;
     controls.dampingFactor = 0.06;
     controls.maxDistance = 52;
-    controls.minDistance = 6;
-    controls.target.set(0, 1.4, 0);
+    controls.minDistance = 5;
+    controls.minPolarAngle = 0.05;
+    controls.maxPolarAngle = Math.PI - 0.05;
+    controls.target.set(0, 0.8, 0);
 
     let camTargetPos = null;
     let camTargetLook = null;
 
     // -------------------------------------------------------------------------
-    // 3. STUDIO-GRADE BIOMEDICAL LIGHTING (WET GLOSSY SPECULAR HIGHLIGHTS)
+    // 3. STUDIO-GRADE 360° BIOMEDICAL LIGHTING (TOP & BOTTOM ILLUMINATION)
     // -------------------------------------------------------------------------
-    const ambientLight = new THREE.AmbientLight(0xffe4f5, 0.76);
+    const ambientLight = new THREE.AmbientLight(0xffe4f5, 0.82);
     scene.add(ambientLight);
 
-    const hemiLight = new THREE.HemisphereLight(0xffffff, 0x9333ea, 0.58);
+    const hemiLight = new THREE.HemisphereLight(0xffffff, 0xc084fc, 0.68);
     hemiLight.position.set(0, 32, 0);
     scene.add(hemiLight);
 
-    const mainDirLight = new THREE.DirectionalLight(0xffffff, 1.18);
+    const mainDirLight = new THREE.DirectionalLight(0xffffff, 1.15);
     mainDirLight.position.set(16, 28, 18);
-    mainDirLight.castShadow = true;
-    mainDirLight.shadow.mapSize.width = 2048;
-    mainDirLight.shadow.mapSize.height = 2048;
     scene.add(mainDirLight);
 
-    const purpleRimLight = new THREE.PointLight(0xa855f7, 1.35, 45);
+    const bottomUpLight = new THREE.DirectionalLight(0xf5d0fe, 0.78);
+    bottomUpLight.position.set(-10, -24, -12);
+    scene.add(bottomUpLight);
+
+    const purpleRimLight = new THREE.PointLight(0xa855f7, 1.25, 45);
     purpleRimLight.position.set(-18, 9, -12);
     scene.add(purpleRimLight);
 
@@ -917,7 +914,6 @@
     greenRimLight.position.set(16, 11, 12);
     scene.add(greenRimLight);
 
-    // Helper: Procedural Radial Glow Sprite Texture
     function createGlowTexture(colorStop) {
       const canvas = document.createElement('canvas');
       canvas.width = 128;
@@ -940,35 +936,35 @@
     const clickableMeshes = [];
 
     // -------------------------------------------------------------------------
-    // 4. ORGANIC SUBCUTANEOUS TISSUE FLOOR & 2 PANCREATIC CAPILLARIES
+    // 4. TRANSLUCENT SUBCUTANEOUS ECM BED & 360° 3D CAPILLARY NETWORK
     // -------------------------------------------------------------------------
     const tissueGroup = new THREE.Group();
     scene.add(tissueGroup);
 
-    const floorGeo = new THREE.PlaneGeometry(95, 95, 64, 64);
+    const floorGeo = new THREE.PlaneGeometry(90, 90, 48, 48);
     floorGeo.rotateX(-Math.PI / 2);
     const fPos = floorGeo.attributes.position;
     for (let i = 0; i < fPos.count; i++) {
       const vx = fPos.getX(i);
       const vz = fPos.getZ(i);
       const dist = Math.sqrt(vx * vx + vz * vz);
-      const wave = Math.sin(vx * 0.24) * Math.cos(vz * 0.24) * 0.62 + Math.sin(dist * 0.14) * 0.38;
-      fPos.setY(i, wave - 3.2);
+      const wave = Math.sin(vx * 0.2) * Math.cos(vz * 0.2) * 0.5 + Math.sin(dist * 0.12) * 0.3;
+      fPos.setY(i, wave - 6.8);
     }
     floorGeo.computeVertexNormals();
 
     const floorMat = new THREE.MeshPhysicalMaterial({
       color: 0xe2a2d0,
-      roughness: 0.32,
+      roughness: 0.35,
       metalness: 0.02,
-      clearcoat: 0.65,
-      clearcoatRoughness: 0.22
+      transparent: true,
+      opacity: 0.26,
+      depthWrite: false,
+      side: THREE.DoubleSide
     });
     const tissueFloor = new THREE.Mesh(floorGeo, floorMat);
-    tissueFloor.receiveShadow = true;
     tissueGroup.add(tissueFloor);
 
-    // 2 Curved Glossy Dark-Red Blood Vessels / Capillaries (#991b1b)
     const capillaryMat = new THREE.MeshPhysicalMaterial({
       color: 0x991b1b,
       emissive: 0x3b040c,
@@ -981,89 +977,101 @@
     });
 
     const vesselCurve1 = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(2.0, -1.5, -1.8),
-      new THREE.Vector3(4.9, -0.65, 0.2),
-      new THREE.Vector3(7.3, -1.0, 3.6),
-      new THREE.Vector3(8.8, -1.9, 7.6),
-      new THREE.Vector3(9.6, -2.7, 11.2)
+      new THREE.Vector3(-8.5, -2.5, -3.5),
+      new THREE.Vector3(-4.2, 0.4, -1.5),
+      new THREE.Vector3(0.0, 1.3, 1.2),
+      new THREE.Vector3(4.6, -0.2, 3.2),
+      new THREE.Vector3(8.8, -2.6, 6.5)
     ]);
-    const vessel1 = new THREE.Mesh(new THREE.TubeGeometry(vesselCurve1, 48, 0.9, 20, false), capillaryMat);
+    const vessel1 = new THREE.Mesh(new THREE.TubeGeometry(vesselCurve1, 52, 0.68, 20, false), capillaryMat);
     vessel1.userData = { inspectKey: 'capillary' };
     tissueGroup.add(vessel1);
     clickableMeshes.push(vessel1);
 
     const vesselCurve2 = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(-6.2, -2.1, 2.6),
-      new THREE.Vector3(-4.1, -0.75, 1.3),
-      new THREE.Vector3(-1.8, -0.85, 0.4),
-      new THREE.Vector3(-0.3, -2.0, -1.2)
+      new THREE.Vector3(-7.0, 1.2, 5.5),
+      new THREE.Vector3(-3.2, -1.8, 2.8),
+      new THREE.Vector3(0.5, -2.9, -0.4),
+      new THREE.Vector3(4.2, -1.5, -3.0),
+      new THREE.Vector3(7.8, 0.8, -5.8)
     ]);
-    const vessel2 = new THREE.Mesh(new THREE.TubeGeometry(vesselCurve2, 40, 0.82, 20, false), capillaryMat);
+    const vessel2 = new THREE.Mesh(new THREE.TubeGeometry(vesselCurve2, 52, 0.64, 20, false), capillaryMat);
     vessel2.userData = { inspectKey: 'capillary' };
     tissueGroup.add(vessel2);
     clickableMeshes.push(vessel2);
 
     // -------------------------------------------------------------------------
-    // 5. ISLETS OF LANGERHANS: 55 GLOSSY PURPLE/PINK BETA CELLS
+    // 5. FULL 360° 3D SPHERICAL ISLETS OF LANGERHANS ORGANOID (95 BETA CELLS)
     // -------------------------------------------------------------------------
     const betaCells = [];
     const betaGroup = new THREE.Group();
+    betaGroup.position.set(0, -0.3, 0);
     scene.add(betaGroup);
 
-    const plumpBetaGeo = new THREE.SphereGeometry(1.0, 28, 22);
-    const shriveledBetaGeo = new THREE.SphereGeometry(0.9, 28, 22);
+    const plumpBetaGeo = new THREE.SphereGeometry(0.95, 28, 22);
+    const shriveledBetaGeo = new THREE.SphereGeometry(0.84, 26, 20);
     const sAttr = shriveledBetaGeo.attributes.position;
     for (let i = 0; i < sAttr.count; i++) {
       const vx = sAttr.getX(i);
       const vy = sAttr.getY(i);
       const vz = sAttr.getZ(i);
-      const wrinkle = 0.8 + 0.19 * Math.sin(vx * 7.2) * Math.cos(vy * 7.2) * Math.sin(vz * 7.2);
-      sAttr.setXYZ(i, vx * wrinkle, vy * wrinkle * 0.7, vz * wrinkle);
+      const wrinkle = 0.78 + 0.20 * Math.sin(vx * 7.2) * Math.cos(vy * 7.2) * Math.sin(vz * 7.2);
+      sAttr.setXYZ(i, vx * wrinkle, vy * wrinkle * 0.78, vz * wrinkle);
     }
     shriveledBetaGeo.computeVertexNormals();
 
-    const betaPalette = [0x7c3aed, 0x6d28d9, 0x8b5cf6, 0xec4899, 0xf472b6, 0xc084fc];
-    const ringCounts = [1, 7, 13, 17, 17]; // Total = 55 Beta Cells
-    let bIdx = 0;
+    const betaPalette = [0x7c3aed, 0x6d28d9, 0x8b5cf6, 0xec4899, 0xf472b6, 0xc084fc, 0x9333ea];
+    const goldenAngle = Math.PI * (3 - Math.sqrt(5));
 
-    ringCounts.forEach((count, ringIndex) => {
-      const ringRadius = ringIndex * 1.92;
-      for (let i = 0; i < count; i++) {
-        const angle = (i / count) * Math.PI * 2 + ringIndex * 0.52;
-        const r = ringRadius + (Math.random() - 0.5) * 0.42;
-        const x = Math.cos(angle) * r;
-        const z = Math.sin(angle) * r;
-        const y = Math.cos((r / 9.5) * (Math.PI / 2)) * 1.35 - 1.75;
+    const shells = [
+      { count: 12, rx: 1.8, ry: 1.35, rz: 1.8 },
+      { count: 33, rx: 3.6, ry: 2.55, rz: 3.6 },
+      { count: 50, rx: 5.5, ry: 3.65, rz: 5.5 }
+    ];
+
+    let bIdx = 0;
+    shells.forEach((shell) => {
+      for (let i = 0; i < shell.count; i++) {
+        const yNorm = 1 - (i / Math.max(1, shell.count - 1)) * 2;
+        const radiusAtY = Math.sqrt(Math.max(0, 1 - yNorm * yNorm));
+        const theta = goldenAngle * i + bIdx * 0.15;
+
+        const jitter = 0.88 + (Math.sin(i * 13.7) * 0.5 + 0.5) * 0.22;
+        const x = Math.cos(theta) * radiusAtY * shell.rx * jitter;
+        const y = yNorm * shell.ry * jitter;
+        const z = Math.sin(theta) * radiusAtY * shell.rz * jitter;
 
         const baseHex = betaPalette[bIdx % betaPalette.length];
         const mat = new THREE.MeshPhysicalMaterial({
           color: baseHex,
           emissive: baseHex,
-          emissiveIntensity: 0.08,
+          emissiveIntensity: 0.10,
           roughness: 0.13,
           metalness: 0.02,
           clearcoat: 1.0,
           clearcoatRoughness: 0.07,
-          transmission: 0.24,
+          transmission: 0.22,
           transparent: true,
-          opacity: 0.96
+          opacity: 0.97
         });
 
         const mesh = new THREE.Mesh(plumpBetaGeo, mat);
         mesh.position.set(x, y, z);
-        const sx = 1.06 + (Math.random() - 0.5) * 0.2;
-        const sy = 0.68 + (Math.random() - 0.5) * 0.12;
-        const sz = 1.04 + (Math.random() - 0.5) * 0.2;
-        mesh.scale.set(sx, sy, sz);
-        mesh.rotation.y = Math.random() * Math.PI;
 
+        const sx = 1.04 + (Math.random() - 0.5) * 0.18;
+        const sy = 0.84 + (Math.random() - 0.5) * 0.14;
+        const sz = 1.04 + (Math.random() - 0.5) * 0.18;
+        mesh.scale.set(sx, sy, sz);
+        mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
+
+        const dist3D = Math.sqrt(x * x + y * y + z * z);
         mesh.userData = {
           inspectKey: 'beta_healthy',
           baseHex: baseHex,
           baseScale: new THREE.Vector3(sx, sy, sz),
           isDead: false,
           phase: Math.random() * Math.PI * 2,
-          distFromCenter: r
+          distFromCenter: dist3D
         };
 
         betaGroup.add(mesh);
@@ -1073,6 +1081,8 @@
       }
     });
 
+    const betaCellsSortedOuterFirst = [...betaCells].sort((a, b) => b.userData.distFromCenter - a.userData.distFromCenter);
+
     // -------------------------------------------------------------------------
     // 6. GLOWING INSULIN SECRETORY GRANULES (GSIS)
     // -------------------------------------------------------------------------
@@ -1080,7 +1090,7 @@
     const insulinGroup = new THREE.Group();
     scene.add(insulinGroup);
 
-    for (let i = 0; i < 65; i++) {
+    for (let i = 0; i < 75; i++) {
       const spMat = new THREE.SpriteMaterial({
         map: insulinGlowTex,
         color: 0xe0f2fe,
@@ -1090,12 +1100,12 @@
       });
       const sprite = new THREE.Sprite(spMat);
       const host = betaCells[i % betaCells.length];
-      sprite.position.copy(host.position).add(new THREE.Vector3(
+      sprite.position.copy(host.position).add(betaGroup.position).add(new THREE.Vector3(
         (Math.random() - 0.5) * 1.1,
-        0.5 + Math.random() * 2.4,
+        (Math.random() - 0.5) * 1.8,
         (Math.random() - 0.5) * 1.1
       ));
-      const sc = 0.26 + Math.random() * 0.22;
+      const sc = 0.28 + Math.random() * 0.22;
       sprite.scale.set(sc, sc, 1);
       sprite.userData = {
         hostIdx: i % betaCells.length,
@@ -1107,7 +1117,8 @@
     }
 
     // -------------------------------------------------------------------------
-    // 7. SPIKY GREEN AUTOREACTIVE CD8+ T-CELLS (CONVERTIBLE TO FOXP3+ TREGS)
+    // 7. SPIKY GREEN AUTOREACTIVE CD8+ T-CELLS
+    //    (HIDDEN AT HOMEOSTASIS! Only appear during an attack & disperse after)
     // -------------------------------------------------------------------------
     const tCells = [];
     const tCellGroup = new THREE.Group();
@@ -1126,7 +1137,7 @@
       ).normalize());
     }
 
-    const tCellBodyGeo = new THREE.SphereGeometry(0.92, 26, 22);
+    const tCellBodyGeo = new THREE.SphereGeometry(0.90, 26, 22);
     const tPos = tCellBodyGeo.attributes.position;
     for (let i = 0; i < tPos.count; i++) {
       const v = new THREE.Vector3().fromBufferAttribute(tPos, i);
@@ -1162,10 +1173,10 @@
       spikeDirs.forEach((dir) => {
         const q = new THREE.Quaternion().setFromUnitVectors(upVec, dir);
         const sMesh = new THREE.Mesh(spikeGeo, bodyMat);
-        sMesh.position.copy(dir).multiplyScalar(0.82);
+        sMesh.position.copy(dir).multiplyScalar(0.80);
         sMesh.quaternion.copy(q);
         const tipMesh = new THREE.Mesh(spikeTipGeo, bodyMat);
-        tipMesh.position.copy(dir).multiplyScalar(0.82);
+        tipMesh.position.copy(dir).multiplyScalar(0.80);
         tipMesh.quaternion.copy(q);
         spikesContainer.add(sMesh);
         spikesContainer.add(tipMesh);
@@ -1183,10 +1194,11 @@
       halo.scale.set(3.2, 3.2, 1);
       group.add(halo);
 
-      const angle = (index / 60) * Math.PI * 2 + (index % 7) * 0.22;
-      const radius = 5.8 + (index % 6) * 1.6;
-      const height = 1.6 + (index % 5) * 1.2;
+      const angle = (index / 60) * Math.PI * 2 + (index % 7) * 0.25;
+      const radius = 6.2 + (index % 6) * 1.4;
+      const height = -2.8 + (index % 7) * 1.15;
       group.position.set(Math.cos(angle) * radius, height, Math.sin(angle) * radius);
+      group.visible = false; // Hidden at healthy homeostasis!
 
       group.userData = {
         index,
@@ -1211,7 +1223,6 @@
 
     // -------------------------------------------------------------------------
     // 8. WHITE STELLATE ANTIGEN-PRESENTING CELLS (APCs / DENDRITIC CELLS)
-    //    (CRITICAL: Very calm, slow Brownian drift during Homeostasis)
     // -------------------------------------------------------------------------
     const apcCells = [];
     const apcGroup = new THREE.Group();
@@ -1246,8 +1257,8 @@
       });
 
       const angle = (i / 6) * Math.PI * 2 + 0.4;
-      const rad = 11.2 + (i % 2) * 2.2;
-      const yPos = 1.2 + (i % 3) * 1.4;
+      const rad = 10.8 + (i % 2) * 2.0;
+      const yPos = -1.2 + (i % 3) * 1.6;
       g.position.set(Math.cos(angle) * rad, yPos, Math.sin(angle) * rad);
 
       g.userData = {
@@ -1327,7 +1338,7 @@
     // 10. AIRTAG-SIZED EXPLODABLE ENDOCORE NANOCHIP (5 CLICKABLE LAYERS)
     // -------------------------------------------------------------------------
     const chipRoot = new THREE.Group();
-    chipRoot.position.set(0, 6.3, -1.2);
+    chipRoot.position.set(0, 6.8, -1.2);
     scene.add(chipRoot);
     const chipLayers = [];
 
@@ -1371,7 +1382,7 @@
     l2Disk.userData = { inspectKey: 'chip_layer2' };
     layer2Group.add(l2Disk);
     clickableMeshes.push(l2Disk);
-    // Mini internal stem-cell spheres inside Layer 2
+
     const miniCellGeo = new THREE.SphereGeometry(0.18, 12, 12);
     const miniCellMat = new THREE.MeshStandardMaterial({ color: 0xf472b6, emissive: 0xd946ef, emissiveIntensity: 0.35 });
     for (let i = 0; i < 14; i++) {
@@ -1439,7 +1450,7 @@
     chipRoot.add(layer4Group);
     chipLayers.push(layer4Group);
 
-    // Layer 5: Exosome & Peptide Micro-Reservoirs + Hybrid Power + iCasp9 Fail-Safe
+    // Layer 5: Exosome & Peptide Micro-Reservoirs + Hybrid Power
     const layer5Group = new THREE.Group();
     const baseMesh = new THREE.Mesh(
       new THREE.CylinderGeometry(3.45, 3.1, 0.44, 48),
@@ -1488,7 +1499,7 @@
       exo.userData = {
         inspectKey: 'exosome_vesicle',
         angle: (i / 30) * Math.PI * 2,
-        radius: 1.6 + (i % 6) * 1.55,
+        radius: 1.6 + (i % 6) * 1.45,
         yPos: 5.5 - (i % 6) * 1.1,
         speed: 0.65 + Math.random() * 0.55
       };
@@ -1512,8 +1523,8 @@
       sp.userData = {
         isIL10,
         angle: Math.random() * Math.PI * 2,
-        radius: 1.4 + Math.random() * 9.5,
-        yPos: -1.0 + Math.random() * 7.2,
+        radius: 1.4 + Math.random() * 8.5,
+        yPos: -2.5 + Math.random() * 8.5,
         speed: 0.6 + Math.random() * 0.7
       };
       peptideGroup.add(sp);
@@ -1526,35 +1537,36 @@
       emissiveIntensity: 0.25,
       transparent: true,
       opacity: 0.0,
-      side: THREE.DoubleSide
+      side: THREE.DoubleSide,
+      depthWrite: false
     });
     const shieldDome = new THREE.Mesh(
-      new THREE.SphereGeometry(9.8, 40, 28, 0, Math.PI * 2, 0, Math.PI * 0.6),
+      new THREE.SphereGeometry(8.2, 40, 32),
       shieldDomeMat
     );
-    shieldDome.position.set(0, -2.2, 0);
+    shieldDome.position.set(0, -0.2, 0);
     scene.add(shieldDome);
 
     // -------------------------------------------------------------------------
     // 12. 3D-TRACKED FLOATING HTML CALLOUT LABELS
     // -------------------------------------------------------------------------
     const labelDefs = [
-      { id: 'lbl-islets', text: 'Islets of Langerhans', anchor: () => new THREE.Vector3(-3.8, 0.2, -2.5), key: 'beta_healthy', cls: '' },
-      { id: 'lbl-beta',   text: 'Beta cells (β)',       anchor: () => new THREE.Vector3(-1.4, -0.5, 2.8), key: 'beta_healthy', cls: '' },
-      { id: 'lbl-insulin',text: 'Insulin (GSIS)',       anchor: () => new THREE.Vector3(1.9, 0.85, 1.2),  key: 'beta_healthy', cls: '' },
-      { id: 'lbl-tcell',  text: 'Autoreactive CD8+ T-Cell', anchor: () => tCells[0].position.clone().add(new THREE.Vector3(0, 1.25, 0)), key: 'tcell_attack', cls: 'tcell-tag' },
+      { id: 'lbl-islets', text: '360° Islets of Langerhans', anchor: () => new THREE.Vector3(-3.8, 1.4, -2.5), key: 'beta_healthy', cls: '' },
+      { id: 'lbl-beta',   text: 'Beta cells (β)',       anchor: () => new THREE.Vector3(-1.4, -0.5, 3.8), key: 'beta_healthy', cls: '' },
+      { id: 'lbl-insulin',text: 'Insulin (GSIS)',       anchor: () => new THREE.Vector3(2.2, 1.4, 1.8),  key: 'beta_healthy', cls: '' },
+      { id: 'lbl-tcell',  text: 'Autoreactive CD8+ T-Cell', anchor: () => tCells[0].position.clone().add(new THREE.Vector3(0, 1.25, 0)), key: 'tcell_attack', cls: 'tcell-tag', requiresTCellsVisible: true },
       { id: 'lbl-apc',    text: 'Antigen-Presenting Cell (APC)', anchor: () => apcCells[0].position.clone().add(new THREE.Vector3(0, 1.2, 0)), key: 'apc_cell', cls: 'apc-tag' },
       { id: 'lbl-chip',   text: 'EndoCore Biohybrid Nanochip', anchor: () => chipRoot.position.clone().add(new THREE.Vector3(0, state.chipExploded ? 4.3 : 1.5, 0)), key: 'chip_layer1', cls: 'chip-tag', requiresProtection: true },
-      { id: 'lbl-exo',    text: 'Exosomes: IL-10 & TGF-β', anchor: () => new THREE.Vector3(2.8, 3.3, 1.5), key: 'exosome_vesicle', cls: 'tcell-tag', requiresActiveShield: true },
+      { id: 'lbl-exo',    text: 'Exosomes: IL-10 & TGF-β', anchor: () => new THREE.Vector3(2.8, 3.6, 1.5), key: 'exosome_vesicle', cls: 'tcell-tag', requiresActiveShield: true },
       { id: 'lbl-aab1',   text: 'Insulin AAb (IAA)',    anchor: () => autoantibodies[0].position.clone().add(new THREE.Vector3(0, 0.95, 0)), key: 'aab_insulin', cls: '', isAAb: true },
       { id: 'lbl-aab2',   text: 'IA-2 AAb',             anchor: () => autoantibodies[1].position.clone().add(new THREE.Vector3(0, 0.95, 0)), key: 'aab_ia2', cls: '', isAAb: true },
       { id: 'lbl-aab3',   text: 'ZnT8 AAb',             anchor: () => autoantibodies[2].position.clone().add(new THREE.Vector3(0, 0.95, 0)), key: 'aab_znt8', cls: '', isAAb: true },
       { id: 'lbl-aab4',   text: 'GAD65 AAb',            anchor: () => autoantibodies[3].position.clone().add(new THREE.Vector3(0, 0.95, 0)), key: 'aab_gad65', cls: '', isAAb: true },
-      { id: 'lbl-l1', text: 'L1: Zwitterionic Hydrogel (<30nm)', anchor: () => chipRoot.position.clone().add(new THREE.Vector3(3.8, 3.3, 0)), key: 'chip_layer1', cls: 'chip-tag', chipOnly: true, requiresProtection: true },
-      { id: 'lbl-l2', text: 'L2: CRISPR Beta Cells & ECM',       anchor: () => chipRoot.position.clone().add(new THREE.Vector3(-3.8, 1.65, 0)), key: 'chip_layer2', cls: 'chip-tag', chipOnly: true, requiresProtection: true },
-      { id: 'lbl-l3', text: 'L3: 16x Cytokine/pH/Lactate Sensors',anchor: () => chipRoot.position.clone().add(new THREE.Vector3(3.8, 0.0, 0)), key: 'chip_layer3', cls: 'chip-tag', chipOnly: true, requiresProtection: true },
-      { id: 'lbl-l4', text: 'L4: TinyML Edge-AI Processor',      anchor: () => chipRoot.position.clone().add(new THREE.Vector3(-3.8, -1.65, 0)), key: 'chip_layer4', cls: 'chip-tag', chipOnly: true, requiresProtection: true },
-      { id: 'lbl-l5', text: 'L5: Exosome Valves + BFC + iCasp9', anchor: () => chipRoot.position.clone().add(new THREE.Vector3(3.8, -3.3, 0)), key: 'chip_layer5', cls: 'chip-tag', chipOnly: true, requiresProtection: true }
+      { id: 'lbl-l1', text: 'L1: Zwitterionic Hydrogel Coat', anchor: () => chipRoot.position.clone().add(new THREE.Vector3(3.8, 3.3, 0)), key: 'chip_layer1', cls: 'chip-tag', chipOnly: true, requiresProtection: true },
+      { id: 'lbl-l2', text: 'L2: Nanoporous Filter & CRISPR β-Cells', anchor: () => chipRoot.position.clone().add(new THREE.Vector3(-3.8, 1.65, 0)), key: 'chip_layer2', cls: 'chip-tag', chipOnly: true, requiresProtection: true },
+      { id: 'lbl-l3', text: 'L3: 16x Cytokine & pH Sensors', anchor: () => chipRoot.position.clone().add(new THREE.Vector3(3.8, 0.0, 0)), key: 'chip_layer3', cls: 'chip-tag', chipOnly: true, requiresProtection: true },
+      { id: 'lbl-l4', text: 'L4: TinyML Edge-AI Processor', anchor: () => chipRoot.position.clone().add(new THREE.Vector3(-3.8, -1.65, 0)), key: 'chip_layer4', cls: 'chip-tag', chipOnly: true, requiresProtection: true },
+      { id: 'lbl-l5', text: 'L5: IL-10 & TGF-β Reservoirs', anchor: () => chipRoot.position.clone().add(new THREE.Vector3(3.8, -3.3, 0)), key: 'chip_layer5', cls: 'chip-tag', chipOnly: true, requiresProtection: true }
     ];
 
     labelDefs.forEach(def => {
@@ -1574,7 +1586,8 @@
     function update3DLabels() {
       const width = window.innerWidth;
       const height = window.innerHeight;
-      const shieldDeploying = state.protectionActive && !state.failSafeTriggered && (state.isAttack || state.isModulating);
+      const shieldDeploying = state.protectionActive && (state.isAttack || state.isModulating);
+      const anyTCellsVisible = Math.round(state.tcellCount) > 0;
 
       labelDefs.forEach(def => {
         if (!state.showLabels) { def.el.style.display = 'none'; return; }
@@ -1582,6 +1595,7 @@
         if (def.chipOnly && (!state.chipExploded || !state.protectionActive)) { def.el.style.display = 'none'; return; }
         if (def.isAAb && !state.showAutoantibodies) { def.el.style.display = 'none'; return; }
         if (def.requiresActiveShield && !shieldDeploying) { def.el.style.display = 'none'; return; }
+        if (def.requiresTCellsVisible && !anyTCellsVisible) { def.el.style.display = 'none'; return; }
 
         const worldPos = def.anchor();
         const proj = worldPos.clone().project(camera);
@@ -1660,51 +1674,42 @@
     }
 
     // -------------------------------------------------------------------------
-    // 14. FRAME-SYNCHRONIZED AI EVALUATION & TELEMETRY ENGINE
-    //     (Recalculates AI Attack Probability live from current slider values)
+    // 14. FRAME-SYNCHRONIZED AI EVALUATION, DKA CLINICAL NOTE & TELEMETRY
     // -------------------------------------------------------------------------
     function syncSimulationState() {
-      // Update slider UI labels from live state numbers
+      const visibleTCells = Math.round(state.tcellCount);
       document.getElementById('val-il6').textContent = `${Math.round(state.il6)} pg/mL`;
       document.getElementById('val-ifn').textContent = `${Math.round(state.ifn)} pg/mL`;
       document.getElementById('val-ph').textContent = state.ph.toFixed(2);
-      document.getElementById('val-tcells').textContent = `${Math.round(state.tcellCount)} Cells`;
+      document.getElementById('val-tcells').textContent = visibleTCells === 0 ? `0 Cells (Clear)` : `${visibleTCells} Cells`;
 
       // Compute normalized deviation from baseline [0.0 -> 1.0]
       const devIL6 = Math.max(0, (state.il6 - NORMAL_BASELINE.il6) / 96.0);
       const devIFN = Math.max(0, (state.ifn - NORMAL_BASELINE.ifn) / 97.0);
-      const devPH  = Math.max(0, (NORMAL_BASELINE.ph - state.ph) / 1.0);
-      const devTC  = Math.max(0, (state.tcellCount - NORMAL_BASELINE.tcellCount) / 48.0);
+      const devPH  = Math.max(0, (NORMAL_BASELINE.ph - state.ph) / 0.85);
+      const devTC  = Math.max(0, state.tcellCount / 60.0);
 
       const combinedStress = Math.min(1.0, (devIL6 * 0.34) + (devIFN * 0.36) + (devPH * 0.18) + (devTC * 0.12));
 
-      // Live AI Attack Probability directly tracks current cytokine levels (1.8% at baseline -> 99.4% at peak)
-      if (combinedStress < 0.02 && !state.failSafeTriggered) {
+      if (combinedStress < 0.02) {
         state.attackProb = 0.018;
       } else {
-        const logit = (combinedStress * 7.8) - 3.1;
-        state.attackProb = Math.max(0.018, Math.min(0.994, 1.0 / (1.0 + Math.exp(-logit))));
+        const logit = (combinedStress * 6.22) - 3.1;
+        state.attackProb = Math.max(0.018, Math.min(0.996, 1.0 / (1.0 + Math.exp(-logit))));
       }
 
-      // Determine if an autoimmune attack threshold is currently active
-      state.isAttack = !state.failSafeTriggered && (
-        state.il6 >= 28 ||
-        state.ifn >= 28 ||
-        state.ph <= 7.08 ||
-        state.tcellCount >= 22 ||
-        state.attackProb >= 0.32
+      state.isAttack = (
+        state.il6 >= 24 ||
+        state.ifn >= 24 ||
+        state.ph <= 7.12 ||
+        state.tcellCount >= 8 ||
+        state.attackProb >= 0.28
       );
 
-      const shieldActiveNow = state.protectionActive && !state.failSafeTriggered && (state.isAttack || state.isModulating);
+      const shieldActiveNow = state.protectionActive && (state.isAttack || state.isModulating);
 
       // Update Exosome, IL-10, and TGF-beta meters
-      if (state.failSafeTriggered) {
-        state.exosomeRate = "0.0";
-        state.il10Level = 0;
-        state.tgfbLevel = 0;
-        document.getElementById('cargo-state-badge').textContent = "CLAMPED SHUT (iCasp9)";
-        document.getElementById('cargo-state-badge').className = "text-[10px] font-mono-code px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/40";
-      } else if (shieldActiveNow) {
+      if (shieldActiveNow) {
         const releaseIntensity = Math.max(0.25, Math.min(1.0, combinedStress * 1.25));
         state.exosomeRate = (16.5 * releaseIntensity).toFixed(1);
         state.il10Level = Math.round(92 * releaseIntensity);
@@ -1726,22 +1731,18 @@
       document.getElementById('meter-tgfb-val').textContent = `${state.tgfbLevel} pg/mL`;
       document.getElementById('meter-tgfb-bar').style.width = `${state.tgfbLevel}%`;
 
-      // Update Beta-Cell Viability & Appearance (Healthy Purple/Pink vs Shriveled Charcoal Grey)
+      // Update Beta-Cell Viability & Progressive Cell-by-Cell Death in Unprotected Mode -> 0% Insulin
       let aliveCount = 0;
-      betaCells.forEach((cell, idx) => {
-        if (state.failSafeTriggered) {
-          // iCasp9 programmed apoptosis turns all graft cells dark charcoal
-          cell.userData.isDead = true;
-          cell.userData.inspectKey = 'beta_dead';
-          cell.geometry = shriveledBetaGeo;
-          cell.material.color.setHex(0x1e293b);
-          cell.material.emissive.setHex(0x090d16);
-          cell.material.clearcoat = 0.15;
-          cell.material.roughness = 0.65;
-        } else if (!state.protectionActive && state.isAttack) {
-          const killThreshold = (1.0 - combinedStress * 0.92) * 8.5;
-          const shouldDie = cell.userData.distFromCenter >= killThreshold || (combinedStress > 0.72 && idx % 5 !== 0);
-          if (shouldDie) {
+      const totalBeta = betaCells.length;
+
+      if (!state.protectionActive && state.isAttack) {
+        const killFraction = state.isUnprotectedEscalating
+          ? Math.min(1.0, state.unprotectedElapsed / state.unprotectedDuration)
+          : Math.min(1.0, Math.pow(combinedStress / 0.92, 1.15));
+        const numToKill = Math.round(killFraction * totalBeta);
+
+        betaCellsSortedOuterFirst.forEach((cell, sortedIdx) => {
+          if (sortedIdx < numToKill) {
             cell.userData.isDead = true;
             cell.userData.inspectKey = 'beta_dead';
             cell.geometry = shriveledBetaGeo;
@@ -1759,7 +1760,9 @@
             cell.material.roughness = 0.13;
             aliveCount++;
           }
-        } else {
+        });
+      } else {
+        betaCells.forEach((cell) => {
           cell.userData.isDead = false;
           cell.userData.inspectKey = 'beta_healthy';
           cell.geometry = plumpBetaGeo;
@@ -1768,36 +1771,61 @@
           cell.material.clearcoat = 1.0;
           cell.material.roughness = 0.13;
           aliveCount++;
-        }
-      });
-
-      // Layer 2 mini stem cells inside the nanochip also reflect iCasp9 state
-      if (state.failSafeTriggered) {
-        layer2Group.userData.miniCellMat.color.setHex(0x334155);
-        layer2Group.userData.miniCellMat.emissive.setHex(0x0f172a);
-      } else {
-        layer2Group.userData.miniCellMat.color.setHex(0xf472b6);
-        layer2Group.userData.miniCellMat.emissive.setHex(0xd946ef);
+        });
       }
 
-      state.healthyBetaPercentage = Math.round((aliveCount / betaCells.length) * 100);
-      state.insulinOutput = state.failSafeTriggered
-        ? 0
-        : (state.protectionActive ? (state.isAttack ? 99 : 100) : Math.max(0, Math.round(state.healthyBetaPercentage * 0.94)));
+      state.healthyBetaPercentage = Math.round((aliveCount / totalBeta) * 100);
+      state.insulinOutput = state.protectionActive ? 100 : state.healthyBetaPercentage;
 
-      // Update Spiky Green T-Cells -> Progressive Conversion to Smooth Cyan-Emerald FoxP3+ Tregs
-      const visibleTCells = Math.round(state.tcellCount);
+      const insLegend = document.getElementById('legend-insulin-state');
+      if (insLegend) {
+        if (state.insulinOutput >= 90) {
+          insLegend.textContent = `${state.insulinOutput}% (Active)`;
+          insLegend.className = "font-mono-code text-sky-300 font-bold";
+        } else if (state.insulinOutput === 0) {
+          insLegend.textContent = `0% (DEPLETED → DKA)`;
+          insLegend.className = "font-mono-code text-rose-400 font-extrabold animate-pulse";
+        } else {
+          insLegend.textContent = `${state.insulinOutput}% (Dropping)`;
+          insLegend.className = "font-mono-code text-amber-300 font-bold";
+        }
+      }
+
+      // Update Clinical Note Card on Insulin & Diabetic Ketoacidosis (DKA)
+      const dkaCard = document.getElementById('metabolic-dka-card');
+      const dkaBadge = document.getElementById('dka-status-badge');
+      const dkaNote = document.getElementById('dka-clinical-note');
+
+      if (state.insulinOutput === 0) {
+        dkaCard.className = "bg-rose-950/80 p-3 rounded-xl border-2 border-rose-500 alert-pulse space-y-1.5 transition-all";
+        dkaBadge.className = "text-[10px] font-mono-code font-extrabold px-2 py-0.5 rounded bg-rose-600 text-white";
+        dkaBadge.textContent = "🚨 DKA (Glucose: 480 mg/dL | Ketones: 6.8 mM)";
+        dkaNote.innerHTML = `<strong>0% Insulin → Diabetic Ketoacidosis (DKA):</strong> Without insulin, glucose cannot enter cells for energy. The starving body rapidly breaks down fat into acidic <strong>ketones</strong>, turning the blood acidic (pH 6.55) and causing life-threatening <strong>DKA</strong>.`;
+      } else if (state.insulinOutput < 80) {
+        const simBG = Math.round(92 + (100 - state.insulinOutput) * 3.8);
+        const simKet = (0.1 + ((100 - state.insulinOutput) / 100) * 6.5).toFixed(1);
+        dkaCard.className = "bg-amber-950/50 p-3 rounded-xl border border-amber-500/60 space-y-1.5 transition-all";
+        dkaBadge.className = "text-[10px] font-mono-code font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40";
+        dkaBadge.textContent = `HYPERGLYCEMIA (${simBG} mg/dL | Ket: ${simKet} mM)`;
+        dkaNote.innerHTML = `<strong>Falling Insulin (${state.insulinOutput}%):</strong> As killer T-cells destroy unprotected beta cells, insulin drops, blood sugar rises, and the liver starts producing acidic ketones toward <strong>DKA</strong>.`;
+      } else {
+        dkaCard.className = "bg-slate-900/95 p-3 rounded-xl border border-sky-500/35 space-y-1.5 transition-all";
+        dkaBadge.className = "text-[10px] font-mono-code font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30";
+        dkaBadge.textContent = "NORMAL GLUCOSE (92 mg/dL)";
+        dkaNote.innerHTML = `<strong>When Insulin is Made (100%):</strong> Insulin acts as the key that opens <strong>GLUT4 channels</strong> so glucose enters muscle and fat cells for energy, while stopping the liver from making acidic ketones.`;
+      }
+
+      // Update Spiky Green T-Cells & FoxP3+ Treg Conversion
       let convertedCount = 0;
       const modulationProgress = state.isModulating
-        ? Math.min(1.0, state.modulationElapsed / (state.modulationTotalDuration * 0.75))
+        ? Math.min(1.0, state.modulationElapsed / state.modulationTotalDuration)
         : (shieldActiveNow ? 0.35 : 0.0);
 
       tCells.forEach((tc, idx) => {
-        tc.visible = idx < visibleTCells;
+        tc.visible = (idx < visibleTCells);
         if (!tc.visible) return;
 
         if (shieldActiveNow) {
-          // Convert T-cells progressively one by one as exosomes diffuse
           const conversionCutoff = Math.ceil(visibleTCells * Math.max(0.25, modulationProgress));
           const becomesTreg = idx < conversionCutoff;
           tc.userData.isConvertedTreg = becomesTreg;
@@ -1825,11 +1853,16 @@
         }
       });
 
-      const tcellLabelBox = document.getElementById('lbl-tcell').querySelector('.label-3d-box');
-      if (shieldActiveNow && convertedCount > 0) {
-        tcellLabelBox.textContent = `FoxP3+ Regulatory Treg (${convertedCount} Converted)`;
-      } else {
-        tcellLabelBox.textContent = 'Autoreactive CD8+ T-Cell';
+      const tcellLabelEl = document.getElementById('lbl-tcell');
+      if (tcellLabelEl) {
+        const tcellLabelBox = tcellLabelEl.querySelector('.label-3d-box');
+        if (tcellLabelBox) {
+          if (shieldActiveNow && convertedCount > 0) {
+            tcellLabelBox.textContent = `FoxP3+ Regulatory Treg (${convertedCount} Converted)`;
+          } else {
+            tcellLabelBox.textContent = `Autoreactive CD8+ T-Cell (${visibleTCells} Swarming)`;
+          }
+        }
       }
 
       updateDashboardPanels(convertedCount, visibleTCells);
@@ -1844,7 +1877,7 @@
       document.getElementById('bar-viability').style.width = `${state.healthyBetaPercentage}%`;
       document.getElementById('metric-insulin').textContent = `${state.insulinOutput}%`;
       document.getElementById('bar-insulin').style.width = `${state.insulinOutput}%`;
-      document.getElementById('metric-treg').textContent = `${convertedCount} / ${visibleTCells}`;
+      document.getElementById('metric-treg').textContent = visibleTCells === 0 ? `Cleared` : `${convertedCount} / ${visibleTCells}`;
 
       const statusCard = document.getElementById('status-card');
       const statusCode = document.getElementById('status-code');
@@ -1860,38 +1893,8 @@
       const captionText = document.getElementById('video-caption-text');
       const termLog = document.getElementById('terminal-log');
 
-      // CASE 1: ONCOGENIC FAIL-SAFE TRIGGERED (WARBURG LACTATE SPIKE + iCasp9)
-      if (state.failSafeTriggered) {
-        document.getElementById('metric-prob').className = "text-lg font-extrabold font-mono-code text-rose-400 mt-0.5";
-        document.getElementById('bar-prob').className = "bg-rose-500 h-full transition-all duration-150";
-
-        statusCard.className = "p-3 rounded-xl border bg-rose-950/80 border-rose-500 alert-pulse transition-all";
-        statusCode.className = "text-[10px] font-bold uppercase tracking-wider text-rose-300";
-        statusCode.textContent = "🚨 ONCOGENIC ANOMALY — FAIL-SAFE ENGAGED";
-        statusHeadline.textContent = "Valves Clamped & iCasp9 Activated";
-        statusSubtext.textContent = "Warburg lactate surge (9.4 mmol/L) & MICA/MICB detected! IL-10 shield dropped and iCasp9 suicide gene triggered to eliminate mutated cells.";
-        valveText.textContent = "Valves: CLAMPED SHUT (0%)";
-
-        bannerTitle.textContent = "Oncogenic Fail-Safe Protocol Engaged (iCasp9)";
-        bannerSubtitle.textContent = "Peptide shield shut off & inducible Caspase-9 triggered to prevent tumorigenic growth.";
-
-        stageBar.className = "absolute bottom-3 left-1/2 -translate-x-1/2 w-[94%] max-w-3xl py-2.5 px-4 rounded-xl bg-rose-950/95 border-2 border-rose-500 shadow-2xl backdrop-blur-xl z-20 flex flex-col sm:flex-row items-center gap-2.5 transition-all duration-300 pointer-events-none";
-        stagePill.className = "px-2.5 py-1 rounded-md text-[10px] font-extrabold uppercase tracking-wider bg-rose-500 text-white shrink-0 shadow";
-        stagePill.textContent = "FAIL-SAFE: iCasp9 ACTIVE";
-        captionText.textContent = "Oncogenic Fail-Safe Engaged: Sensors detect abnormal Warburg lactate surge & MICA/MICB stress; AI clamps IL-10 valves shut and triggers the iCasp9 suicide switch to eliminate mutated cells.";
-
-        termLog.innerHTML = `
-          <div class="text-rose-400 font-bold">[METABOLIC_ALARM] Warburg Effect Detected! Lactate: 9.4 mmol/L | MICA/MICB: POSITIVE</div>
-          <div class="text-amber-300 font-bold">[TINYML_AI] Classification: ONCOGENIC MUTATION RISK (Not Standard Autoimmunity)</div>
-          <div class="text-rose-300 font-bold">[FAIL_SAFE_1] >>> PIEZOELECTRIC VALVES CLAMPED SHUT (IL-10 / TGF-β = 0%) <<<</div>
-          <div class="text-sky-300">[IMMUNE_CLEARANCE] Local immunosuppressive safe-zone dropped to allow host T-cell surveillance.</div>
-          <div class="text-purple-300 font-bold">[FAIL_SAFE_2] Inducible Caspase-9 (iCasp9) suicide switch activated -> Graft apoptosis complete.</div>
-        `;
-        return;
-      }
-
-      // CASE 2: NORMAL HOMEOSTASIS (LOW ATTACK PROBABILITY)
-      if (!state.isAttack && !state.isModulating) {
+      // CASE 1: NORMAL HOMEOSTASIS (ZERO SPIKY T-CELLS, 100% INSULIN)
+      if (!state.isAttack && !state.isModulating && !state.isUnprotectedEscalating) {
         document.getElementById('metric-prob').className = "text-lg font-extrabold font-mono-code text-emerald-400 mt-0.5";
         document.getElementById('bar-prob').className = "bg-emerald-400 h-full transition-all duration-150";
 
@@ -1899,26 +1902,26 @@
         statusCode.className = "text-[10px] font-bold uppercase tracking-wider text-emerald-300";
         statusCode.textContent = "NOMINAL: HOMEOSTASIS";
         statusHeadline.textContent = "Islets Healthy & Protected (100%)";
-        statusSubtext.textContent = "Micro-valves sealed. Basal & bolus glucose-stimulated insulin secretion (GSIS) operating at 100% capacity.";
+        statusSubtext.textContent = "Zero attacking CD8+ T-cells present. Living beta cells naturally produce 100% insulin in response to blood sugar.";
         valveText.textContent = state.protectionActive ? "Valves: SEALED (Standby)" : "Chip: REMOVED";
 
         bannerTitle.textContent = "Islets of Langerhans & EndoCore Bio-Shield";
-        bannerSubtitle.textContent = "Healthy purple & pink beta cells secrete insulin while EndoCore monitors cytokines & pH.";
+        bannerSubtitle.textContent = "360° 3D Islet Organoid • 100% Insulin Output • Zero Attacking CD8+ T-Cells";
 
         stageBar.className = "absolute bottom-3 left-1/2 -translate-x-1/2 w-[94%] max-w-3xl py-2.5 px-4 rounded-xl bg-slate-950/90 border-2 border-emerald-500/70 shadow-2xl backdrop-blur-xl z-20 flex flex-col sm:flex-row items-center gap-2.5 transition-all duration-300 pointer-events-none";
         stagePill.className = "px-2.5 py-1 rounded-md text-[10px] font-extrabold uppercase tracking-wider bg-emerald-500 text-slate-950 shrink-0 shadow";
         stagePill.textContent = "STAGE: HOMEOSTASIS";
-        captionText.textContent = "Healthy Islets of Langerhans: CRISPR-edited beta cells secrete physiological insulin (GSIS) while EndoCore nano-sensors monitor interstitial IL-6, IFN-γ, pH, and lactate.";
+        captionText.textContent = "Healthy Islets of Langerhans (0 Attacking T-Cells): CRISPR beta cells secrete 100% insulin, opening GLUT4 channels for normal cellular glucose uptake and preventing ketogenesis.";
 
         termLog.innerHTML = `
           <div class="text-slate-400">[SYS_READY] EndoCore Bio-Pod ${state.protectionActive ? 'Implanted & Active (16 Sensor Channels)' : 'REMOVED (Unprotected Mode)'}</div>
-          <div class="text-sky-300">[TELEMETRY] IL-6: ${Math.round(state.il6)} pg/mL | IFN-γ: ${Math.round(state.ifn)} pg/mL | pH: ${state.ph.toFixed(2)} | Lactate: 1.2 mM</div>
+          <div class="text-sky-300">[TELEMETRY] IL-6: ${Math.round(state.il6)} pg/mL | IFN-γ: ${Math.round(state.ifn)} pg/mL | pH: ${state.ph.toFixed(2)} | CD8+ Swarm: 0 Cells</div>
           <div class="text-emerald-400 font-bold">[TINYML_AI] Attack Probability: ${probPct}% (NOMINAL: HOMEOSTASIS)</div>
-          <div class="text-emerald-300">[VALVE_CTRL] Piezoelectric Micro-Valves: SEALED | White APCs: Calm Surveillance</div>
-          <div class="text-purple-300">[ISLET_GRAFT] Beta-Cell Viability: 100% | Insulin GSIS: 100% Physiological</div>
+          <div class="text-emerald-300">[VALVE_CTRL] Piezoelectric Micro-Valves: SEALED | Spiky CD8+ T-Cells: ABSENT</div>
+          <div class="text-purple-300">[METABOLIC] Beta-Cell Viability: 100% | Insulin: 100% | Blood Glucose: 92 mg/dL (Normal)</div>
         `;
       }
-      // CASE 3: ENDOCORE ACTIVE DEFENSE & 13-SECOND GRADUAL BIOLOGICAL MODULATION
+      // CASE 2: ENDOCORE ACTIVE DEFENSE & 18-SECOND GRADUAL BIOLOGICAL MODULATION
       else if (state.protectionActive) {
         document.getElementById('metric-prob').className = "text-lg font-extrabold font-mono-code text-cyan-300 mt-0.5";
         document.getElementById('bar-prob').className = "bg-gradient-to-r from-cyan-400 to-amber-400 h-full transition-all duration-150";
@@ -1926,68 +1929,100 @@
         statusCard.className = "p-3 rounded-xl border bg-sky-950/65 border-sky-400/80 transition-all shadow-lg shadow-sky-500/15";
         statusCode.className = "text-[10px] font-bold uppercase tracking-wider text-sky-300";
         statusCode.textContent = "ACTIVE DEFENSE: EXOSOMES & PEPTIDES DEPLOYED";
-        statusHeadline.textContent = "Gradual Biological Modulation Active";
-        statusSubtext.textContent = `Dispensing IL-10 & TGF-β exosomes (${state.exosomeRate} nL/min). Reprogramming CD8+ T-cells into FoxP3+ Tregs (${convertedCount}/${visibleTCells}).`;
+        statusHeadline.textContent = "18s Biological Modulation Active";
+        statusSubtext.textContent = `Dispensing IL-10 & TGF-β exosomes (${state.exosomeRate} nL/min). Converting spiky CD8+ T-cells into FoxP3+ Tregs (${convertedCount}/${visibleTCells}) & clearing swarm.`;
         valveText.textContent = `Valves: OPEN (${state.exosomeRate} nL/min)`;
 
         bannerTitle.textContent = "EndoCore Active Immunomodulation (IL-10 & TGF-β)";
-        bannerSubtitle.textContent = "Exosomes reprogram spiky green CD8+ T-cells into peaceful FoxP3+ Tregs & gradually restore baseline.";
+        bannerSubtitle.textContent = "Exosomes convert spiky green CD8+ T-cells into peaceful FoxP3+ Tregs & clear the attack over 18s.";
 
         stageBar.className = "absolute bottom-3 left-1/2 -translate-x-1/2 w-[94%] max-w-3xl py-2.5 px-4 rounded-xl bg-slate-950/92 border-2 border-cyan-400 shadow-2xl backdrop-blur-xl z-20 flex flex-col sm:flex-row items-center gap-2.5 transition-all duration-300 pointer-events-none";
         stagePill.className = "px-2.5 py-1 rounded-md text-[10px] font-extrabold uppercase tracking-wider bg-cyan-400 text-slate-950 shrink-0 shadow";
-        stagePill.textContent = state.isModulating ? "MODULATING (~13s)" : "CYTOKINE SPIKE DETECTED";
-        captionText.textContent = state.isModulating
-          ? "Localized Immunomodulation Active: Piezoelectric micro-valves release Exosomes loaded with IL-10 and TGF-β, reprogramming aggressive CD8+ T-cells into protective FoxP3+ Tregs."
-          : "Autoimmune Infiltration Detected: Autoreactive CD8+ T-cells release IFN-γ and IL-6; EndoCore's TinyML neural engine predicts graft rejection in real time.";
+        stagePill.textContent = state.isModulating ? "MODULATING (18s CURVE)" : "CYTOKINE SPIKE DETECTED";
+        captionText.textContent = "Localized Immunomodulation Active: Nano-sensors detect the cytokine spike in <50ms; micro-valves release IL-10 & TGF-β exosomes, converting attacking T-cells into Tregs and preserving 100% insulin.";
 
         termLog.innerHTML = `
           <div class="text-amber-300 font-bold">[SENSOR_TRIGGER] Cytokine Surge! IL-6: ${Math.round(state.il6)} pg/mL | IFN-γ: ${Math.round(state.ifn)} pg/mL | pH: ${state.ph.toFixed(2)}</div>
-          <div class="text-rose-400 font-bold">[TINYML_AI] Live Attack Probability: ${probPct}% -> Actuating Bio-Shield</div>
+          <div class="text-rose-400 font-bold">[TINYML_AI] Live Attack Probability: ${probPct}% (&lt;50ms detection) -> Actuating Bio-Shield</div>
           <div class="text-sky-300 font-bold">[MICRO_VALVES] OPEN (${state.exosomeRate} nL/min) | IL-10: ${state.il10Level} pg/mL | TGF-β: ${state.tgfbLevel} pg/mL</div>
           <div class="text-teal-300 font-bold">[TREG_CONVERSION] ${convertedCount} / ${visibleTCells} CD8+ T-cells reprogrammed into FoxP3+ Tregs</div>
-          <div class="text-emerald-300">[GRADUAL_DECAY] Neutralizing local cytokines smoothly back to homeostasis...</div>
+          <div class="text-emerald-300">[18s_MODULATION] Neutralizing cytokines & dispersing T-cell swarm back to 0...</div>
         `;
       }
-      // CASE 4: UNPROTECTED T1D ATTACK MODE (CHIP REMOVED -> BETA CELL DEATH)
+      // CASE 3: UNPROTECTED T1D ATTACK MODE (PROGRESSIVE ESCALATION TO 0% INSULIN & DKA)
       else {
         document.getElementById('metric-prob').className = "text-lg font-extrabold font-mono-code text-rose-400 mt-0.5";
         document.getElementById('bar-prob').className = "bg-rose-500 h-full transition-all duration-150";
 
-        statusCard.className = "p-3 rounded-xl border bg-rose-950/65 border-rose-500 alert-pulse transition-all";
+        statusCard.className = "p-3 rounded-xl border bg-rose-950/75 border-rose-500 alert-pulse transition-all";
         statusCode.className = "text-[10px] font-bold uppercase tracking-wider text-rose-300";
-        statusCode.textContent = "CRITICAL: UNPROTECTED BETA-CELL DEATH";
-        statusHeadline.textContent = `Beta-Cell Destruction (${state.healthyBetaPercentage}% Viable)`;
-        statusSubtext.textContent = "EndoCore nanochip absent! Spiky green CD8+ T-cells are shriveling purple/pink beta cells and halting insulin output.";
+        statusCode.textContent = state.insulinOutput === 0
+          ? "🚨 CRITICAL: 0% INSULIN — DIABETIC KETOACIDOSIS (DKA)"
+          : "CRITICAL: UNPROTECTED AUTOIMMUNE ESCALATION";
+        statusHeadline.textContent = state.insulinOutput === 0
+          ? "Total Beta-Cell Loss (0% Insulin → DKA)"
+          : `Beta-Cell Destruction (${state.healthyBetaPercentage}% Viable | Insulin: ${state.insulinOutput}%)`;
+        statusSubtext.textContent = state.insulinOutput === 0
+          ? "All beta cells destroyed! Insulin is 0%. Glucose cannot enter cells; rapid fat breakdown floods blood with acidic ketones (Diabetic Ketoacidosis)."
+          : "EndoCore nanochip absent! Spiky green CD8+ T-cells are swarming & shriveling beta cells toward 0% insulin and DKA.";
         valveText.textContent = "Chip: ABSENT (No Defense)";
 
-        bannerTitle.textContent = "Beta cell death leads to T1D (Unprotected Mode)";
-        bannerSubtitle.textContent = "Without EndoCore, spiky green T-cells destroy beta cells, resulting in hyperglycemia.";
+        bannerTitle.textContent = state.insulinOutput === 0
+          ? "0% Insulin Output Leads to Diabetic Ketoacidosis (DKA)"
+          : "Unprotected T1D Attack Escalating (Beta-Cell Destruction)";
+        bannerSubtitle.textContent = state.insulinOutput === 0
+          ? "Complete Beta-Cell Loss • Severe Hyperglycemia (480 mg/dL) • Acidic Ketone Surge (pH 6.55)"
+          : "Without EndoCore, spiky green CD8+ T-cells progressively destroy beta cells and halt insulin.";
 
-        stageBar.className = "absolute bottom-3 left-1/2 -translate-x-1/2 w-[94%] max-w-3xl py-2.5 px-4 rounded-xl bg-rose-950/92 border-2 border-rose-500 shadow-2xl backdrop-blur-xl z-20 flex flex-col sm:flex-row items-center gap-2.5 transition-all duration-300 pointer-events-none";
+        stageBar.className = "absolute bottom-3 left-1/2 -translate-x-1/2 w-[94%] max-w-3xl py-2.5 px-4 rounded-xl bg-rose-950/95 border-2 border-rose-500 shadow-2xl backdrop-blur-xl z-20 flex flex-col sm:flex-row items-center gap-2.5 transition-all duration-300 pointer-events-none";
         stagePill.className = "px-2.5 py-1 rounded-md text-[10px] font-extrabold uppercase tracking-wider bg-rose-500 text-white shrink-0 shadow";
-        stagePill.textContent = "UNPROTECTED T1D ATTACK";
-        captionText.textContent = "Unprotected Autoimmune Destruction: Without EndoCore, autoreactive T-cells destroy beta cells directly and via cytokines, resulting in beta-cell loss and hyperglycemia.";
+        stagePill.textContent = state.insulinOutput === 0 ? "0% INSULIN: DKA" : "UNPROTECTED ESCALATION";
+        captionText.textContent = state.insulinOutput === 0
+          ? "Diabetic Ketoacidosis (DKA): With 0% insulin, cells cannot absorb glucose and break down fat into acidic ketones, causing severe acidosis (pH 6.55) and life-threatening DKA."
+          : "Unprotected Autoimmune Escalation: Spiky green CD8+ T-cells swarm the unprotected islet, spiking IFN-γ/IL-6 and destroying beta cells one by one toward 0% insulin.";
 
         termLog.innerHTML = `
-          <div class="text-rose-400 font-bold">[CRITICAL_ALARM] UNPROTECTED AUTOIMMUNE ATTACK IN PROGRESS!</div>
-          <div class="text-amber-300">[TELEMETRY] IL-6: ${Math.round(state.il6)} pg/mL | IFN-γ: ${Math.round(state.ifn)} pg/mL | pH: ${state.ph.toFixed(2)}</div>
-          <div class="text-rose-300">[CD8_SWARM] ${visibleTCells} autoreactive T-cells attacking Islets of Langerhans (${probPct}% Prob)</div>
-          <div class="text-rose-500 font-bold">[NECROSIS] Beta-Cell Viability dropped to ${state.healthyBetaPercentage}% | Insulin GSIS: ${state.insulinOutput}%</div>
-          <div class="text-emerald-300">>> Click "1. EndoCore AI Bio-Shield" on the left panel to implant the nanochip and rescue the islets!</div>
+          <div class="text-rose-400 font-bold">[UNPROTECTED_ATTACK] No EndoCore Shield! Cytokines escalating: IL-6=${Math.round(state.il6)} | IFN-γ=${Math.round(state.ifn)}</div>
+          <div class="text-amber-300">[CD8_SWARM] ${visibleTCells} spiky green killer T-cells destroying Islets of Langerhans (${probPct}% Attack)</div>
+          <div class="text-rose-500 font-bold">[BETA_APOPTOSIS] Beta-Cell Viability: ${state.healthyBetaPercentage}% | Insulin Output: ${state.insulinOutput}%</div>
+          <div class="text-rose-300 font-bold">[METABOLIC_DKA] ${state.insulinOutput === 0 ? 'INSULIN = 0% -> GLUT4 closed -> Lipolysis & Ketogenesis -> DIABETIC KETOACIDOSIS (DKA)!' : 'Insulin dropping rapidly -> Hyperglycemia & rising blood ketones...'}</div>
+          <div class="text-emerald-300">>> Click "1. EndoCore AI Bio-Shield" to implant the nanochip and rescue the islets!</div>
         `;
       }
     }
 
     // -------------------------------------------------------------------------
-    // 15. USER INTERACTION CALLBACKS (SLIDERS, MODES, FAIL-SAFE, SIDEBARS)
+    // 15. USER INTERACTION CALLBACKS (MODES, SLIDERS & LAYER INSPECTION)
     // -------------------------------------------------------------------------
+    function runUnprotectedControlTest() {
+      setProtectionMode(false);
+      state.il6 = 28.0;
+      state.ifn = 32.0;
+      state.ph  = 7.20;
+      state.tcellCount = 18.0;
+      state.unprotectedStartSnapshot = { il6: 28.0, ifn: 32.0, ph: 7.20, tcellCount: 18.0 };
+      state.isUnprotectedEscalating = true;
+      state.unprotectedElapsed = 0.0;
+
+      document.getElementById('slider-il6').value = state.il6;
+      document.getElementById('slider-ifn').value = state.ifn;
+      document.getElementById('slider-ph').value  = state.ph;
+      document.getElementById('slider-tcells').value = state.tcellCount;
+
+      updateRegulationBannerUI();
+      syncSimulationState();
+    }
+
+    function runProtectedInterventionTest() {
+      state.isUnprotectedEscalating = false;
+      setProtectionMode(true);
+      triggerAcuteAttackSpike();
+    }
+
     function onUserSliderInput() {
-      if (state.failSafeTriggered) {
-        state.failSafeTriggered = false;
-        updateFailSafeBadge();
-      }
       state.userDraggingSlider = true;
       state.isModulating = false;
+      state.isUnprotectedEscalating = false;
       state.modulationElapsed = 0;
       state.lastInteractionTimeMs = performance.now();
 
@@ -1995,6 +2030,11 @@
       state.ifn = parseFloat(document.getElementById('slider-ifn').value);
       state.ph  = parseFloat(document.getElementById('slider-ph').value);
       state.tcellCount = parseFloat(document.getElementById('slider-tcells').value);
+
+      if ((state.il6 > 25 || state.ifn > 25) && state.tcellCount < 10) {
+        state.tcellCount = Math.min(60, Math.round(12 + (state.il6 + state.ifn) * 0.22));
+        document.getElementById('slider-tcells').value = state.tcellCount;
+      }
 
       updateRegulationBannerUI();
       syncSimulationState();
@@ -2009,17 +2049,27 @@
         ph: state.ph,
         tcellCount: state.tcellCount
       };
+      if (!state.protectionActive && state.isAttack) {
+        state.unprotectedStartSnapshot = {
+          il6: state.il6,
+          ifn: state.ifn,
+          ph: state.ph,
+          tcellCount: Math.max(14, state.tcellCount)
+        };
+        state.isUnprotectedEscalating = true;
+        state.unprotectedElapsed = 0.0;
+      }
       syncSimulationState();
     }
 
     function triggerAcuteAttackSpike() {
-      if (state.failSafeTriggered) {
-        state.failSafeTriggered = false;
-        updateFailSafeBadge();
+      if (!state.protectionActive) {
+        runUnprotectedControlTest();
+        return;
       }
-      state.il6 = 82.0;
-      state.ifn = 88.0;
-      state.ph = 6.80;
+      state.il6 = 85.0;
+      state.ifn = 92.0;
+      state.ph = 6.85;
       state.tcellCount = 48.0;
 
       document.getElementById('slider-il6').value = state.il6;
@@ -2029,6 +2079,7 @@
 
       state.userDraggingSlider = false;
       state.isModulating = false;
+      state.isUnprotectedEscalating = false;
       state.modulationElapsed = 0;
       state.lastInteractionTimeMs = performance.now();
       state.peakSnapshot = {
@@ -2062,14 +2113,13 @@
         badge.className = "text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30";
         badge.textContent = "ENDOCORE SHIELD ON";
 
-        // Show 3D Nanochip & Peptide Shield
         chipRoot.visible = true;
         peptideGroup.visible = true;
         shieldDome.visible = true;
         chipHardwareCard.style.display = 'block';
         if (camChipBtn) camChipBtn.style.display = 'flex';
 
-        // Reset modulation timer so if sliders are currently high, EndoCore begins modulating them down
+        state.isUnprotectedEscalating = false;
         state.lastInteractionTimeMs = performance.now() - 800;
         state.isModulating = false;
         state.modulationElapsed = 0;
@@ -2091,7 +2141,6 @@
         badge.className = "text-[10px] font-bold px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30";
         badge.textContent = "UNPROTECTED T1D";
 
-        // COMPLETELY HIDE 3D NANOCHIP IN UNPROTECTED MODE
         chipRoot.visible = false;
         peptideGroup.visible = false;
         shieldDome.visible = false;
@@ -2106,53 +2155,23 @@
       syncSimulationState();
     }
 
-    function triggerOncogenicFailSafe() {
-      if (!state.protectionActive) setProtectionMode(true);
-      state.failSafeTriggered = true;
-      state.isModulating = false;
-      state.lactate = 9.4;
-      state.ph = 6.60;
-      document.getElementById('slider-ph').value = 6.60;
-
-      updateFailSafeBadge();
-      updateRegulationBannerUI();
-      syncSimulationState();
-    }
-
     function resetToHealthyHomeostasis() {
-      state.failSafeTriggered = false;
       state.isModulating = false;
+      state.isUnprotectedEscalating = false;
       state.modulationElapsed = 0;
+      state.unprotectedElapsed = 0;
       state.il6 = NORMAL_BASELINE.il6;
       state.ifn = NORMAL_BASELINE.ifn;
       state.ph  = NORMAL_BASELINE.ph;
       state.tcellCount = NORMAL_BASELINE.tcellCount;
-      state.lactate = NORMAL_BASELINE.lactate;
 
       document.getElementById('slider-il6').value = state.il6;
       document.getElementById('slider-ifn').value = state.ifn;
       document.getElementById('slider-ph').value  = state.ph;
       document.getElementById('slider-tcells').value = state.tcellCount;
 
-      updateFailSafeBadge();
       updateRegulationBannerUI();
       syncSimulationState();
-    }
-
-    function updateFailSafeBadge() {
-      const fb = document.getElementById('failsafe-badge');
-      const lacVal = document.getElementById('meter-lactate-val');
-      if (state.failSafeTriggered) {
-        fb.className = "text-[10px] font-mono-code font-bold px-2 py-0.5 rounded bg-rose-500 text-white animate-pulse";
-        fb.textContent = "iCasp9 TRIGGERED (9.4 mM)";
-        lacVal.className = "font-mono-code font-bold text-rose-400";
-        lacVal.textContent = "9.4 mmol/L (iCasp9 ON — SHIELD OFF)";
-      } else {
-        fb.className = "text-[10px] font-mono-code font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30";
-        fb.textContent = "SAFE (1.2 mM)";
-        lacVal.className = "font-mono-code font-bold text-emerald-300";
-        lacVal.textContent = "1.2 mmol/L (iCasp9 OFF)";
-      }
     }
 
     function updateRegulationBannerUI() {
@@ -2162,36 +2181,38 @@
       const regWrap = document.getElementById('reg-progress-wrap');
       const regBar = document.getElementById('reg-progress-bar');
 
-      if (state.failSafeTriggered) {
-        regBanner.className = "p-2 rounded-lg text-[11px] font-bold bg-rose-950/80 border border-rose-500 text-rose-200 leading-snug transition-all";
-        regText.textContent = "🚨 FAIL-SAFE ENGAGED: Peptide Valves Clamped & iCasp9 Active";
-        regTimer.classList.add('hidden');
-        regWrap.classList.add('hidden');
-      } else if (state.isModulating && state.protectionActive) {
+      if (state.isModulating && state.protectionActive) {
         const rem = Math.max(0, state.modulationTotalDuration - state.modulationElapsed).toFixed(1);
         const pct = Math.min(100, (state.modulationElapsed / state.modulationTotalDuration) * 100);
         regBanner.className = "p-2 rounded-lg text-[11px] font-bold bg-sky-950/80 border border-sky-400 text-sky-200 leading-snug transition-all";
-        regText.textContent = "⚡ BIOLOGICAL MODULATION: IL-10 & TGF-β Restoring Baseline...";
+        regText.textContent = "⚡ 18s MODULATION: IL-10 & TGF-β Converting Tregs & Clearing Swarm...";
         regTimer.textContent = `${rem}s`;
         regTimer.classList.remove('hidden');
         regWrap.classList.remove('hidden');
+        regBar.className = "bg-gradient-to-r from-cyan-400 to-emerald-400 h-full transition-all duration-150";
         regBar.style.width = `${pct}%`;
-      } else if (!state.protectionActive && state.isAttack) {
-        regBanner.className = "p-2 rounded-lg text-[11px] font-bold bg-rose-950/70 border border-rose-500/70 text-rose-200 leading-snug transition-all";
-        regText.textContent = "⚠️ NO NANOCHIP PRESENT: Unchecked Cytokines Destroying Beta Cells";
-        regTimer.classList.add('hidden');
-        regWrap.classList.add('hidden');
+      } else if (!state.protectionActive && (state.isUnprotectedEscalating || state.isAttack)) {
+        const rem = Math.max(0, state.unprotectedDuration - state.unprotectedElapsed).toFixed(1);
+        const pct = Math.min(100, (state.unprotectedElapsed / state.unprotectedDuration) * 100);
+        regBanner.className = "p-2 rounded-lg text-[11px] font-bold bg-rose-950/80 border border-rose-500 text-rose-200 leading-snug transition-all";
+        regText.textContent = state.insulinOutput === 0
+          ? "🚨 0% INSULIN REACHED: Patient in Diabetic Ketoacidosis (DKA)"
+          : "⚠️ UNPROTECTED ESCALATION: Cytokines Spiking → 0% Insulin & DKA...";
+        regTimer.textContent = state.insulinOutput === 0 ? "DKA" : `${rem}s`;
+        regTimer.classList.remove('hidden');
+        regWrap.classList.remove('hidden');
+        regBar.className = "bg-gradient-to-r from-amber-500 to-rose-600 h-full transition-all duration-150";
+        regBar.style.width = `${pct}%`;
       } else {
         regBanner.className = "p-2 rounded-lg text-[11px] font-semibold bg-emerald-950/50 border border-emerald-500/40 text-emerald-300 leading-snug transition-all";
         regText.textContent = state.protectionActive
-          ? "✅ HOMEOSTASIS: Microenvironment Regulated at Baseline"
-          : "⚠️ UNPROTECTED MODE: Increase sliders to observe T1D attack";
+          ? "✅ HOMEOSTASIS: Zero Attacking CD8+ T-Cells (100% Insulin)"
+          : "⚠️ UNPROTECTED MODE: Click Mode 2 or pull sliders to start attack";
         regTimer.classList.add('hidden');
         regWrap.classList.add('hidden');
       }
     }
 
-    // Collapsible Left & Right Sidebar Controls
     function toggleLeftSidebar() {
       state.leftCollapsed = !state.leftCollapsed;
       const leftPanel = document.getElementById('left-sidebar');
@@ -2273,17 +2294,17 @@
       }
 
       if (viewName === 'overview') {
-        camTargetPos = new THREE.Vector3(0, 13.5, 27.5);
-        camTargetLook = new THREE.Vector3(0, 1.4, 0);
+        camTargetPos = new THREE.Vector3(0, 11.5, 26.5);
+        camTargetLook = new THREE.Vector3(0, 0.8, 0);
       } else if (viewName === 'islets') {
-        camTargetPos = new THREE.Vector3(1.5, 7.2, 16.0);
-        camTargetLook = new THREE.Vector3(0, -1.0, 0.5);
+        camTargetPos = new THREE.Vector3(1.5, 4.2, 15.5);
+        camTargetLook = new THREE.Vector3(0, -0.3, 0);
+      } else if (viewName === 'underneath') {
+        camTargetPos = new THREE.Vector3(2.5, -10.5, 14.5);
+        camTargetLook = new THREE.Vector3(0, -0.3, 0);
       } else if (viewName === 'chip') {
-        camTargetPos = new THREE.Vector3(8.5, 8.2, 9.8);
-        camTargetLook = new THREE.Vector3(0, 6.2, -1.2);
-      } else if (viewName === 'antibodies') {
-        camTargetPos = new THREE.Vector3(-8.5, 6.5, 12.5);
-        camTargetLook = new THREE.Vector3(-5.0, 4.2, 2.5);
+        camTargetPos = new THREE.Vector3(8.5, 8.6, 10.2);
+        camTargetLook = new THREE.Vector3(0, 6.6, -1.2);
       }
     }
 
@@ -2299,19 +2320,19 @@
         scene.background.setHex(0xdcb0d2);
         scene.fog.color.setHex(0xdcb0d2);
         floorMat.color.setHex(0xe2a2d0);
-        ambientLight.intensity = 0.76;
+        ambientLight.intensity = 0.82;
         txt.textContent = "Tissue Lighting: Bright";
       } else {
         scene.background.setHex(0x1a0f24);
         scene.fog.color.setHex(0x1a0f24);
         floorMat.color.setHex(0x2d1638);
-        ambientLight.intensity = 0.52;
+        ambientLight.intensity = 0.58;
         txt.textContent = "Tissue Lighting: Deep";
       }
     }
 
     // -------------------------------------------------------------------------
-    // 16. MAIN 60FPS ANIMATION LOOP (WITH 13-SECOND BIOLOGICAL MODULATION)
+    // 16. MAIN 60FPS ANIMATION LOOP
     // -------------------------------------------------------------------------
     let prevTimeMs = performance.now();
 
@@ -2322,18 +2343,18 @@
       const t = nowMs * 0.001;
 
       // -----------------------------------------------------------------------
-      // A. 12–15 SECOND GRADUAL BIOLOGICAL MODULATION & AI PROBABILITY SYNC
+      // A1. MODE 1: 18-SECOND BIOLOGICAL MODULATION (EndoCore Protected Mode)
       // -----------------------------------------------------------------------
-      if (state.protectionActive && !state.failSafeTriggered && !state.userDraggingSlider) {
+      if (state.protectionActive && !state.userDraggingSlider) {
         const devIL6 = Math.abs(state.il6 - NORMAL_BASELINE.il6);
         const devIFN = Math.abs(state.ifn - NORMAL_BASELINE.ifn);
         const devPH  = Math.abs(state.ph  - NORMAL_BASELINE.ph);
         const devTC  = Math.abs(state.tcellCount - NORMAL_BASELINE.tcellCount);
 
-        const hasDeviation = (devIL6 > 0.35) || (devIFN > 0.35) || (devPH > 0.015) || (devTC > 0.5);
+        const hasDeviation = (devIL6 > 0.35) || (devIFN > 0.35) || (devPH > 0.015) || (devTC > 0.4);
         const waitSinceTouchSec = (nowMs - state.lastInteractionTimeMs) / 1000.0;
 
-        if (hasDeviation && waitSinceTouchSec >= 1.4) {
+        if (hasDeviation && waitSinceTouchSec >= 1.2) {
           if (!state.isModulating) {
             state.isModulating = true;
             state.modulationElapsed = 0.0;
@@ -2347,7 +2368,6 @@
 
           state.modulationElapsed += dt;
           const progress = Math.min(1.0, state.modulationElapsed / state.modulationTotalDuration);
-          // Smooth S-curve biological decay (easeInOutCubic) over 13 seconds
           const ease = progress < 0.5
             ? 4 * progress * progress * progress
             : 1 - Math.pow(-2 * progress + 2, 3) / 2;
@@ -2357,13 +2377,7 @@
           state.ph  = state.peakSnapshot.ph  + (NORMAL_BASELINE.ph  - state.peakSnapshot.ph)  * ease;
           state.tcellCount = state.peakSnapshot.tcellCount + (NORMAL_BASELINE.tcellCount - state.peakSnapshot.tcellCount) * ease;
 
-          // Snap cleanly to exact homeostasis once complete
-          if (progress >= 0.995 || (
-              Math.abs(state.il6 - NORMAL_BASELINE.il6) <= 0.45 &&
-              Math.abs(state.ifn - NORMAL_BASELINE.ifn) <= 0.45 &&
-              Math.abs(state.ph  - NORMAL_BASELINE.ph)  <= 0.015 &&
-              Math.abs(state.tcellCount - NORMAL_BASELINE.tcellCount) <= 0.6
-          )) {
+          if (progress >= 0.995) {
             state.il6 = NORMAL_BASELINE.il6;
             state.ifn = NORMAL_BASELINE.ifn;
             state.ph  = NORMAL_BASELINE.ph;
@@ -2372,7 +2386,6 @@
             state.modulationElapsed = 0.0;
           }
 
-          // Update physical slider thumbs
           document.getElementById('slider-il6').value = state.il6;
           document.getElementById('slider-ifn').value = state.ifn;
           document.getElementById('slider-ph').value  = state.ph;
@@ -2381,6 +2394,31 @@
           updateRegulationBannerUI();
           syncSimulationState();
         }
+      }
+
+      // -----------------------------------------------------------------------
+      // A2. MODE 2: 18-SECOND UNPROTECTED ESCALATION TO 0% INSULIN & DKA
+      // -----------------------------------------------------------------------
+      if (!state.protectionActive && state.isUnprotectedEscalating && !state.userDraggingSlider) {
+        state.unprotectedElapsed += dt;
+        const progress = Math.min(1.0, state.unprotectedElapsed / state.unprotectedDuration);
+        const ease = 1 - Math.pow(1 - progress, 2.2);
+
+        state.il6 = state.unprotectedStartSnapshot.il6 + (98.0 - state.unprotectedStartSnapshot.il6) * ease;
+        state.ifn = state.unprotectedStartSnapshot.ifn + (100.0 - state.unprotectedStartSnapshot.ifn) * ease;
+        state.ph  = state.unprotectedStartSnapshot.ph  + (6.55  - state.unprotectedStartSnapshot.ph)  * ease;
+        state.tcellCount = state.unprotectedStartSnapshot.tcellCount + (60.0 - state.unprotectedStartSnapshot.tcellCount) * ease;
+
+        document.getElementById('slider-il6').value = state.il6;
+        document.getElementById('slider-ifn').value = state.ifn;
+        document.getElementById('slider-ph').value  = state.ph;
+        document.getElementById('slider-tcells').value = state.tcellCount;
+
+        if (progress >= 1.0) {
+          state.isUnprotectedEscalating = false;
+        }
+        updateRegulationBannerUI();
+        syncSimulationState();
       }
 
       // -----------------------------------------------------------------------
@@ -2409,14 +2447,11 @@
         });
         chipRoot.rotation.y = t * 0.22;
         if (!state.chipExploded) {
-          chipRoot.position.y = 6.3 + Math.sin(t * 1.5) * 0.16;
+          chipRoot.position.y = 6.8 + Math.sin(t * 1.5) * 0.16;
         }
 
         const sensorPinMat = layer3Group.userData.sensorPinMat;
-        if (state.failSafeTriggered) {
-          sensorPinMat.emissiveIntensity = 0.6 + 0.4 * Math.sin(t * 14.0);
-          sensorPinMat.color.setHex(0xf43f5e);
-        } else if (state.isAttack || state.isModulating) {
+        if (state.isAttack || state.isModulating) {
           sensorPinMat.emissiveIntensity = 0.5 + 0.5 * Math.sin(t * 8.0);
           sensorPinMat.color.setHex(0xfde047);
         } else {
@@ -2426,15 +2461,15 @@
       }
 
       // -----------------------------------------------------------------------
-      // D. ANIMATE BETA CELLS & INSULIN GRANULES (GSIS)
+      // D. ANIMATE 360° BETA CELLS & INSULIN GRANULES (GSIS)
       // -----------------------------------------------------------------------
       betaCells.forEach((cell) => {
         const p = cell.userData.phase;
         if (cell.userData.isDead) {
           cell.scale.set(
-            cell.userData.baseScale.x * 0.80,
+            cell.userData.baseScale.x * 0.78,
             cell.userData.baseScale.y * 0.62,
-            cell.userData.baseScale.z * 0.80
+            cell.userData.baseScale.z * 0.78
           );
         } else {
           const pulse = 1.0 + 0.032 * Math.sin(t * 2.1 + p);
@@ -2448,15 +2483,15 @@
 
       insulinParticles.forEach((sp) => {
         const host = betaCells[sp.userData.hostIdx];
-        if (host.userData.isDead || state.failSafeTriggered) {
+        if (host.userData.isDead || state.insulinOutput === 0) {
           sp.material.opacity = 0.0;
         } else {
-          sp.material.opacity = 0.72 + 0.22 * Math.sin(t * 3.0 + sp.userData.offset);
+          sp.material.opacity = (0.72 + 0.22 * Math.sin(t * 3.0 + sp.userData.offset)) * (state.insulinOutput / 100);
           sp.position.y += 0.016 * sp.userData.speed;
-          if (sp.position.y > 4.2) {
-            sp.position.copy(host.position).add(new THREE.Vector3(
+          if (sp.position.y > 4.6) {
+            sp.position.copy(host.position).add(betaGroup.position).add(new THREE.Vector3(
               (Math.random() - 0.5) * 0.9,
-              0.4,
+              0.2,
               (Math.random() - 0.5) * 0.9
             ));
           }
@@ -2469,42 +2504,39 @@
       tCells.forEach((tc) => {
         if (!tc.visible) return;
         const u = tc.userData;
-        const speedFactor = (state.isAttack && !u.isConvertedTreg) ? 0.48 : 0.14;
+        const speedFactor = (state.isAttack && !u.isConvertedTreg) ? 0.52 : 0.16;
         u.angle += dt * speedFactor;
 
         let targetR = u.baseRadius;
         let targetY = u.baseHeight + Math.sin(t * 1.4 + u.phase) * 0.45;
 
         if (state.isAttack && !state.protectionActive) {
-          // Swarm directly onto unprotected beta cells
-          targetR = u.baseRadius * 0.48;
-          targetY = -0.35 + Math.abs(Math.sin(t * 2.6 + u.phase)) * 1.3;
+          targetR = u.baseRadius * 0.52;
+          targetY = u.baseHeight * 0.55 + Math.sin(t * 2.6 + u.phase) * 0.6;
         } else if ((state.isAttack || state.isModulating) && state.protectionActive) {
-          // Converted Tregs orbit calmly outside the shield
-          targetR = u.isConvertedTreg ? u.baseRadius * 1.15 : u.baseRadius * 0.85;
-          targetY = u.baseHeight + 0.65 + Math.sin(t * 1.2 + u.phase) * 0.35;
+          const disperseBoost = state.isModulating ? (state.modulationElapsed / state.modulationTotalDuration) * 4.5 : 0;
+          targetR = (u.isConvertedTreg ? u.baseRadius * 1.15 : u.baseRadius * 0.85) + disperseBoost;
+          targetY = u.baseHeight + Math.sin(t * 1.2 + u.phase) * 0.35;
         }
 
         const desiredX = Math.cos(u.angle) * targetR;
         const desiredZ = Math.sin(u.angle) * targetR;
-        tc.position.x += (desiredX - tc.position.x) * 0.04;
-        tc.position.y += (targetY - tc.position.y) * 0.04;
-        tc.position.z += (desiredZ - tc.position.z) * 0.04;
+        tc.position.x += (desiredX - tc.position.x) * 0.045;
+        tc.position.y += (targetY - tc.position.y) * 0.045;
+        tc.position.z += (desiredZ - tc.position.z) * 0.045;
 
         tc.rotation.x += dt * (u.isConvertedTreg ? 0.2 : 0.5);
         tc.rotation.y += dt * (u.isConvertedTreg ? 0.25 : 0.6);
 
-        // Smoothly retract spikes when converted to FoxP3+ Treg
-        const targetSpikeScale = u.isConvertedTreg ? 0.22 : 1.0;
+        const targetSpikeScale = u.isConvertedTreg ? 0.18 : 1.0;
         u.spikesContainer.scale.lerp(new THREE.Vector3(targetSpikeScale, targetSpikeScale, targetSpikeScale), 0.08);
       });
 
       // -----------------------------------------------------------------------
-      // F. ANIMATE WHITE STELLATE APCs (VERY CALM DRIFT AT HOMEOSTASIS)
+      // F. ANIMATE WHITE STELLATE APCs (CALM DRIFT AT HOMEOSTASIS)
       // -----------------------------------------------------------------------
       apcCells.forEach((apc) => {
         const u = apc.userData;
-        // Very slow Brownian drift during homeostasis (0.025 rad/s), slightly faster during active spike (0.14 rad/s)
         const apcAngularSpeed = (state.isAttack && !state.isModulating) ? 0.14 : 0.025;
         const apcBobAmp = (state.isAttack && !state.isModulating) ? 0.35 : 0.08;
         const apcBobFreq = (state.isAttack && !state.isModulating) ? 1.4 : 0.45;
@@ -2530,7 +2562,7 @@
       // -----------------------------------------------------------------------
       // H. ANIMATE EXOSOMES, IL-10 & TGF-β PEPTIDE CLOUD
       // -----------------------------------------------------------------------
-      const shieldDeploying = state.protectionActive && !state.failSafeTriggered && (state.isAttack || state.isModulating);
+      const shieldDeploying = state.protectionActive && (state.isAttack || state.isModulating);
       const targetDomeOpacity = shieldDeploying ? 0.14 : 0.0;
       shieldDomeMat.opacity += (targetDomeOpacity - shieldDomeMat.opacity) * 0.06;
       shieldDome.rotation.y = -t * 0.15;
@@ -2542,7 +2574,7 @@
           exo.position.x = Math.cos(exo.userData.angle) * exo.userData.radius;
           exo.position.z = Math.sin(exo.userData.angle) * exo.userData.radius;
           exo.position.y -= dt * 2.4 * exo.userData.speed;
-          if (exo.position.y < -0.9) exo.position.y = chipRoot.position.y - 0.4;
+          if (exo.position.y < -3.2) exo.position.y = chipRoot.position.y - 0.4;
         }
       });
 
@@ -2553,7 +2585,7 @@
           p.position.x = Math.cos(p.userData.angle) * p.userData.radius;
           p.position.z = Math.sin(p.userData.angle) * p.userData.radius;
           p.position.y -= dt * 2.1 * p.userData.speed;
-          if (p.position.y < -1.2) p.position.y = chipRoot.position.y - 0.5;
+          if (p.position.y < -3.5) p.position.y = chipRoot.position.y - 0.5;
         } else {
           p.material.opacity *= 0.88;
         }
