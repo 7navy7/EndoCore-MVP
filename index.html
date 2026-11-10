@@ -243,8 +243,12 @@
       background: rgba(148, 163, 184, 0.4);
       border-radius: 999px;
     }
-    ::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
       background: rgba(168, 85, 247, 0.7);
+    }
+
+    #canvas3D {
+      touch-action: none;
     }
   </style>
 </head>
@@ -2463,11 +2467,25 @@
     }
 
     // --- COLLAPSIBLE SIDEBAR CONTROLS ---
-    function updateTopBannerOffset() {
+ function updateTopBannerOffset() {
       const topBanner = document.getElementById('topBanner');
-      const offsetLeft = state.leftCollapsed ? '24px' : '336px';
-      topBanner.style.left = offsetLeft;
+      // Center banner on mobile devices
+      if (window.innerWidth < 768) {
+        topBanner.style.left = '50%';
+        topBanner.style.transform = 'translateX(-50%)';
+        topBanner.style.width = '95vw';
+        topBanner.style.top = '65px'; // Clears the mobile header
+      } else {
+        // Standard desktop behavior
+        topBanner.style.transform = 'none';
+        topBanner.style.left = state.leftCollapsed ? '24px' : '336px';
+        topBanner.style.width = 'auto';
+        topBanner.style.top = '12px';
+      }
     }
+
+    // Ensure the banner adjusts if the judge rotates their device
+    window.addEventListener('resize', updateTopBannerOffset);
 
     function toggleLeftSidebar() {
       state.leftCollapsed = !state.leftCollapsed;
