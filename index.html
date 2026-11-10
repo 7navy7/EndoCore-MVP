@@ -292,25 +292,24 @@
     let currentTutorialStep = 1;
     const totalTutorialSteps = 4;
 
-    const tutorialData = {
+   const tutorialData = {
       1: {
-        title: "1. The Biohybrid Microenvironment",
-        desc: "Welcome to the EndoCore 3D Digital Twin! Drag with your mouse to rotate 360° around the implanted Nanochip and the Islet of Langerhans, or click any floating biological tag to inspect its role."
+        title: "1. EndoCore Microenvironment",
+        desc: "Welcome to the EndoCore Simulation. Use your cursor to rotate 360° around the implanted Nanochip and Islets of Langerhans, or click any biological tag to review its mechanism."
       },
       2: {
-        title: "2. 1-Click Automated Validation",
-        desc: "Start Here: Look at the top bar and click <strong>'Simulation 1 (Auto-Run)'</strong> to watch a 28-second autoimmune attack and see the AI automatically release IL-10 & TGF-β to save 100% of insulin output."
+        title: "2. Automated Validation",
+        desc: "Start Here: Navigate to the top bar and select <strong>'Simulation 1 (Auto-Run)'</strong>. This sequence demonstrates an automated 28-second autoimmune response, highlighting the AI's release of IL-10 & TGF-β."
       },
       3: {
-        title: "3. 5-Layer Hardware Inspector",
-        desc: "Look at the Left Panel. Click <strong>'Display Nanochip Layers'</strong> to open the capsule and click through each internal hardware layer (Hydrogel, Nanoporous Membrane, 16x Sensors, TinyML Processor, and Lyophilized Peptide Reservoirs)."
+        title: "3. Hardware Architecture",
+        desc: "Review the Left Panel. Click <strong>'Display Nanochip Layers'</strong> (or double-click the 3D chip) to expand the 5-layer internal architecture for detailed inspection of the sensors and TinyML processor."
       },
       4: {
-        title: "4. Live AI Telemetry & Dispenser Sensor",
-        desc: "Watch the Right Panel during an attack to see real-time TinyML risk probability (<50 ms), Beta-Cell Viability, the Impedance Reservoir Level Sensor, and the live Command Center Log. You are ready to explore!"
+        title: "4. Real-Time Telemetry",
+        desc: "Monitor the Right Panel during active simulations. It provides live tracking of the TinyML risk probability, beta-cell viability, and reservoir capacities. The environment is now ready for review."
       }
     };
-
     function updateTutorialUI() {
       document.getElementById('tutorialStepIndicator').textContent = `Step ${currentTutorialStep} of ${totalTutorialSteps}`;
       document.getElementById('tutorialTitle').innerHTML = tutorialData[currentTutorialStep].title;
