@@ -2616,10 +2616,8 @@
       pointerDownPos = { x: e.clientX, y: e.clientY };
     });
 
-    renderer.domElement.addEventListener('pointerup', (event) => {
-      const moveDist = Math.hypot(event.clientX - pointerDownPos.x, event.clientY - pointerDownPos.y);
-      if (moveDist > 6) return;
-
+    // --- DOUBLE CLICK TO OPEN NANOCHIP LAYERS ---
+    renderer.domElement.addEventListener('dblclick', (event) => {
       const rect = renderer.domElement.getBoundingClientRect();
       mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
       mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
@@ -2630,13 +2628,13 @@
       for (let i = 0; i < intersects.length; i++) {
         let obj = intersects[i].object;
         if (!obj.visible) continue;
+        
         while (obj) {
-          if (obj.userData && obj.userData.layerId && state.exploded) {
-            flipLayerCard(obj.userData.layerId);
-            return;
-          }
-          if (obj.userData && obj.userData.inspectKey) {
-            openBioInspector(obj.userData.inspectKey, event);
+          // If we double-click ANY part of the nanochip layer groups
+          if (obj.userData && obj.userData.layerId) {
+            if (!state.exploded) {
+              toggleExplodeChip();
+            }
             return;
           }
           obj = obj.parent;
