@@ -1284,7 +1284,9 @@
         inspectorModal.style.left = `${targetLeft}px`;
         inspectorModal.style.top = `${targetTop}px`;
       } else {
-        inspectorModal.style.left = `${minX + 12}px`;
+        // Spawns safely on the left edge for mobile, or beside the sidebar for desktop
+        const startLeft = window.innerWidth < 640 ? 10 : (minX + 12);
+        inspectorModal.style.left = `${startLeft}px`;
         inspectorModal.style.top = `135px`;
       }
     }
