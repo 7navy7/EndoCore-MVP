@@ -1283,18 +1283,31 @@
       state.pageView = 'interactive';
     }
 
-    function closeSim1SummaryOnly() {
+   function closeSim1SummaryOnly() {
       document.getElementById('sim1SummaryCard').classList.add('hidden');
     }
 
+    let currentOpenTag = null; // Memory for the toggle
+
     function openBioInspector(key, eventOrPos) {
+      if (eventOrPos && eventOrPos.stopPropagation) eventOrPos.stopPropagation();
+      
+      const modal = document.getElementById('inspectorModal');
+      
+      // If the user clicks the same tag that is already open, close it.
+      if (currentOpenTag === key && !modal.classList.contains('hidden')) {
+        closeInspector();
+        return;
+      }
+
       const info = bioInspectorData[key];
       if (!info) return;
       document.getElementById('inspectorBadge').textContent = info.badge;
       document.getElementById('inspectorTitle').textContent = info.title;
       document.getElementById('inspectorInside').textContent = info.inside;
       document.getElementById('inspectorDesc').textContent = info.desc;
-      inspectorModal.classList.remove('hidden');
+      modal.classList.remove('hidden');
+      currentOpenTag = key;
 
       const viewportRect = document.getElementById('viewportContainer').getBoundingClientRect();
       const minX = state.leftCollapsed ? 16 : 334;
