@@ -75,7 +75,7 @@
       transition: left 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
     }
 
-    /* 3D Floating Callout Tags (Clean Medical Typography, No Emojis) */
+    /* 3D Floating Callout Tags */
     .label-3d {
       position: absolute;
       transform: translate(-50%, -100%);
@@ -101,7 +101,7 @@
       align-items: center;
       gap: 6px;
     }
-    /* 3 Distinct Purple Shades for the 3 Islet/Beta/Insulin Tags */
+    /* shades for the 3 Islet/Beta/Insulin Tags */
     .label-3d-box.islet-tag {
       background: linear-gradient(135deg, #4c1d95, #2e1065);
       border-color: #a78bfa;
@@ -134,7 +134,7 @@
       background: linear-gradient(135deg, #059669, #064e3b);
       border-color: #4ade80;
     }
-    /* 4 Distinct Shades of Yellow/Amber for the 4 Stage 1–2 Autoantibodies */
+    /* shades of Yellow/Amber for the 4 Stage 1–2 Autoantibodies */
     .label-3d-box.ab-shade-1 {
       background: linear-gradient(135deg, #eab308, #854d0e);
       border-color: #fef08a;
@@ -172,7 +172,7 @@
       box-shadow: 0 0 8px #a855f7;
     }
 
-    /* Interactive 3D Flip-Cards for Exploded Nanochip Layers */
+    /* Flip-Cards for Nanochip Layers */
     .layer-card-anchor {
       position: absolute;
       transform: translate(-50%, -50%);
@@ -342,7 +342,7 @@
       arrow.className = 'absolute w-3 h-3 bg-slate-900 border-l border-t border-purple-500/50';
 
       if (window.innerWidth < 1024) {
-        // Mobile fallback: Just center at the bottom
+        // Mobile : center at the bottom
         card.style.top = 'auto';
         card.style.bottom = '24px';
         card.style.left = '50%';
@@ -568,7 +568,7 @@
         </div>
       </div>
 
-      <!-- 3D FLOATING CALLOUT TAGS (No Emojis) -->
+      <!-- 3D FLOATING CALLOUT TAGS  -->
       <div id="labelsContainer" class="absolute inset-0 pointer-events-none overflow-hidden">
         <!-- 1. EndoCore Nanochip Tag -->
         <div id="label-chip" class="label-3d" onclick="openBioInspector('chip', event)">
@@ -600,7 +600,7 @@
           <div class="label-3d-dot"></div>
         </div>
 
-        <!-- 4. Soft Orchid-Lavender Tag: Insulin Secretion (Positioned WITHIN the Islet Place) -->
+        <!-- 4. Soft Orchid-Lavender Tag: Insulin Secretion (WITHIN the Islet Place) -->
         <div id="label-insulin" class="label-3d" onclick="openBioInspector('insulin', event)">
           <div class="label-3d-box insulin-tag">
             <span class="w-2 h-2 rounded-full bg-fuchsia-200"></span>
