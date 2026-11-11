@@ -330,24 +330,21 @@
     function applyHighlights() {
       resetHighlights();
       
-      // Step 1: Center 3D - We highlight the top banner to show them what they are looking at
       if (currentTutorialStep === 1) {
         document.getElementById('topBanner').classList.add('z-[95]');
       }
-      // Step 2: Top Bar (Simulation 1 button)
       else if (currentTutorialStep === 2) {
         document.querySelector('header').classList.add('z-[95]', 'relative');
       }
-      // Step 3: Left Panel
       else if (currentTutorialStep === 3) {
-        // Open the left panel if it's closed on mobile
+        // Automatically open Left Sidebar so they can see the hardware button!
         if (state.leftCollapsed) toggleLeftSidebar();
+        if (!state.rightCollapsed) toggleRightSidebar(); // Hide right to save space
         document.getElementById('leftSidebar').classList.add('z-[95]');
       }
-      // Step 4: Right Panel
       else if (currentTutorialStep === 4) {
-        // Close left panel and open right panel for mobile clarity
-        if (!state.leftCollapsed && window.innerWidth < 1024) toggleLeftSidebar();
+        // Automatically open Right Sidebar so they can see the telemetry!
+        if (!state.leftCollapsed) toggleLeftSidebar();
         if (state.rightCollapsed) toggleRightSidebar();
         document.getElementById('rightSidebar').classList.add('z-[95]');
       }
