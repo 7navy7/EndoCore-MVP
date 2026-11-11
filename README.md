@@ -3,7 +3,7 @@
 
 > **🏆 Medathon 2026 Submission**
 > 
-> ### 🚀 [CLICK HERE TO LAUNCH THE LIVE 3D DIGITAL TWIN](https://navy.github.io/EndoCore-MVP/)
+> ### 🚀 [CLICK HERE TO LAUNCH THE LIVE 3D DIGITAL Prototype ](https://navy.github.io/EndoCore-MVP/)
 > *Recommended: View on desktop or tablet for the full telemetry dashboard.*
 
 ## Overview
