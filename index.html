@@ -2493,7 +2493,7 @@
       const bioLabelsContainer = document.getElementById('labelsContainer');
       const layerCardsContainer = document.getElementById('layerCardsContainer');
 
-      if (state.exploded) {
+  if (state.exploded) {
         if (!state.protectedMode) {
           state.protectedMode = true;
           updateModeButtonsUI();
@@ -2502,8 +2502,8 @@
         bioLabelsContainer.classList.add('hidden');
         closeInspector();
         layerCardsContainer.classList.remove('hidden');
-        setCameraView('chip');
       } else {
+    
         layerCardsContainer.classList.add('hidden');
         if (!state.hideAllTags) bioLabelsContainer.classList.remove('hidden');
         for (let i = 1; i <= 5; i++) {
