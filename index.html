@@ -2173,7 +2173,8 @@
         abBonus;
 
       const rawProb = (1 / (1 + Math.exp(-logit))) * 100;
-      state.attackProb = Math.min(99.8, Math.max(1.2, rawProb));
+      let maxCap = (state.modulationMode === 'protected_cycle') ? 86.9 : 99.8;
+      state.attackProb = Math.min(maxCap, Math.max(1.2, rawProb));
 
       const isAttack = state.attackProb >= 35.0;
 
