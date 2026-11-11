@@ -3080,6 +3080,17 @@ appendCommandLog(`Initiating Autoimmune Flare-Up: CD8+ T-cells beginning to infi
     updateReservoirTelemetryUI();
     syncSimulationState();
     animate();
+
+    // --- AUTO-START TUTORIAL FOR JUDGES ---
+window.addEventListener('load', () => {
+  if (!localStorage.getItem('endocoreTourSeen')) {
+    setTimeout(() => {
+      startTutorial();
+      localStorage.setItem('endocoreTourSeen', 'true'); // Prevents it from opening on refresh
+    }, 1200); // Wait 1.2 seconds for the 3D scene to render before popping up
+  }
+});
   </script>
+  
 </body>
 </html>
