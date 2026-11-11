@@ -256,14 +256,13 @@
 
 
 <!-- ========================================== -->
- <!-- ========================================== -->
   <!-- INTERACTIVE TUTORIAL OVERLAY & POP-UP -->
-  
-  <!-- The Full Screen Dimmer -->
+ <!-- The Full Screen Dimmer -->
   <div id="tutorialDimmer" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-[90] transition-opacity duration-300 hidden opacity-0 pointer-events-none"></div>
 
   <div id="tutorialOverlay" class="fixed inset-0 z-[100] transition-opacity duration-300 hidden opacity-0 pointer-events-none">
- <div id="tutorialCard" class="absolute pointer-events-auto bg-slate-900/95 border-2 border-purple-500/80 rounded-xl shadow-[0_0_40px_rgba(168,85,247,0.4)] w-[320px] transition-all duration-500 z-[101]">
+    
+    <div id="tutorialCard" class="absolute pointer-events-auto bg-slate-900/95 border-2 border-purple-500/80 rounded-xl shadow-[0_0_40px_rgba(168,85,247,0.4)] w-[320px] transition-all duration-500 z-[101]">
       
       <!-- Directional Arrow -->
       <div id="tutorialArrow" class="absolute w-4 h-4 bg-slate-900 border-l-2 border-t-2 border-purple-500/80 hidden z-0"></div>
@@ -292,6 +291,8 @@
         </div>
       </div>
     </div>
+  </div>
+
   <script>
     // --- TUTORIAL LOGIC & ELEMENT HIGHLIGHTING ---
     let currentTutorialStep = 1;
@@ -321,7 +322,6 @@
     };
 
     function resetHighlights() {
-      // Reset all elements back to normal z-index
       document.querySelector('header').classList.remove('z-[95]', 'relative', 'shadow-[0_0_30px_rgba(168,85,247,0.5)]');
       document.getElementById('leftSidebar').classList.remove('z-[95]');
       document.getElementById('rightSidebar').classList.remove('z-[95]');
@@ -339,19 +339,16 @@
         header.classList.add('z-[95]', 'relative', 'shadow-[0_0_30px_rgba(168,85,247,0.5)]', 'transition-shadow');
       }
       else if (currentTutorialStep === 3) {
-        // Automatically open Left Sidebar and scroll to top for Sliders
         if (state.leftCollapsed) toggleLeftSidebar();
         if (!state.rightCollapsed) toggleRightSidebar(); 
         document.getElementById('leftSidebar').classList.add('z-[95]');
         document.getElementById('leftSidebar').scrollTo({ top: 0, behavior: 'smooth' });
       }
       else if (currentTutorialStep === 4) {
-        // Keep Left Sidebar open but scroll to the bottom for Hardware & Antibodies
         document.getElementById('leftSidebar').classList.add('z-[95]');
-        document.getElementById('leftSidebar').scrollTo({ top: document.getElementById('leftSidebar').scrollHeight, behavior: 'smooth' });
+        document.getElementById('leftSidebar').scrollTo({ top: 380, behavior: 'smooth' });
       }
       else if (currentTutorialStep === 5) {
-        // Close left, open right for telemetry
         if (!state.leftCollapsed) toggleLeftSidebar();
         if (state.rightCollapsed) toggleRightSidebar();
         document.getElementById('rightSidebar').classList.add('z-[95]');
@@ -383,7 +380,6 @@
 
       applyHighlights();
 
-      // Mobile vs Desktop Positioning
       const card = document.getElementById('tutorialCard');
       const arrow = document.getElementById('tutorialArrow');
       
@@ -412,14 +408,14 @@
           arrow.classList.add('-top-[9px]', 'left-1/2', '-ml-[8px]', 'rotate-45'); 
         } 
         else if (currentTutorialStep === 3) {
-          card.style.top = '25%';
+          card.style.top = '150px'; 
           card.style.left = '340px';
           card.style.right = 'auto';
-          card.style.transform = 'translateY(-50%)';
-          arrow.classList.add('top-1/2', '-left-[9px]', '-mt-[8px]', '-rotate-45'); 
+          card.style.transform = 'none';
+          arrow.classList.add('top-8', '-left-[9px]', '-rotate-45'); 
         } 
         else if (currentTutorialStep === 4) {
-          card.style.top = '75%';
+          card.style.top = '50%';
           card.style.left = '340px';
           card.style.right = 'auto';
           card.style.transform = 'translateY(-50%)';
@@ -473,7 +469,6 @@
       overlay.classList.remove('hidden');
       dimmer.classList.remove('hidden');
       
-      // Small delay to allow display:block to apply before fading in
       setTimeout(() => {
         overlay.classList.remove('opacity-0');
         dimmer.classList.remove('opacity-0');
