@@ -333,9 +333,10 @@
       if (currentTutorialStep === 1) {
         document.getElementById('topBanner').classList.add('z-[95]');
       }
-      else if (currentTutorialStep === 2) {
-        document.querySelector('header').classList.add('z-[95]', 'relative');
-      }
+     else if (currentTutorialStep === 2) {
+       const header = document.querySelector('header');
+       header.classList.add('z-[95]', 'relative', 'shadow-[0_0_30px_rgba(168,85,247,0.5)]', 'transition-shadow');
+     }
       else if (currentTutorialStep === 3) {
         // Automatically open Left Sidebar so they can see the hardware button!
         if (state.leftCollapsed) toggleLeftSidebar();
