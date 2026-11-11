@@ -257,7 +257,7 @@
 
 <!-- ========================================== -->
   <!-- INTERACTIVE TUTORIAL OVERLAY & POP-UP -->
- <!-- The Full Screen Dimmer -->
+<!-- The Full Screen Dimmer -->
   <div id="tutorialDimmer" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-[90] transition-opacity duration-300 hidden opacity-0 pointer-events-none"></div>
 
   <div id="tutorialOverlay" class="fixed inset-0 z-[100] transition-opacity duration-300 hidden opacity-0 pointer-events-none">
@@ -322,6 +322,7 @@
     };
 
     function resetHighlights() {
+      // Reset all elements back to normal z-index
       document.querySelector('header').classList.remove('z-[95]', 'relative', 'shadow-[0_0_30px_rgba(168,85,247,0.5)]');
       document.getElementById('leftSidebar').classList.remove('z-[95]');
       document.getElementById('rightSidebar').classList.remove('z-[95]');
@@ -339,16 +340,19 @@
         header.classList.add('z-[95]', 'relative', 'shadow-[0_0_30px_rgba(168,85,247,0.5)]', 'transition-shadow');
       }
       else if (currentTutorialStep === 3) {
+        // Automatically open Left Sidebar and scroll to top for Sliders
         if (state.leftCollapsed) toggleLeftSidebar();
         if (!state.rightCollapsed) toggleRightSidebar(); 
         document.getElementById('leftSidebar').classList.add('z-[95]');
         document.getElementById('leftSidebar').scrollTo({ top: 0, behavior: 'smooth' });
       }
       else if (currentTutorialStep === 4) {
+        // Keep Left Sidebar open but scroll EXACTLY to the Nanochip Layers button (380px down)
         document.getElementById('leftSidebar').classList.add('z-[95]');
         document.getElementById('leftSidebar').scrollTo({ top: 380, behavior: 'smooth' });
       }
       else if (currentTutorialStep === 5) {
+        // Close left, open right for telemetry
         if (!state.leftCollapsed) toggleLeftSidebar();
         if (state.rightCollapsed) toggleRightSidebar();
         document.getElementById('rightSidebar').classList.add('z-[95]');
@@ -380,12 +384,14 @@
 
       applyHighlights();
 
+      // Mobile vs Desktop Positioning
       const card = document.getElementById('tutorialCard');
       const arrow = document.getElementById('tutorialArrow');
       
       arrow.className = 'absolute w-4 h-4 bg-slate-900 border-l-2 border-t-2 border-purple-500/80 z-0';
 
       if (window.innerWidth < 1024) {
+        // MOBILE IPHONE LAYOUT: Card floats at the bottom, no arrows needed
         card.style.top = 'auto';
         card.style.bottom = '30px';
         card.style.left = '50%';
@@ -393,6 +399,7 @@
         card.style.right = 'auto';
         arrow.classList.add('hidden');
       } else {
+        // DESKTOP LAYOUT (WITH RESTORED JUMPING ARROWS)
         arrow.classList.remove('hidden');
         
         if (currentTutorialStep === 1) {
@@ -408,14 +415,14 @@
           arrow.classList.add('-top-[9px]', 'left-1/2', '-ml-[8px]', 'rotate-45'); 
         } 
         else if (currentTutorialStep === 3) {
-          card.style.top = '150px'; 
+          card.style.top = '150px'; // Pointing right at the manual sliders
           card.style.left = '340px';
           card.style.right = 'auto';
           card.style.transform = 'none';
           arrow.classList.add('top-8', '-left-[9px]', '-rotate-45'); 
         } 
         else if (currentTutorialStep === 4) {
-          card.style.top = '50%';
+          card.style.top = '50%'; // Perfectly centered next to the Hardware button
           card.style.left = '340px';
           card.style.right = 'auto';
           card.style.transform = 'translateY(-50%)';
@@ -469,6 +476,7 @@
       overlay.classList.remove('hidden');
       dimmer.classList.remove('hidden');
       
+      // Small delay to allow display:block to apply before fading in
       setTimeout(() => {
         overlay.classList.remove('opacity-0');
         dimmer.classList.remove('opacity-0');
@@ -476,9 +484,8 @@
       }, 10);
     }
   </script>
-  </div>
   <!-- END OF TUTORIAL BLOCK-->
-
+  
   <!-- TOP NAVIGATION BAR -->
   <header class="h-14 bg-slate-950/90 backdrop-blur-md border-b border-purple-500/25 px-3 sm:px-4 flex items-center justify-between z-40 shrink-0">
     <div class="flex items-center gap-2.5">
