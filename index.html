@@ -298,34 +298,38 @@
   <script>
     // --- TUTORIAL LOGIC & ELEMENT HIGHLIGHTING ---
     let currentTutorialStep = 1;
-    const totalTutorialSteps = 4;
+    const totalTutorialSteps = 5;
 
     const tutorialData = {
       1: {
-        title: "1. EndoCore Microenvironment",
-        desc: "Welcome to the EndoCore Simulation. Use your cursor to rotate 360° around the implanted Nanochip and Islets of Langerhans, or click any biological tag to review its mechanism."
+        title: "1. The 3D Biohybrid Microenvironment",
+        desc: "Welcome to the EndoCore Digital Twin! Drag to rotate 360° around the Nanochip and Islet. <strong>Click any floating tag</strong> to open a detailed biological inspector."
       },
       2: {
         title: "2. Automated Validation",
-        desc: "Start Here: Navigate to the top bar and select <strong>'Simulation 1 (Auto-Run)'</strong>. This sequence demonstrates an automated 28-second autoimmune response, highlighting the AI's release of IL-10 & TGF-β."
+        desc: "Navigate to the top bar and click <strong>'Simulation 1 (Auto-Run)'</strong>. This runs a 28-second sequence where AI detects an autoimmune attack and releases IL-10 & TGF-β."
       },
       3: {
-        title: "3. Hardware Architecture",
-        desc: "Review the Left Panel. Click <strong>'Display Nanochip Layers'</strong> (or double-click the 3D chip) to expand the 5-layer internal architecture for detailed inspection of the sensors and TinyML processor."
+        title: "3. Manual Immune Controls",
+        desc: "Use the top half of the Left Panel to manually trigger attacks, remove the bio-shield, or manipulate local cytokine (IL-6, IFN-γ) and pH levels via the sliders."
       },
       4: {
-        title: "4. Real-Time Telemetry",
-        desc: "Monitor the Right Panel during active simulations. It provides live tracking of the TinyML risk probability, beta-cell viability, and reservoir capacities. The environment is now ready for review."
+        title: "4. Hardware Architecture & Diagnostics",
+        desc: "At the bottom of the Left Panel, click <strong>'Display Nanochip Layers'</strong> to explode the 5-layer hardware, or toggle the Stage 1-2 diagnostic Autoantibodies."
+      },
+      5: {
+        title: "5. Real-Time Telemetry",
+        desc: "Monitor the Right Panel. It tracks the TinyML <strong>Attack Probability %</strong>, live Beta-Cell Viability, Peptide Reservoirs, and logs AI commands. You are ready to explore!"
       }
     };
 
     function resetHighlights() {
-     // Reset all elements back to normal z-index and remove the purple glow
-     document.querySelector('header').classList.remove('z-[95]', 'relative', 'shadow-[0_0_30px_rgba(168,85,247,0.5)]');
-     document.getElementById('leftSidebar').classList.remove('z-[95]');
-     document.getElementById('rightSidebar').classList.remove('z-[95]');
-     document.getElementById('topBanner').classList.remove('z-[95]');
-   }
+      // Reset all elements back to normal z-index
+      document.querySelector('header').classList.remove('z-[95]', 'relative', 'shadow-[0_0_30px_rgba(168,85,247,0.5)]');
+      document.getElementById('leftSidebar').classList.remove('z-[95]');
+      document.getElementById('rightSidebar').classList.remove('z-[95]');
+      document.getElementById('topBanner').classList.remove('z-[95]');
+    }
 
     function applyHighlights() {
       resetHighlights();
@@ -333,18 +337,24 @@
       if (currentTutorialStep === 1) {
         document.getElementById('topBanner').classList.add('z-[95]');
       }
-     else if (currentTutorialStep === 2) {
-       const header = document.querySelector('header');
-       header.classList.add('z-[95]', 'relative', 'shadow-[0_0_30px_rgba(168,85,247,0.5)]', 'transition-shadow');
-     }
+      else if (currentTutorialStep === 2) {
+        const header = document.querySelector('header');
+        header.classList.add('z-[95]', 'relative', 'shadow-[0_0_30px_rgba(168,85,247,0.5)]', 'transition-shadow');
+      }
       else if (currentTutorialStep === 3) {
-        // Automatically open Left Sidebar so they can see the hardware button!
+        // Automatically open Left Sidebar and scroll to top for Sliders
         if (state.leftCollapsed) toggleLeftSidebar();
-        if (!state.rightCollapsed) toggleRightSidebar(); // Hide right to save space
+        if (!state.rightCollapsed) toggleRightSidebar(); 
         document.getElementById('leftSidebar').classList.add('z-[95]');
+        document.getElementById('leftSidebar').scrollTo({ top: 0, behavior: 'smooth' });
       }
       else if (currentTutorialStep === 4) {
-        // Automatically open Right Sidebar so they can see the telemetry!
+        // Keep Left Sidebar open but scroll to the bottom for Hardware & Antibodies
+        document.getElementById('leftSidebar').classList.add('z-[95]');
+        document.getElementById('leftSidebar').scrollTo({ top: document.getElementById('leftSidebar').scrollHeight, behavior: 'smooth' });
+      }
+      else if (currentTutorialStep === 5) {
+        // Close left, open right for telemetry
         if (!state.leftCollapsed) toggleLeftSidebar();
         if (state.rightCollapsed) toggleRightSidebar();
         document.getElementById('rightSidebar').classList.add('z-[95]');
@@ -383,7 +393,6 @@
       arrow.className = 'absolute w-4 h-4 bg-slate-900 border-l-2 border-t-2 border-purple-500/80 z-0';
 
       if (window.innerWidth < 1024) {
-        // MOBILE IPHONE LAYOUT: Card floats at the bottom, no arrows needed
         card.style.top = 'auto';
         card.style.bottom = '30px';
         card.style.left = '50%';
@@ -391,7 +400,6 @@
         card.style.right = 'auto';
         arrow.classList.add('hidden');
       } else {
-        // DESKTOP LAYOUT: Card points to specific UI elements
         arrow.classList.remove('hidden');
         
         if (currentTutorialStep === 1) {
@@ -407,13 +415,20 @@
           arrow.classList.add('-top-[9px]', 'left-1/2', '-ml-[8px]', 'rotate-45'); 
         } 
         else if (currentTutorialStep === 3) {
-          card.style.top = '50%';
+          card.style.top = '25%';
           card.style.left = '340px';
           card.style.right = 'auto';
           card.style.transform = 'translateY(-50%)';
           arrow.classList.add('top-1/2', '-left-[9px]', '-mt-[8px]', '-rotate-45'); 
         } 
         else if (currentTutorialStep === 4) {
+          card.style.top = '75%';
+          card.style.left = '340px';
+          card.style.right = 'auto';
+          card.style.transform = 'translateY(-50%)';
+          arrow.classList.add('top-1/2', '-left-[9px]', '-mt-[8px]', '-rotate-45'); 
+        }
+        else if (currentTutorialStep === 5) {
           card.style.top = '50%';
           card.style.left = 'auto';
           card.style.right = '400px';
