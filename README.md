@@ -7,7 +7,7 @@
 > *Recommended: View on desktop or tablet for the full telemetry dashboard.*
 
 ## Overview
-Hello, We built EndoCore as an interactive, browser-based 3D digital twin to tackle one of the biggest challenges in curing Type 1 Diabetes: replacing toxic systemic immunosuppressants with localized immunomodulation. 
+We built EndoCore as an interactive, browser-based 3D digital twin to tackle one of the biggest challenges in curing Type 1 Diabetes: replacing toxic systemic immunosuppressants with localized immunomodulation. 
 
 Instead of just writing about our proposed biohybrid nanochip, we decided to code a fully interactive WebGL simulation so you can actually see how it works. We built this from scratch using **Three.js** and **JavaScript (ES6)** and AI modules help in programming.
 
