@@ -262,8 +262,7 @@
 
   <div id="tutorialOverlay" class="fixed inset-0 z-[100] transition-opacity duration-300 hidden opacity-0 pointer-events-none">
     
-    <div id="tutorialCard" class="absolute pointer-events-auto bg-slate-900/95 border-2 border-purple-500/80 rounded-xl shadow-[0_0_40px_rgba(168,85,247,0.4)] w-[320px] transition-all duration-500 z-[101]">
-      
+  <div id="tutorialCard" class="absolute pointer-events-auto bg-slate-900/95 border-2 border-purple-500/80 rounded-xl shadow-[0_0_40px_rgba(168,85,247,0.4)] w-[92vw] sm:w-[320px] max-w-[340px] transition-all duration-500 z-[101]">
       <!-- Directional Arrow -->
       <div id="tutorialArrow" class="absolute w-4 h-4 bg-slate-900 border-l-2 border-t-2 border-purple-500/80 hidden z-0"></div>
 
@@ -390,12 +389,12 @@
       
       arrow.className = 'absolute w-4 h-4 bg-slate-900 border-l-2 border-t-2 border-purple-500/80 z-0';
 
-      if (window.innerWidth < 1024) {
-        // MOBILE IPHONE LAYOUT: Card floats at the bottom, no arrows needed
-        card.style.top = 'auto';
-        card.style.bottom = '30px';
+        if (window.innerWidth < 1024) {
+        // MOBILE IPHONE LAYOUT: Card floats perfectly in the center to avoid Safari bottom bar
+        card.style.top = '50%';
+        card.style.bottom = 'auto';
         card.style.left = '50%';
-        card.style.transform = 'translateX(-50%)';
+        card.style.transform = 'translate(-50%, -50%)';
         card.style.right = 'auto';
         arrow.classList.add('hidden');
       } else {
