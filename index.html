@@ -253,36 +253,38 @@
   </style>
 </head>
 <body class="h-screen w-screen flex flex-col select-none">
+
+
 <!-- ========================================== -->
-<!-- INTERACTIVE TUTORIAL OVERLAY & POP-UP -->
-  <div id="tutorialOverlay" class="fixed inset-0 z-[100] transition-opacity duration-300 pointer-events-none hidden opacity-0">
+  <!-- INTERACTIVE TUTORIAL OVERLAY & POP-UP -->
+  <div id="tutorialOverlay" class="fixed inset-0 z-[100] bg-slate-950/75 backdrop-blur-sm transition-opacity duration-300 hidden opacity-0">
     
-    <div id="tutorialCard" class="absolute pointer-events-auto bg-slate-900/95 border border-purple-500/50 rounded-xl shadow-[0_0_30px_rgba(168,85,247,0.2)] w-[300px] transition-all duration-500">
+    <div id="tutorialCard" class="absolute bg-slate-900/95 border-2 border-purple-500/80 rounded-xl shadow-[0_0_40px_rgba(168,85,247,0.4)] w-[320px] transition-all duration-500 z-[101]">
       
       <!-- Directional Arrow -->
-      <div id="tutorialArrow" class="absolute w-3 h-3 bg-slate-900 border-l border-t border-purple-500/50 hidden"></div>
+      <div id="tutorialArrow" class="absolute w-4 h-4 bg-slate-900 border-l-2 border-t-2 border-purple-500/80 hidden z-0"></div>
 
       <!-- Tutorial Header -->
-      <div class="bg-slate-950/80 px-3 py-2 border-b border-purple-500/30 flex justify-between items-center rounded-t-xl">
+      <div class="relative z-10 bg-slate-950/80 px-3 py-2 border-b border-purple-500/30 flex justify-between items-center rounded-t-xl">
         <div class="flex items-center gap-1.5">
-          <div class="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse"></div>
-          <span class="text-[10px] font-mono-code uppercase tracking-wider text-purple-300 font-bold">Guided Tour</span>
+          <div class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></div>
+          <span class="text-[11px] font-mono-code uppercase tracking-wider text-purple-300 font-bold">Guided Tour</span>
         </div>
         <span id="tutorialStepIndicator" class="text-[10px] font-bold text-slate-400">Step 1 of 4</span>
       </div>
 
       <!-- Tutorial Content Body -->
-      <div class="p-3.5 space-y-1.5 min-h-[90px]">
+      <div class="relative z-10 p-4 space-y-2 min-h-[100px]">
         <h3 id="tutorialTitle" class="text-sm font-extrabold text-white"></h3>
         <p id="tutorialDesc" class="text-[11px] text-slate-300 leading-relaxed"></p>
       </div>
 
       <!-- Tutorial Footer / Controls -->
-      <div class="bg-slate-950/50 px-3 py-2 border-t border-slate-800 flex justify-between items-center rounded-b-xl">
-        <button onclick="endTutorial()" class="text-[10px] font-semibold text-slate-400 hover:text-white transition">Skip</button>
+      <div class="relative z-10 bg-slate-950/50 px-3 py-2.5 border-t border-slate-800 flex justify-between items-center rounded-b-xl">
+        <button onclick="endTutorial()" class="text-[11px] font-semibold text-slate-400 hover:text-white transition">Skip Tour</button>
         <div class="flex gap-1.5">
-          <button id="tutorialPrevBtn" onclick="prevTutorialStep()" class="hidden px-2.5 py-1 rounded bg-slate-800 text-white text-[10px] font-bold hover:bg-slate-700 transition">Back</button>
-          <button id="tutorialNextBtn" onclick="nextTutorialStep()" class="px-2.5 py-1 rounded bg-purple-600 text-white text-[10px] font-bold hover:bg-purple-500 transition shadow-lg shadow-purple-500/20">Next &rarr;</button>
+          <button id="tutorialPrevBtn" onclick="prevTutorialStep()" class="hidden px-3 py-1.5 rounded bg-slate-800 text-white text-[10px] font-bold hover:bg-slate-700 transition">Back</button>
+          <button id="tutorialNextBtn" onclick="nextTutorialStep()" class="px-3 py-1.5 rounded bg-purple-600 text-white text-[10px] font-bold hover:bg-purple-500 transition shadow-lg shadow-purple-500/20">Next &rarr;</button>
         </div>
       </div>
     </div>
@@ -293,7 +295,7 @@
     let currentTutorialStep = 1;
     const totalTutorialSteps = 4;
 
-   const tutorialData = {
+    const tutorialData = {
       1: {
         title: "1. EndoCore Microenvironment",
         desc: "Welcome to the EndoCore Simulation. Use your cursor to rotate 360° around the implanted Nanochip and Islets of Langerhans, or click any biological tag to review its mechanism."
@@ -311,6 +313,7 @@
         desc: "Monitor the Right Panel during active simulations. It provides live tracking of the TinyML risk probability, beta-cell viability, and reservoir capacities. The environment is now ready for review."
       }
     };
+
     function updateTutorialUI() {
       document.getElementById('tutorialStepIndicator').textContent = `Step ${currentTutorialStep} of ${totalTutorialSteps}`;
       document.getElementById('tutorialTitle').innerHTML = tutorialData[currentTutorialStep].title;
@@ -339,39 +342,47 @@
       const arrow = document.getElementById('tutorialArrow');
       
       // Reset arrow class safely
-      arrow.className = 'absolute w-3 h-3 bg-slate-900 border-l border-t border-purple-500/50';
+      arrow.className = 'absolute w-4 h-4 bg-slate-900 border-l-2 border-t-2 border-purple-500/80 z-0';
 
       if (window.innerWidth < 1024) {
-        // Mobile : center at the bottom
+        // Mobile: Center at bottom
         card.style.top = 'auto';
-        card.style.bottom = '24px';
+        card.style.bottom = '30px';
         card.style.left = '50%';
         card.style.transform = 'translateX(-50%)';
         arrow.classList.add('hidden');
       } else {
-        // Desktop floating tooltips
+        // Desktop: Pointing to specific UI elements
         arrow.classList.remove('hidden');
+        
         if (currentTutorialStep === 1) {
+          // Center Screen
           card.style.top = '50%';
           card.style.left = '50%';
           card.style.transform = 'translate(-50%, -50%)';
-          arrow.classList.add('hidden'); // no arrow for intro
-        } else if (currentTutorialStep === 2) {
+          arrow.classList.add('hidden'); // No arrow for intro
+        } 
+        else if (currentTutorialStep === 2) {
+          // Top Bar
           card.style.top = '75px';
           card.style.left = '50%';
           card.style.transform = 'translateX(-50%)';
-          arrow.classList.add('-top-[7px]', 'left-1/2', '-ml-[6px]', 'rotate-45');
-        } else if (currentTutorialStep === 3) {
+          arrow.classList.add('-top-[9px]', 'left-1/2', '-ml-[8px]', 'rotate-45'); // Points UP
+        } 
+        else if (currentTutorialStep === 3) {
+          // Left Sidebar
           card.style.top = '50%';
-          card.style.left = '335px';
+          card.style.left = '340px';
           card.style.transform = 'translateY(-50%)';
-          arrow.classList.add('top-1/2', '-left-[7px]', '-mt-[6px]', '-rotate-45');
-        } else if (currentTutorialStep === 4) {
+          arrow.classList.add('top-1/2', '-left-[9px]', '-mt-[8px]', '-rotate-45'); // Points LEFT
+        } 
+        else if (currentTutorialStep === 4) {
+          // Right Sidebar
           card.style.top = '50%';
           card.style.left = 'auto';
           card.style.right = '400px';
           card.style.transform = 'translateY(-50%)';
-          arrow.classList.add('top-1/2', '-right-[7px]', '-mt-[6px]', 'rotate-[135deg]');
+          arrow.classList.add('top-1/2', '-right-[9px]', '-mt-[8px]', 'rotate-[135deg]'); // Points RIGHT
         }
       }
     }
