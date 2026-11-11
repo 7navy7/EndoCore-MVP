@@ -8,7 +8,7 @@ Hello, We built EndoCore as an interactive, browser-based 3D digital twin to tac
 
 Instead of just writing about our proposed biohybrid nanochip, we decided to code a fully interactive WebGL simulation so you can actually see how it works. We built this from scratch using **Three.js** and **JavaScript (ES6)** and AI modules help in programming.
 
-##🚀 What You Can Do in the Live Demo
+## 🚀 What You Can Do in the Live Demo
 We designed this MVP to be fully interactive so you can explore the system's capabilities firsthand. Here are a few key features:
 - **Look Around:** You can rotate 360° around the nanochip, Islets of Langerhans, and swarming CD8+ T-cells.
 - **Run the Stress Test:** Click "Simulation 1" to run our automated 28-second autoimmune attack. You'll see the AI release IL-10/TGF-β to save the beta cells.
