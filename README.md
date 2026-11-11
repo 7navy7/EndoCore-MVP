@@ -1,4 +1,4 @@
-# Welcome to the EndoCore Digital Twin 🧬
+# EndoCore🧬
 **MEDATHON 2026 - Filter 2 Submission | Medical Tools & Devices Innovation (AQYXBQ)**
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Play%20Simulation-purple?style=for-the-badge)](https://7navy7.github.io/EndoCore-MVP/)
