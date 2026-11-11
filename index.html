@@ -2631,29 +2631,38 @@
       pointerDownPos = { x: e.clientX, y: e.clientY };
     });
 
-    // --- DOUBLE CLICK TO OPEN NANOCHIP LAYERS ---
-    renderer.domElement.addEventListener('dblclick', (event) => {
+ // --- TAP / CLICK TO TOGGLE NANOCHIP LAYERS ---
+    renderer.domElement.addEventListener('pointerup', (event) => {
+      // Calculate distance to ensure it was a clean tap/click, not a camera drag
+      const dist = Math.hypot(event.clientX - pointerDownPos.x, event.clientY - pointerDownPos.y);
+      if (dist > 5) return; 
+
       const rect = renderer.domElement.getBoundingClientRect();
       mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
       mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
       raycaster.setFromCamera(mouse, camera);
       const intersects = raycaster.intersectObjects(scene.children, true);
+      let clickedChip = false;
 
       for (let i = 0; i < intersects.length; i++) {
         let obj = intersects[i].object;
         if (!obj.visible) continue;
         
         while (obj) {
-          // If we double-click ANY part of the nanochip layer groups
+          // If we tap ANY part of the nanochip layer groups
           if (obj.userData && obj.userData.layerId) {
-            if (!state.exploded) {
-              toggleExplodeChip();
-            }
+            toggleExplodeChip(); // Toggles on and off
+            clickedChip = true;
             return;
           }
           obj = obj.parent;
         }
+      }
+
+      // If they tapped empty space while exploded, collapse it
+      if (!clickedChip && state.exploded) {
+        toggleExplodeChip();
       }
     });
 
