@@ -945,42 +945,10 @@
         </div>
       </div>
 
-      <!-- 4. Stage 1-2 Early Autoantibodies (4 Shades of Yellow/Amber) -->
-      <div class="bg-slate-900/75 border border-yellow-500/30 rounded-xl p-2.5 space-y-2">
-        <div class="flex items-center justify-between">
-          <div>
-            <span class="text-[10px] font-mono-code uppercase tracking-wider text-yellow-400 font-semibold block">
-              4. Stage 1–2 Autoantibodies (4 Shades)
-            </span>
-            <span class="text-[10px] text-slate-400">Show separate IAA, GAD65, IA-2A &amp; ZnT8A</span>
-          </div>
-          <input id="autoantibodyToggle" type="checkbox" onchange="toggleAutoantibodies()" class="w-4 h-4 accent-yellow-400 rounded cursor-pointer" />
-        </div>
-
-        <div class="grid grid-cols-2 gap-1 text-[10px]">
-          <button onclick="inspectSpecificAntibody('ab_iaa')" class="px-2 py-1 rounded bg-slate-950/70 hover:bg-yellow-500/20 text-yellow-300 border border-yellow-500/30 text-left font-mono-code transition flex items-center gap-1.5">
-            <span class="w-2 h-2 rounded-full bg-yellow-200 shrink-0"></span>
-            <span>IAA (Insulin)</span>
-          </button>
-          <button onclick="inspectSpecificAntibody('ab_gad65')" class="px-2 py-1 rounded bg-slate-950/70 hover:bg-yellow-500/20 text-yellow-300 border border-yellow-500/30 text-left font-mono-code transition flex items-center gap-1.5">
-            <span class="w-2 h-2 rounded-full bg-yellow-400 shrink-0"></span>
-            <span>GAD65 (Enzyme)</span>
-          </button>
-          <button onclick="inspectSpecificAntibody('ab_ia2')" class="px-2 py-1 rounded bg-slate-950/70 hover:bg-yellow-500/20 text-amber-300 border border-amber-500/30 text-left font-mono-code transition flex items-center gap-1.5">
-            <span class="w-2 h-2 rounded-full bg-amber-400 shrink-0"></span>
-            <span>IA-2A (Granule)</span>
-          </button>
-          <button onclick="inspectSpecificAntibody('ab_znt8')" class="px-2 py-1 rounded bg-slate-950/70 hover:bg-yellow-500/20 text-amber-400 border border-amber-600/30 text-left font-mono-code transition flex items-center gap-1.5">
-            <span class="w-2 h-2 rounded-full bg-amber-600 shrink-0"></span>
-            <span>ZnT8A (Zinc)</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- 5. Nanochip 5-Layer Structure Explorer -->
+   <!-- 4. Nanochip 5-Layer Structure Explorer -->
       <div class="bg-slate-900/75 border border-slate-800/90 rounded-xl p-3 space-y-2">
         <span class="text-[10px] font-mono-code uppercase tracking-wider text-cyan-400 font-semibold block">
-          5. Nanochip 5-Layer Architecture
+          4. Nanochip 5-Layer Architecture
         </span>
 
         <button onclick="toggleExplodeChip()" id="explodeBtn" class="w-full py-2 px-3 rounded-lg bg-cyan-950/80 hover:bg-cyan-900/80 border border-cyan-500/40 text-cyan-200 text-xs font-semibold flex items-center justify-between transition">
@@ -1011,6 +979,38 @@
           <button onclick="selectLayerFromMenu(5)" class="text-left px-2.5 py-1 rounded bg-slate-950/60 hover:bg-purple-500/20 text-slate-300 hover:text-white transition flex items-center justify-between border border-transparent">
             <span>L5: Reservoirs &amp; Power Coil</span>
             <span class="text-[9px] font-mono-code text-sky-400">Piezo+Power</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 5. Stage 1-2 Early Autoantibodies (4 Shades of Yellow/Amber) -->
+      <div class="bg-slate-900/75 border border-yellow-500/30 rounded-xl p-2.5 space-y-2">
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="text-[10px] font-mono-code uppercase tracking-wider text-yellow-400 font-semibold block">
+              5. Stage 1–2 Autoantibodies
+            </span>
+            <span class="text-[10px] text-slate-400">Show diagnostic biomarkers</span>
+          </div>
+          <input id="autoantibodyToggle" type="checkbox" onchange="toggleAutoantibodies()" class="w-4 h-4 accent-yellow-400 rounded cursor-pointer" />
+        </div>
+
+        <div class="grid grid-cols-2 gap-1 text-[10px]">
+          <button onclick="inspectSpecificAntibody('ab_iaa')" class="px-2 py-1 rounded bg-slate-950/70 hover:bg-yellow-500/20 text-yellow-300 border border-yellow-500/30 text-left font-mono-code transition flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-yellow-200 shrink-0"></span>
+            <span>IAA (Insulin)</span>
+          </button>
+          <button onclick="inspectSpecificAntibody('ab_gad65')" class="px-2 py-1 rounded bg-slate-950/70 hover:bg-yellow-500/20 text-yellow-300 border border-yellow-500/30 text-left font-mono-code transition flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-yellow-400 shrink-0"></span>
+            <span>GAD65 (Enzyme)</span>
+          </button>
+          <button onclick="inspectSpecificAntibody('ab_ia2')" class="px-2 py-1 rounded bg-slate-950/70 hover:bg-yellow-500/20 text-amber-300 border border-amber-500/30 text-left font-mono-code transition flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-amber-400 shrink-0"></span>
+            <span>IA-2A (Granule)</span>
+          </button>
+          <button onclick="inspectSpecificAntibody('ab_znt8')" class="px-2 py-1 rounded bg-slate-950/70 hover:bg-yellow-500/20 text-amber-400 border border-amber-600/30 text-left font-mono-code transition flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-amber-600 shrink-0"></span>
+            <span>ZnT8A (Zinc)</span>
           </button>
         </div>
       </div>
