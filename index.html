@@ -264,37 +264,33 @@
 
   <div id="tutorialOverlay" class="fixed inset-0 z-[100] transition-opacity duration-300 hidden opacity-0 pointer-events-none">
     
-    <div id="tutorialCard" class="absolute pointer-events-auto bg-slate-900/95 border-2 border-purple-500/80 rounded-xl shadow-[0_0_40px_rgba(168,85,247,0.4)] w-[320px] transition-all duration-500 z-[101]">
+  <div id="tutorialCard" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-auto bg-slate-900/95 border-2 border-purple-500/80 rounded-2xl shadow-[0_0_50px_rgba(168,85,247,0.5)] w-[92vw] max-w-[500px] transition-all duration-500 z-[101]">
       
-      <!-- Directional Arrow -->
-      <div id="tutorialArrow" class="absolute w-4 h-4 bg-slate-900 border-l-2 border-t-2 border-purple-500/80 hidden z-0"></div>
-
       <!-- Tutorial Header -->
-      <div class="relative z-10 bg-slate-950/80 px-3 py-2 border-b border-purple-500/30 flex justify-between items-center rounded-t-xl">
-        <div class="flex items-center gap-1.5">
-          <div class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></div>
-          <span class="text-[11px] font-mono-code uppercase tracking-wider text-purple-300 font-bold">Guided Tour</span>
+      <div class="relative z-10 bg-slate-950/80 px-4 py-3 border-b border-purple-500/30 flex justify-between items-center rounded-t-2xl">
+        <div class="flex items-center gap-2">
+          <div class="w-2.5 h-2.5 rounded-full bg-purple-500 animate-pulse"></div>
+          <span class="text-xs sm:text-sm font-mono-code uppercase tracking-wider text-purple-300 font-bold">Guided Tour</span>
         </div>
-        <span id="tutorialStepIndicator" class="text-[10px] font-bold text-slate-400">Step 1 of 4</span>
+        <span id="tutorialStepIndicator" class="text-xs sm:text-sm font-bold text-slate-400">Step 1 of 5</span>
       </div>
 
       <!-- Tutorial Content Body -->
-      <div class="relative z-10 p-4 space-y-2 min-h-[100px]">
-        <h3 id="tutorialTitle" class="text-sm font-extrabold text-white"></h3>
-        <p id="tutorialDesc" class="text-[11px] text-slate-300 leading-relaxed"></p>
+      <div class="relative z-10 p-5 sm:p-6 space-y-3 min-h-[140px]">
+        <h3 id="tutorialTitle" class="text-base sm:text-lg font-extrabold text-white"></h3>
+        <p id="tutorialDesc" class="text-[13px] sm:text-[15px] text-slate-300 leading-relaxed"></p>
       </div>
 
       <!-- Tutorial Footer / Controls -->
-      <div class="relative z-10 bg-slate-950/50 px-3 py-2.5 border-t border-slate-800 flex justify-between items-center rounded-b-xl">
-        <button onclick="endTutorial()" class="text-[11px] font-semibold text-slate-400 hover:text-white transition">Skip Tour</button>
-        <div class="flex gap-1.5">
-          <button id="tutorialPrevBtn" onclick="prevTutorialStep()" class="hidden px-3 py-1.5 rounded bg-slate-800 text-white text-[10px] font-bold hover:bg-slate-700 transition">Back</button>
-          <button id="tutorialNextBtn" onclick="nextTutorialStep()" class="px-3 py-1.5 rounded bg-purple-600 text-white text-[10px] font-bold hover:bg-purple-500 transition shadow-lg shadow-purple-500/20">Next &rarr;</button>
+      <div class="relative z-10 bg-slate-950/50 px-4 py-3.5 border-t border-slate-800 flex justify-between items-center rounded-b-2xl">
+        <button onclick="endTutorial()" class="text-xs sm:text-sm font-semibold text-slate-400 hover:text-white transition">Skip Tour</button>
+        <div class="flex gap-2.5">
+          <button id="tutorialPrevBtn" onclick="prevTutorialStep()" class="hidden px-4 py-2 rounded-lg bg-slate-800 text-white text-xs sm:text-sm font-bold hover:bg-slate-700 transition">Back</button>
+          <button id="tutorialNextBtn" onclick="nextTutorialStep()" class="px-4 py-2 rounded-lg bg-purple-600 text-white text-xs sm:text-sm font-bold hover:bg-purple-500 transition shadow-lg shadow-purple-500/20">Next &rarr;</button>
         </div>
       </div>
     </div>
-  </div>
-
+    
   <script>
     // --- TUTORIAL LOGIC & ELEMENT HIGHLIGHTING ---
     let currentTutorialStep = 1;
