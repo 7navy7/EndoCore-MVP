@@ -256,10 +256,15 @@
 
 
 <!-- ========================================== -->
+ <!-- ========================================== -->
   <!-- INTERACTIVE TUTORIAL OVERLAY & POP-UP -->
-  <div id="tutorialOverlay" class="fixed inset-0 z-[100] bg-slate-950/75 backdrop-blur-sm transition-opacity duration-300 hidden opacity-0">
+  
+  <!-- The Full Screen Dimmer -->
+  <div id="tutorialDimmer" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-[90] transition-opacity duration-300 hidden opacity-0 pointer-events-none"></div>
+
+  <div id="tutorialOverlay" class="fixed inset-0 z-[100] transition-opacity duration-300 hidden opacity-0 pointer-events-none">
     
-    <div id="tutorialCard" class="absolute bg-slate-900/95 border-2 border-purple-500/80 rounded-xl shadow-[0_0_40px_rgba(168,85,247,0.4)] w-[320px] transition-all duration-500 z-[101]">
+    <div id="tutorialCard" class="absolute pointer-events-auto bg-slate-900/95 border-2 border-purple-500/80 rounded-xl shadow-[0_0_40px_rgba(168,85,247,0.4)] w-[320px] transition-all duration-500 z-[101]">
       
       <!-- Directional Arrow -->
       <div id="tutorialArrow" class="absolute w-4 h-4 bg-slate-900 border-l-2 border-t-2 border-purple-500/80 hidden z-0"></div>
@@ -291,7 +296,7 @@
   </div>
 
   <script>
-    // --- TUTORIAL LOGIC ---
+    // --- TUTORIAL LOGIC & ELEMENT HIGHLIGHTING ---
     let currentTutorialStep = 1;
     const totalTutorialSteps = 4;
 
@@ -313,6 +318,40 @@
         desc: "Monitor the Right Panel during active simulations. It provides live tracking of the TinyML risk probability, beta-cell viability, and reservoir capacities. The environment is now ready for review."
       }
     };
+
+    function resetHighlights() {
+      // Reset all elements back to normal z-index
+      document.querySelector('header').classList.remove('z-[95]', 'relative');
+      document.getElementById('leftSidebar').classList.remove('z-[95]');
+      document.getElementById('rightSidebar').classList.remove('z-[95]');
+      document.getElementById('topBanner').classList.remove('z-[95]');
+    }
+
+    function applyHighlights() {
+      resetHighlights();
+      
+      // Step 1: Center 3D - We highlight the top banner to show them what they are looking at
+      if (currentTutorialStep === 1) {
+        document.getElementById('topBanner').classList.add('z-[95]');
+      }
+      // Step 2: Top Bar (Simulation 1 button)
+      else if (currentTutorialStep === 2) {
+        document.querySelector('header').classList.add('z-[95]', 'relative');
+      }
+      // Step 3: Left Panel
+      else if (currentTutorialStep === 3) {
+        // Open the left panel if it's closed on mobile
+        if (state.leftCollapsed) toggleLeftSidebar();
+        document.getElementById('leftSidebar').classList.add('z-[95]');
+      }
+      // Step 4: Right Panel
+      else if (currentTutorialStep === 4) {
+        // Close left panel and open right panel for mobile clarity
+        if (!state.leftCollapsed && window.innerWidth < 1024) toggleLeftSidebar();
+        if (state.rightCollapsed) toggleRightSidebar();
+        document.getElementById('rightSidebar').classList.add('z-[95]');
+      }
+    }
 
     function updateTutorialUI() {
       document.getElementById('tutorialStepIndicator').textContent = `Step ${currentTutorialStep} of ${totalTutorialSteps}`;
@@ -337,52 +376,51 @@
         nextBtn.classList.replace('shadow-emerald-500/20', 'shadow-purple-500/20');
       }
 
-      // Positioning Logic & Arrows
+      applyHighlights();
+
+      // Mobile vs Desktop Positioning
       const card = document.getElementById('tutorialCard');
       const arrow = document.getElementById('tutorialArrow');
       
-      // Reset arrow class safely
       arrow.className = 'absolute w-4 h-4 bg-slate-900 border-l-2 border-t-2 border-purple-500/80 z-0';
 
       if (window.innerWidth < 1024) {
-        // Mobile: Center at bottom
+        // MOBILE IPHONE LAYOUT: Card floats at the bottom, no arrows needed
         card.style.top = 'auto';
         card.style.bottom = '30px';
         card.style.left = '50%';
         card.style.transform = 'translateX(-50%)';
+        card.style.right = 'auto';
         arrow.classList.add('hidden');
       } else {
-        // Desktop: Pointing to specific UI elements
+        // DESKTOP LAYOUT: Card points to specific UI elements
         arrow.classList.remove('hidden');
         
         if (currentTutorialStep === 1) {
-          // Center Screen
           card.style.top = '50%';
           card.style.left = '50%';
           card.style.transform = 'translate(-50%, -50%)';
-          arrow.classList.add('hidden'); // No arrow for intro
+          arrow.classList.add('hidden'); 
         } 
         else if (currentTutorialStep === 2) {
-          // Top Bar
           card.style.top = '75px';
           card.style.left = '50%';
           card.style.transform = 'translateX(-50%)';
-          arrow.classList.add('-top-[9px]', 'left-1/2', '-ml-[8px]', 'rotate-45'); // Points UP
+          arrow.classList.add('-top-[9px]', 'left-1/2', '-ml-[8px]', 'rotate-45'); 
         } 
         else if (currentTutorialStep === 3) {
-          // Left Sidebar
           card.style.top = '50%';
           card.style.left = '340px';
+          card.style.right = 'auto';
           card.style.transform = 'translateY(-50%)';
-          arrow.classList.add('top-1/2', '-left-[9px]', '-mt-[8px]', '-rotate-45'); // Points LEFT
+          arrow.classList.add('top-1/2', '-left-[9px]', '-mt-[8px]', '-rotate-45'); 
         } 
         else if (currentTutorialStep === 4) {
-          // Right Sidebar
           card.style.top = '50%';
           card.style.left = 'auto';
           card.style.right = '400px';
           card.style.transform = 'translateY(-50%)';
-          arrow.classList.add('top-1/2', '-right-[9px]', '-mt-[8px]', 'rotate-[135deg]'); // Points RIGHT
+          arrow.classList.add('top-1/2', '-right-[9px]', '-mt-[8px]', 'rotate-[135deg]'); 
         }
       }
     }
@@ -405,10 +443,32 @@
 
     function endTutorial() {
       const overlay = document.getElementById('tutorialOverlay');
+      const dimmer = document.getElementById('tutorialDimmer');
+      
       overlay.classList.add('opacity-0');
+      dimmer.classList.add('opacity-0');
+      
       setTimeout(() => {
         overlay.classList.add('hidden');
-      }, 300); // Wait for fade-out transition
+        dimmer.classList.add('hidden');
+        resetHighlights();
+      }, 300);
+    }
+    
+    function startTutorial() {
+      currentTutorialStep = 1;
+      const overlay = document.getElementById('tutorialOverlay');
+      const dimmer = document.getElementById('tutorialDimmer');
+      
+      overlay.classList.remove('hidden');
+      dimmer.classList.remove('hidden');
+      
+      // Small delay to allow display:block to apply before fading in
+      setTimeout(() => {
+        overlay.classList.remove('opacity-0');
+        dimmer.classList.remove('opacity-0');
+        updateTutorialUI();
+      }, 10);
     }
   </script>
   <!-- END OF TUTORIAL BLOCK-->
