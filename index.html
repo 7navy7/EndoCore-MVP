@@ -320,12 +320,12 @@
     };
 
     function resetHighlights() {
-      // Reset all elements back to normal z-index
-      document.querySelector('header').classList.remove('z-[95]', 'relative');
-      document.getElementById('leftSidebar').classList.remove('z-[95]');
-      document.getElementById('rightSidebar').classList.remove('z-[95]');
-      document.getElementById('topBanner').classList.remove('z-[95]');
-    }
+     // Reset all elements back to normal z-index and remove the purple glow
+     document.querySelector('header').classList.remove('z-[95]', 'relative', 'shadow-[0_0_30px_rgba(168,85,247,0.5)]');
+     document.getElementById('leftSidebar').classList.remove('z-[95]');
+     document.getElementById('rightSidebar').classList.remove('z-[95]');
+     document.getElementById('topBanner').classList.remove('z-[95]');
+   }
 
     function applyHighlights() {
       resetHighlights();
