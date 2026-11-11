@@ -11,7 +11,7 @@ Instead of just writing about our proposed biohybrid nanochip, we decided to cod
 ## 🚀 What You Can Do in the Live Demo
 We designed this MVP to be fully interactive so you can explore the system's capabilities firsthand. Here are a few key features:
 - **Look Around:** You can rotate 360° around the nanochip, Islets of Langerhans, and swarming CD8+ T-cells.
-- **Run the Stress Test:** Click "Simulation 1" to run our automated 28-second autoimmune attack. You'll see the AI release IL-10/TGF-β to save the beta cells.
+- **Run the Stress Test:** Click "Simulation 1" to run our automated autoimmune attack. You'll see the AI release IL-10/TGF-β to save the beta cells.
 - **Watch the Data:** The right-side dashboard shows live TinyML risk probability, insulin output, and peptide reservoir levels.
 
 ## 🏗️ The 5-Layer Hardware
