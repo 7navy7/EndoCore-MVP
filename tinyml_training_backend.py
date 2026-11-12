@@ -13,11 +13,11 @@ from sklearn.metrics import classification_report
 
 def train_endocore_model():
     print("Loading Synthetic In Vitro Cytokine Dataset...")
-    # Load the clinical dataset mimicking sensor readings
-    df = pd.read_csv("synthetic_cytokine_dataset.csv")
+    # Load the dataset (keeping 'None' as a string so it doesn't crash)
+    df = pd.read_csv("synthetic_cytokine_dataset.csv", keep_default_na=False)
     
-    # Features: IL-6, IFN-gamma, and Interstitial pH
-    X = df[['il_6_pg_ml', 'ifn_gamma_pg_ml', 'ph_level']]
+    # Features: IL-6, IFN-gamma, TNF-alpha, and Interstitial pH
+    X = df[['il_6_pg_ml', 'ifn_gamma_pg_ml', 'tnf_alpha_pg_ml', 'ph_level']]
     
     # Target: The action the micro-valves need to take
     y = df['ai_action']
