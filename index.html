@@ -1512,8 +1512,8 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     function consumeReservoirDose() {
-      state.il10RemainingNl = Math.max(0, state.il10RemainingNl - 250);
-      state.tgfbRemainingNl = Math.max(0, state.tgfbRemainingNl - 250);
+      state.il10RemainingNl = Math.max(0, state.il10RemainingNl - 25);
+      state.tgfbRemainingNl = Math.max(0, state.tgfbRemainingNl - 25);
       state.attacksHandled += 1;
       updateReservoirTelemetryUI();
     }
