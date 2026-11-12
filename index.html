@@ -2701,15 +2701,6 @@ appendCommandLog(`Initiating Autoimmune Flare-Up: CD8+ T-cells beginning to infi
       }
     }
 
-    // --- CLICK ANY 3D CELL OR HARDWARE OBJECT TO SEE WHAT'S INSIDE ---
-    const raycaster = new THREE.Raycaster();
-    const mouse = new THREE.Vector2();
-    let pointerDownPos = { x: 0, y: 0 };
-
-    renderer.domElement.addEventListener('pointerdown', (e) => {
-      pointerDownPos = { x: e.clientX, y: e.clientY };
-    });
-
 // --- TAP / CLICK TO TOGGLE NANOCHIP LAYERS OR INSPECT 3D CELLS ---
     renderer.domElement.addEventListener('pointerup', (event) => {
       const dist = Math.hypot(event.clientX - pointerDownPos.x, event.clientY - pointerDownPos.y);
@@ -2721,17 +2712,21 @@ appendCommandLog(`Initiating Autoimmune Flare-Up: CD8+ T-cells beginning to infi
 
       raycaster.setFromCamera(mouse, camera);
       const intersects = raycaster.intersectObjects(scene.children, true);
+      let clickedChip = false;
 
       for (let i = 0; i < intersects.length; i++) {
         let obj = intersects[i].object;
         if (!obj.visible) continue;
         
         while (obj) {
+          // 1. If user taps any part of the nanochip, toggle exploded layers
           if (obj.userData && obj.userData.layerId) {
             toggleExplodeChip();
+            clickedChip = true;
             return;
           }
-          if (obj.userData && obj.userData.inspectKey) {
+          // 2. RESTORED: If user taps any 3D cell/vessel while not exploded, open inspector
+          if (obj.userData && obj.userData.inspectKey && !state.exploded) {
             openBioInspector(obj.userData.inspectKey, event);
             return;
           }
@@ -2739,7 +2734,7 @@ appendCommandLog(`Initiating Autoimmune Flare-Up: CD8+ T-cells beginning to infi
         }
       }
 
-      if (state.exploded) {
+      if (!clickedChip && state.exploded) {
         toggleExplodeChip();
       }
     });
