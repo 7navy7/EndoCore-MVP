@@ -515,37 +515,40 @@
         <span>Simulation 1 (Auto-Run)</span>
       </button>
     </div>
-
-    <!-- Top Right Action Buttons: Camera, Hide Tags, Full 3D, Reset -->
+<!-- Top Right Action Buttons -->
     <div class="flex items-center gap-1.5">
+      <!-- Camera presets (Hidden on small screens) -->
       <div class="hidden xl:flex items-center bg-slate-900/90 p-1 rounded-lg border border-slate-800 text-[11px]">
         <button onclick="setCameraView('overview')" class="px-2 py-1 rounded hover:bg-purple-500/20 text-slate-300 hover:text-white transition">Overview</button>
         <button onclick="setCameraView('chip')" class="px-2 py-1 rounded hover:bg-purple-500/20 text-cyan-300 hover:text-white transition font-semibold">Nanochip</button>
         <button onclick="setCameraView('islets')" class="px-2 py-1 rounded hover:bg-purple-500/20 text-purple-300 hover:text-white transition">Islets (360°)</button>
         <button onclick="setCameraView('bottom')" class="px-2 py-1 rounded hover:bg-purple-500/20 text-pink-300 hover:text-white transition">Bottom 360°</button>
-        <button onclick="startTutorial()" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-purple-300 border border-slate-700 text-xs font-semibold flex items-center gap-1.5 transition">
+      </div>
+
+      <!-- Guided Tour (Visible everywhere) -->
+      <button onclick="startTutorial()" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-purple-300 border border-slate-700 text-xs font-semibold flex items-center gap-1.5 transition">
         <i data-lucide="help-circle" class="w-3.5 h-3.5"></i>
         <span class="hidden sm:inline">Guided Tour</span>
       </button>
-      </div>
 
-      <!-- Hide / Show All Tags Button -->
-      <button onclick="toggleAllTags()" id="hideTagsBtn" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-slate-700 text-xs font-semibold flex items-center gap-1.5 transition" title="Hide or Show all 3D floating tags">
+      <!-- Hide Tags Button -->
+      <button onclick="toggleAllTags()" id="hideTagsBtn" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-slate-700 text-xs font-semibold flex items-center gap-1.5 transition">
         <i id="hideTagsIcon" data-lucide="tag" class="w-3.5 h-3.5"></i>
         <span id="hideTagsText">Hide Tags</span>
       </button>
 
-      <button onclick="toggleFull3DView()" id="full3DBtn" class="px-2.5 py-1.5 rounded-lg bg-purple-950/70 hover:bg-purple-900 text-purple-200 border border-purple-500/40 text-xs font-semibold flex items-center gap-1.5 transition" title="Hide/Show sidebars">
+      <!-- Full 3D Button -->
+      <button onclick="toggleFull3DView()" id="full3DBtn" class="px-2.5 py-1.5 rounded-lg bg-purple-950/70 hover:bg-purple-900 text-purple-200 border border-purple-500/40 text-xs font-semibold flex items-center gap-1.5 transition">
         <i data-lucide="maximize-2" class="w-3.5 h-3.5 text-purple-400"></i>
         <span id="full3DBtnText" class="hidden md:inline">Full 3D</span>
       </button>
 
+      <!-- Reset Button -->
       <button onclick="resetSimulation()" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-medium flex items-center gap-1 transition">
         <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
         <span class="hidden sm:inline">Reset</span>
       </button>
     </div>
-  </header>
 
   <!-- MAIN WORKSPACE -->
   <div class="flex-1 relative overflow-hidden">
