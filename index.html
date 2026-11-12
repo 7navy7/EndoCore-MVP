@@ -1717,6 +1717,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- 3. THE 5-LAYER ENDOCORE BIOHYBRID NANOCHIP (Elevated to y = 8.8 so there is a wide, clear space above the Islets!) ---
+// --- 3. THE 5-LAYER ENDOCORE BIOHYBRID NANOCHIP (Elevated to y = 8.8 so there is a wide, clear space above the Islets!) ---
     const nanochipGroup = new THREE.Group();
     nanochipGroup.position.set(0.5, 8.8, 0.2);
     scene.add(nanochipGroup);
@@ -1767,18 +1768,18 @@ window.addEventListener('DOMContentLoaded', () => {
       roughness: 0.15,
       clearcoat: 1.0
     });
-    for (let i = 0; i < 16; i++) {
-      const angle = (i / 16) * Math.PI * 2;
-      const goldBead = new THREE.Mesh(goldBeadGeo, goldBeadMat);
-      goldBead.position.set(Math.cos(angle) * 4.52, 0.0, Math.sin(angle) * 4.52);
-      goldBead.userData = { layerId: 3, inspectKey: 'layer3' };
-      layer3Group.add(goldBead);
+    for (let i = 0; i < 14; i++) {
+      const angle = (i / 14) * Math.PI * 2;
+      const innerBead = new THREE.Mesh(innerBeadGeo, innerBeadMat);
+      innerBead.position.set(Math.cos(angle) * 2.65, 0.18, Math.sin(angle) * 2.65);
+      innerBead.userData = { layerId: 2, inspectKey: 'layer2' };
+      layer2Group.add(innerBead);
     }
     layer2Group.userData = { baseY: 0.32, explodeY: 2.25, layerId: 2 };
     nanochipGroup.add(layer2Group);
     chipLayers.push(layer2Group);
 
-    // Layer 3: Metallic Rim Studded with 14 Bright Gold Spherical Sensor Beads
+    // Layer 3: Metallic Rim Studded with 16 Bright Gold Spherical Sensor Beads
     const layer3Group = new THREE.Group();
     const l3RimGeo = new THREE.TorusGeometry(4.38, 0.22, 16, 64);
     const l3RimMat = new THREE.MeshStandardMaterial({
@@ -1799,8 +1800,8 @@ window.addEventListener('DOMContentLoaded', () => {
       metalness: 0.9,
       roughness: 0.15
     });
-    for (let i = 0; i < 14; i++) {
-      const angle = (i / 14) * Math.PI * 2;
+    for (let i = 0; i < 16; i++) {
+      const angle = (i / 16) * Math.PI * 2;
       const goldBead = new THREE.Mesh(goldBeadGeo, goldBeadMat);
       goldBead.position.set(Math.cos(angle) * 4.52, 0.0, Math.sin(angle) * 4.52);
       goldBead.userData = { layerId: 3, inspectKey: 'layer3' };
