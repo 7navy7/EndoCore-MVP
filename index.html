@@ -2712,9 +2712,8 @@ appendCommandLog(`Initiating Autoimmune Flare-Up: CD8+ T-cells beginning to infi
       pointerDownPos = { x: e.clientX, y: e.clientY };
     });
 
- // --- TAP / CLICK TO TOGGLE NANOCHIP LAYERS ---
+// --- TAP / CLICK TO TOGGLE NANOCHIP LAYERS OR INSPECT 3D CELLS ---
     renderer.domElement.addEventListener('pointerup', (event) => {
-      // Calculate distance to ensure it was a clean tap/click, not a camera drag
       const dist = Math.hypot(event.clientX - pointerDownPos.x, event.clientY - pointerDownPos.y);
       if (dist > 5) return; 
 
@@ -2724,25 +2723,25 @@ appendCommandLog(`Initiating Autoimmune Flare-Up: CD8+ T-cells beginning to infi
 
       raycaster.setFromCamera(mouse, camera);
       const intersects = raycaster.intersectObjects(scene.children, true);
-      let clickedChip = false;
 
       for (let i = 0; i < intersects.length; i++) {
         let obj = intersects[i].object;
         if (!obj.visible) continue;
         
         while (obj) {
-          // If we tap ANY part of the nanochip layer groups
           if (obj.userData && obj.userData.layerId) {
-            toggleExplodeChip(); // Toggles on and off
-            clickedChip = true;
+            toggleExplodeChip();
+            return;
+          }
+          if (obj.userData && obj.userData.inspectKey) {
+            openBioInspector(obj.userData.inspectKey, event);
             return;
           }
           obj = obj.parent;
         }
       }
 
-      // If they tapped empty space while exploded, collapse it
-      if (!clickedChip && state.exploded) {
+      if (state.exploded) {
         toggleExplodeChip();
       }
     });
