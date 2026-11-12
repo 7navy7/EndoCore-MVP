@@ -1,0 +1,43 @@
+Loading synthetic in-vitro cytokine dataset...
+  6000 samples | 2875 release / 3125 no-release
+  Features: il_6_pg_ml, ifn_gamma_pg_ml, ph_drop, cd8_tcell_count
+
+Training TinyML logistic classifier for nanochip deployment...
+  5-fold CV accuracy : 0.9411 +/- 0.0058
+  5-fold CV ROC-AUC  : 0.9845 +/- 0.0026
+
+--- EndoCore AI Validation Metrics (held-out test set, synthetic) ---
+  Decision threshold : 0.35 predicted risk
+  Test samples       : 1500
+
+  Confusion matrix
+                      predicted None   predicted Release
+    actual None                  732                  49
+    actual Release                40                 679
+
+  Sensitivity (recall, attack detected) : 0.9444
+  Specificity (quiet state preserved)   : 0.9373
+  Precision (PPV)                       : 0.9327
+  Negative predictive value             : 0.9482
+  Accuracy                              : 0.9407
+  ROC-AUC                               : 0.9854
+
+  Per-class report
+                      precision    recall  f1-score   support
+    
+                None       0.95      0.94      0.94       781
+    Release_Peptides       0.93      0.94      0.94       719
+    
+            accuracy                           0.94      1500
+           macro avg       0.94      0.94      0.94      1500
+        weighted avg       0.94      0.94      0.94      1500
+
+--- Predicted risk at key simulation states ---
+  Homeostasis (baseline)         0.97%   valves closed 
+  Early Stage 1-2 infiltration   4.59%   valves closed 
+  Mid-ramp flare                86.32%   valves RELEASE
+  Acute attack peak            100.00%   valves RELEASE
+
+Exported fitted parameters -> endocore_model.json
+Exported browser model     -> endocore_model.js  (loaded by index.html)
+Validation report          -> validation_report.txt
