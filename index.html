@@ -1481,10 +1481,8 @@
     }
 
 window.addEventListener('DOMContentLoaded', () => {
-      // 1. Auto-open the Guided Tour on page load
-      startTutorial();
-
-      // 2. Auto-collapse sidebars for mobile/tablet judges (<1024px)
+  
+      // Auto-collapse sidebars for mobile/tablet judges (<1024px)
       if (window.innerWidth < 1024) {
         if (!state.leftCollapsed) toggleLeftSidebar();
         if (!state.rightCollapsed) toggleRightSidebar();
