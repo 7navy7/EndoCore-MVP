@@ -1765,11 +1765,11 @@ window.addEventListener('DOMContentLoaded', () => {
       clearcoat: 1.0
     });
     for (let i = 0; i < 16; i++) {
-      const a = (i / 16) * Math.PI * 2;
-      const bead = new THREE.Mesh(innerBeadGeo, innerBeadMat);
-      bead.position.set(Math.cos(a) * 2.35, 0.22, Math.sin(a) * 2.35);
-      bead.userData = { layerId: 2, inspectKey: 'layer2' };
-      layer2Group.add(bead);
+      const angle = (i / 16) * Math.PI * 2;
+      const goldBead = new THREE.Mesh(goldBeadGeo, goldBeadMat);
+      goldBead.position.set(Math.cos(angle) * 4.52, 0.0, Math.sin(angle) * 4.52);
+      goldBead.userData = { layerId: 3, inspectKey: 'layer3' };
+      layer3Group.add(goldBead);
     }
     layer2Group.userData = { baseY: 0.32, explodeY: 2.25, layerId: 2 };
     nanochipGroup.add(layer2Group);
