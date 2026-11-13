@@ -182,8 +182,8 @@
       pointer-events: auto;
       z-index: 35;
       perspective: 900px;
-      width: 270px;  /* Increased from 235px for better text wrapping */
-      height: 120px; /* Increased from 94px to contain the new longer descriptions */
+      width: 235px;
+      height: 94px;
       cursor: pointer;
     }
     .layer-card-inner {
@@ -298,7 +298,7 @@
   <script>
     // --- TUTORIAL LOGIC & ELEMENT HIGHLIGHTING ---
     let currentTutorialStep = 1;
-    const totalTutorialSteps = 5;
+    const totalTutorialSteps = 6;
 
     const tutorialData = {
       1: {
@@ -319,7 +319,11 @@
       },
       5: {
         title: "5. Real-Time Telemetry",
-        desc: "Monitor the Right Panel. It tracks the TinyML <strong>Attack Probability %</strong>, live Beta-Cell Viability, Peptide Reservoirs, and logs AI commands. You are ready to explore!"
+        desc: "Monitor the Right Panel. It tracks the TinyML <strong>Attack Probability %</strong>, live Beta-Cell Viability, Peptide Reservoirs, and logs AI commands."
+      },
+      6: {
+        title: "6. The AI Is a Trained Model",
+        desc: "The Attack Probability is <strong>not a hand-tuned formula</strong>. It is a logistic classifier trained offline in Python on 6,000 synthetic samples (sensitivity 94.4%, specificity 93.7%, ROC-AUC 0.985), exported to <em>endocore_model.js</em> and executed here in your browser — the same four multiply-adds a Layer 4 microcontroller would run. The full pipeline is public in our GitHub repository. You are ready to explore!"
       }
     };
 
@@ -356,6 +360,12 @@
       else if (currentTutorialStep === 5) {
         // Close left, open right for telemetry
         if (!state.leftCollapsed) toggleLeftSidebar();
+        if (state.rightCollapsed) toggleRightSidebar();
+        document.getElementById('rightSidebar').classList.add('z-[95]');
+      }
+      else if (currentTutorialStep === 6) {
+        // Keep the telemetry panel lit: the Attack Probability readout is
+        // exactly what this step is about.
         if (state.rightCollapsed) toggleRightSidebar();
         document.getElementById('rightSidebar').classList.add('z-[95]');
       }
@@ -824,7 +834,7 @@
             <div class="layer-card-face layer-card-back">
               <div class="text-[10px] font-bold text-amber-300 mb-0.5">Layer 3 — Sensor Array:</div>
               <p class="text-[10px] text-slate-100 leading-snug">
-                Continuously monitors local interstitial fluid for early IL-6 and IFN-γ cytokine spikes, pH acidosis, and CD8+ T-cell infiltration, with Stage 1–2 autoantibodies shown as a diagnostic overlay.
+                Continuously monitors local interstitial fluid for early IL-6 and IFN-γ cytokine spikes, pH acidosis, and autoantibodies.
               </p>
             </div>
           </div>
@@ -844,7 +854,7 @@
             <div class="layer-card-face layer-card-back">
               <div class="text-[10px] font-bold text-emerald-300 mb-0.5">Layer 4 — TinyML AI Brain:</div>
               <p class="text-[10px] text-slate-100 leading-snug">
-                Runs a trained logistic classifier over the four sensor signals in <50 ms to predict autoimmune attacks and actuate the piezoelectric micro-valves.
+                Analyzes multi-sensor cytokine patterns in &lt;50 ms to predict autoimmune attacks and actuate piezoelectric micro-valves.
               </p>
             </div>
           </div>
@@ -1284,31 +1294,31 @@
         badge: "Nanochip Layer 01",
         title: "Zwitterionic Hydrogel Outer Dome",
         inside: "Translucent 3D cross-linked zwitterionic polymer dome with balanced positive and negative charges holding a tight hydration shell.",
-        desc: "Stops body proteins from sticking and prevents scar tissue (fibrosis) from blocking the sensors, while boosting O₂ diffusion."
+        desc: "Stops body proteins and macrophages from sticking, preventing fibrotic scar tissue (foreign body reaction) from blinding the sensors."
       },
       layer2: {
         badge: "Nanochip Layer 02",
         title: "Nanoporous Teal Membrane (<30 nm) & CRISPR β-Cells",
         inside: "Precision <30 nm nanoporous teal hydrogel filter housing a ring of CRISPR-edited hypoimmune beta-cell micro-organoids.",
-        desc: "Houses CRISPR MHC-cloaked beta cells in collagen ECM. Pores (<30 nm) let glucose and insulin pass while blocking T-cells."
+        desc: "Pores (<30 nm) let oxygen, glucose, and insulin diffuse freely while physically blocking host CD8+ T-cells (~10,000 nm) and antibodies."
       },
       layer3: {
         badge: "Nanochip Layer 03",
         title: "16x Gold Electrochemical & Optical Sensor Beads",
         inside: "16 gold aptamer-functionalized spherical nano-electrodes and solid-state pH sensors arrayed around the titanium rim.",
-        desc: "Continuously monitors local interstitial fluid for early IL-6 and IFN-γ cytokine spikes, pH acidosis, and CD8+ T-cell infiltration, with Stage 1–2 autoantibodies shown as a diagnostic overlay."
+        desc: "Continuously detects early pro-inflammatory cytokine spikes (IL-6, IFN-γ) and local interstitial pH drops right at the implant perimeter."
       },
       layer4: {
         badge: "Nanochip Layer 04",
         title: "TinyML Edge-AI Silicon Processor",
         inside: "Ultra-low-power (18 µW) CMOS neural network classifier die powered by wireless induction and glucose biofuel cells.",
-        desc: "Runs a trained logistic classifier over the four sensor signals in <50 ms to predict autoimmune attacks and actuate the piezoelectric micro-valves."
+        desc: "Processes multi-sensor cytokine patterns in <50 ms to predict autoimmune flare-ups and actuate the piezoelectric micro-valves."
       },
       layer5: {
         badge: "Nanochip Layer 05 (Base + Power Generator)",
         title: "Dual Lyophilized Reservoirs & Inductive Biofuel Generator",
         inside: "Two sealed 50 µL chambers storing 500 µg of freeze-dried IL-10 & TGF-β, plus a 3-ring copper inductive power coil & enzymatic glucose biofuel generator underneath.",
-        desc: "Stores freeze-dried IL-10 & TGF-β over a copper inductive power coil & glucose biofuel generator underneath the base."
+        desc: "Harvests wireless magnetic induction and ambient interstitial glucose to power the 18 µW AI chip while piezoelectric valves pump 25 nL peptide doses."
       }
     };
 
