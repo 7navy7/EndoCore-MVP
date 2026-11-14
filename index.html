@@ -403,15 +403,44 @@
       arrow.className = 'absolute w-4 h-4 bg-slate-900 border-l-2 border-t-2 border-purple-500/80 z-0';
 
         if (window.innerWidth < 1024) {
-        // MOBILE IPHONE LAYOUT: Card floats perfectly in the center to avoid Safari bottom bar
-        card.style.top = '50%';
-        card.style.bottom = 'auto';
+      // MOBILE LAYOUT: Jumps top/bottom with UP/DOWN arrows so it never covers the active panel section
         card.style.left = '50%';
-        card.style.transform = 'translate(-50%, -50%)';
         card.style.right = 'auto';
-        arrow.classList.add('hidden');
+        card.style.transform = 'translateX(-50%)';
+        arrow.classList.remove('hidden');
+
+        if (currentTutorialStep === 1) {
+          // Step 1: Sit at the bottom so the 3D scene & Top Banner are uncovered
+          card.style.top = 'auto';
+          card.style.bottom = '24px';
+          arrow.classList.add('hidden');
+        }
+        else if (currentTutorialStep === 2) {
+          // Step 2: Jump under the Top Bar, pointing UP at 'Simulation 1'
+          card.style.top = '68px';
+          card.style.bottom = 'auto';
+          arrow.classList.add('-top-[9px]', 'left-1/2', '-ml-[8px]', 'rotate-45');
+        }
+        else if (currentTutorialStep === 3) {
+          // Step 3: Left Panel opens at top -> card jumps to bottom, pointing UP at the sliders
+          card.style.top = 'auto';
+          card.style.bottom = '24px';
+          arrow.classList.add('-top-[9px]', 'left-1/2', '-ml-[8px]', 'rotate-45');
+        }
+        else if (currentTutorialStep === 4) {
+          // Step 4: Left Panel scrolls down to Hardware Layers -> card jumps to top, pointing DOWN at the button
+          card.style.top = '68px';
+          card.style.bottom = 'auto';
+          arrow.classList.add('-bottom-[9px]', 'left-1/2', '-ml-[8px]', 'rotate-[225deg]');
+        }
+        else if (currentTutorialStep === 5 || currentTutorialStep === 6) {
+          // Steps 5 & 6: Right Panel opens -> card jumps to bottom, pointing UP at Attack Probability %
+          card.style.top = 'auto';
+          card.style.bottom = '24px';
+          arrow.classList.add('-top-[9px]', 'left-1/2', '-ml-[8px]', 'rotate-45');
+        }
       } else {
-        // DESKTOP LAYOUT (WITH RESTORED JUMPING ARROWS)
+        // DESKTOP LAYOUT 
         arrow.classList.remove('hidden');
         
         if (currentTutorialStep === 1) {
