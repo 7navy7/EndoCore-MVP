@@ -191,11 +191,3 @@ python tinyml_training_backend.py       # -> endocore_model.{json,js}, validatio
 | `validation_report.txt` | Full training and validation output |
 
 ---
-
-## Team
-
-| Name | Role |
-| :--- | :--- |
-| **Mariya Ghabashi** | Team Leader, Clinical & AI Architecture |
-| **Atouf Ghabashi** | 3D Prototyping & UX Design |
-| **Ater Kakki** | Business Operations & Market Research |
