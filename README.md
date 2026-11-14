@@ -191,3 +191,5 @@ python tinyml_training_backend.py       # -> endocore_model.{json,js}, validatio
 | `validation_report.txt` | Full training and validation output |
 
 ---
+
+## Team (MEDATHON ID: AQYXBQ)
