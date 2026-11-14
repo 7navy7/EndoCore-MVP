@@ -154,8 +154,6 @@ The largest *technical* risk is not in this repository at all: it is whether the
 - Software lifecycle documentation (**IEC 62304**) and an algorithm change-control plan for the edge-AI.
 - *In vitro* co-culture, then *in vivo* preclinical safety, then a 3–10 patient first-in-human study.
 
-> **Honest position:** EndoCore is a research-stage concept with a validated control architecture, not a device approaching market. The purpose of this submission is to show that the architecture is coherent and worth funding to the next milestone.
-
 ---
 
 ## Next steps
