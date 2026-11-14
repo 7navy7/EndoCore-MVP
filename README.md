@@ -3,7 +3,7 @@
 **MEDATHON 2026 — Filter 2 Submission | Medical Tools & Devices Innovation (AQYXBQ)**
 
 > ### 🚀 [Launch the live 3D digital twin](https://7navy7.github.io/EndoCore-MVP/)
-> *Best viewed on desktop or tablet for the full telemetry dashboard.*
+> *Best viewed on desktop for the full telemetry dashboard.*
 
 ---
 
