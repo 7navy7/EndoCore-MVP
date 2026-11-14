@@ -127,7 +127,6 @@ These metrics measure **the control logic on synthetic data**. They are not evid
 - Classifier performance on *real* sensor data. Every number above would need to be re-measured.
 
 ---
-
 ## Feasibility & key risks
 
 | Risk | Mitigation in the current design |
@@ -138,6 +137,24 @@ These metrics measure **the control logic on synthetic data**. They are not evid
 | Data privacy (Saudi PDPL) | All inference runs on-device; the inductive coil receives power only and never transmits; no Wi-Fi or Bluetooth interface exists, so there is no remote attack surface |
 
 The largest *technical* risk is not in this repository at all: it is whether the sensor array can resolve these cytokine ranges reliably in living interstitial fluid. Everything downstream depends on that, and it is the first thing we would test.
+
+### Regulatory pathway
+
+**Classification**
+- EndoCore is a Class III implantable medical device combining a drug (IL-10 / TGF-β), a biologic (allogeneic gene-edited cells), and software (edge-AI). In Saudi Arabia it falls under SFDA medical device regulation; a combination product of this type requires the most stringent evidence pathway.
+
+**What that means for us**
+- We are at **TRL 3–4**: the concept and the control algorithm are validated *in silico*; nothing has been fabricated or tested biologically.
+- The next regulatory step is not approval, but an **SFDA pre-submission consultation** to agree on the evidence package before wet-lab work begins.
+- **IRB approval** is required before any work involving human cells.
+
+**Evidence we would still need**
+- Biocompatibility (**ISO 10993**) for the hydrogel and membrane.
+- Sterility and shelf-life validation for the lyophilized peptide reservoirs.
+- Software lifecycle documentation (**IEC 62304**) and an algorithm change-control plan for the edge-AI.
+- *In vitro* co-culture, then *in vivo* preclinical safety, then a 3–10 patient first-in-human study.
+
+> **Honest position:** EndoCore is a research-stage concept with a validated control architecture, not a device approaching market. The purpose of this submission is to show that the architecture is coherent and worth funding to the next milestone.
 
 ---
 
