@@ -192,4 +192,4 @@ python tinyml_training_backend.py       # -> endocore_model.{json,js}, validatio
 
 ---
 
-## Team (MEDATHON ID: AQYXBQ)
+## (MEDATHON ID: AQYXBQ)
